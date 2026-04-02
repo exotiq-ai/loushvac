@@ -1,0 +1,39 @@
+---
+// src/components/CTABanner.astro
+export interface Props {
+  heading?: string;
+  subtext?: string;
+  dark?: boolean;
+}
+const {
+  heading = 'Ready to Get Your HVAC Fixed Right?',
+  subtext = 'Flat-rate pricing. No upselling. Serving Denver since 2014.',
+  dark = false,
+} = Astro.props;
+---
+<section class:list={['cta-banner', { 'cta-banner--dark': dark }]}>
+  <div class="container cta-banner-inner">
+    <div class="cta-banner-text">
+      <h2>{heading}</h2>
+      <p>{subtext}</p>
+    </div>
+    <div class="cta-banner-actions">
+      <a href="tel:3039498584" class="btn btn-primary btn-lg">
+        📞 Call (303) 949-8584
+      </a>
+      <a href="/contact/" class="btn btn-secondary btn-lg">
+        Schedule Free Estimate
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+.cta-banner { background: var(--color-primary); color: var(--color-white); padding: var(--space-16) 0; }
+.cta-banner--dark { background: var(--color-bg-dark); }
+.cta-banner-inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-8); }
+@media (min-width: 768px) { .cta-banner-inner { flex-direction: row; text-align: left; justify-content: space-between; } }
+.cta-banner-text h2 { color: var(--color-white); margin-bottom: var(--space-3); }
+.cta-banner-text p { color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin: 0; }
+.cta-banner-actions { display: flex; flex-direction: column; gap: var(--space-3); flex-shrink: 0; }
+@media (min-width: 480px) { .cta-banner-actions { flex-direction: row; } }
+</style>

@@ -1,0 +1,47 @@
+---
+// src/components/FAQAccordion.astro
+import type { FAQItem } from '../content/faq.ts';
+export interface Props { items: FAQItem[]; }
+const { items } = Astro.props;
+---
+<div class="faq-accordion">
+  {items.map((item) => (
+    <details class="faq-item" id={`faq-${item.id}`}>
+      <summary class="faq-question">
+        {item.question}
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </summary>
+      <div class="faq-answer">
+        <p>{item.answer}</p>
+      </div>
+    </details>
+  ))}
+</div>
+<style>
+.faq-accordion { display: flex; flex-direction: column; gap: var(--space-2); }
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: var(--color-white);
+  overflow: hidden;
+}
+.faq-item[open] { border-color: var(--color-primary-light); }
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+  list-style: none;
+  gap: var(--space-3);
+}
+.faq-question::-webkit-details-marker { display: none; }
+.faq-item[open] .faq-question { color: var(--color-primary); }
+.faq-icon { flex-shrink: 0; font-size: var(--font-size-xl); color: var(--color-primary); transition: transform var(--transition); font-weight: 300; }
+.faq-item[open] .faq-icon { transform: rotate(45deg); }
+.faq-answer { padding: 0 var(--space-5) var(--space-5); }
+.faq-answer p { color: var(--color-text-muted); line-height: 1.8; margin: 0; }
+</style>

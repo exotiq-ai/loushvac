@@ -1,0 +1,23 @@
+---
+// src/components/ServiceAreaMap.astro
+import { serviceAreaCities } from '../content/serviceArea.ts';
+const mountainCities = ['Evergreen', 'Morrison', 'Kittredge', 'Indian Hills', 'Idledale'];
+---
+<section class="service-area-section">
+  <div class="city-grid">
+    {serviceAreaCities.map(city => (
+      <div class="city-item">
+        <span class="city-name">
+          {city.name}{mountainCities.includes(city.name) ? ' ★' : ''}
+        </span>
+      </div>
+    ))}
+  </div>
+  <p class="service-area-note">★ Mountain/foothills communities where altitude considerations are especially important.</p>
+  <p class="service-area-note">Don't see your city? Give us a call at <a href="tel:3039498584" class="phone-link">(303) 949-8584</a> — we likely serve your area.</p>
+</section>
+<style>
+.city-grid { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-4); }
+.city-item { background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--border-radius-full); padding: var(--space-2) var(--space-4); font-size: var(--font-size-sm); font-weight: 500; }
+.service-area-note { font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+</style>

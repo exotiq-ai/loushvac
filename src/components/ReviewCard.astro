@@ -1,0 +1,50 @@
+---
+// src/components/ReviewCard.astro
+import type { Review } from '../content/reviews.ts';
+export interface Props { review: Review; featured?: boolean; }
+const { review, featured = false } = Astro.props;
+const stars = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+---
+<article class:list={['review-card', { 'review-card--featured': featured }]}>
+  <div class="review-stars" aria-label={`${review.stars} out of 5 stars`}>{stars}</div>
+  {review.textEs && (
+    <blockquote class="review-text review-text-es" lang="es">
+      "{review.textEs}"
+    </blockquote>
+  )}
+  <blockquote class="review-text" lang={review.textEs ? 'en' : undefined}>
+    {review.textEs && <span class="review-translation-label">English: </span>}
+    "{review.text}"
+  </blockquote>
+  <footer class="review-meta">
+    <span class="review-name">{review.reviewer}</span>
+    <span class="review-platform">{review.platform}</span>
+  </footer>
+</article>
+<style>
+.review-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow);
+}
+.review-card--featured { border-color: var(--color-primary-light); border-width: 2px; }
+.review-stars { color: var(--color-star); font-size: var(--font-size-xl); letter-spacing: 0.05em; }
+.review-text {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-text);
+  font-style: italic;
+  margin: 0;
+  flex-grow: 1;
+}
+.review-text-es { color: var(--color-text-muted); margin-bottom: var(--space-2); }
+.review-translation-label { font-weight: 600; font-style: normal; font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.review-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+.review-name { font-weight: 600; font-size: var(--font-size-sm); }
+.review-platform { font-size: var(--font-size-xs); color: var(--color-text-muted); background: var(--color-bg-alt); padding: var(--space-1) var(--space-2); border-radius: var(--border-radius-full); }
+</style>
