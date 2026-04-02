@@ -1,14 +1,435 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TrustBar from '../components/TrustBar.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { services } from '../content/services.ts';
+import { reviews } from '../content/reviews.ts';
+
+const featuredReviews = reviews.filter(r => ['hero', 'service'].includes(r.tier)).slice(0, 6);
+const homepageServices = services.slice(0, 6);
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Lou's Heating & Cooling — Denver's Honest HVAC Company",
+  "description": "Family-owned HVAC serving the Denver metro since 2014. Flat rate pricing, no upselling, 24/7 emergency service.",
+  "url": "https://www.loushvac303.com"
+};
 ---
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="generator" content={Astro.generator} />
-  <title>Lou's Heating & Cooling | Denver HVAC</title>
-</head>
-<body>
-  <h1>Lou's Heating & Cooling — Coming Soon</h1>
-</body>
-</html>
+<BaseLayout
+  title="Lou's Heating & Cooling | Denver's Honest HVAC Company | (303) 949-8584"
+  description="Family-owned HVAC in Denver, CO. Flat rate pricing, no upselling, 24/7 emergency service. AC repair, furnace repair, swamp cooler service. Call (303) 949-8584."
+  canonical="/"
+  schema={pageSchema}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Denver's Most Trusted HVAC Company</p>
+        <h1>Honest HVAC Service.<br>Fair Prices. Every Time.</h1>
+        <p class="hero-sub">
+          Family-owned. Flat rate pricing. No upselling.<br>
+          Serving the Denver metro since 2014.
+        </p>
+        <div class="hero-cta-group">
+          <a href="tel:3039498584" class="btn btn-primary btn-lg">
+            📞 Call (303) 949-8584
+          </a>
+          <a href="/contact/" class="btn btn-secondary btn-lg">
+            Schedule Free Estimate
+          </a>
+        </div>
+        <div class="hero-trust-quick">
+          <span>✓ Free Estimates</span>
+          <span>✓ 24/7 Emergency</span>
+          <span>✓ BBB A+</span>
+          <span>✓ No Hidden Fees</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <TrustBar />
+
+  <!-- WHY LOU'S -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro text-center">
+        <h2>Why Denver Homeowners Choose Lou's</h2>
+        <p class="section-intro-sub">We've heard what people say about other HVAC companies. We built Lou's to be the opposite.</p>
+      </div>
+      <div class="differentiators grid-2">
+        <div class="differentiator">
+          <div class="diff-icon" aria-hidden="true">🤝</div>
+          <h3>We'll never sell you something you don't need</h3>
+          <blockquote>
+            "I can imagine if I had called one of the larger 'service provider' companies, I would have been informed I need a new unit. Thanks again for your honesty."
+          </blockquote>
+          <p>We diagnose what's actually wrong and fix it. If a $150 repair keeps your system running five more years, that's what we'll recommend. Period.</p>
+        </div>
+        <div class="differentiator">
+          <div class="diff-icon" aria-hidden="true">⚡</div>
+          <h3>We show up fast — and explain everything</h3>
+          <blockquote>
+            "He showed up first thing knowing that we were in for another 95 degree day."
+          </blockquote>
+          <p>We answer calls 24/7 and get to you quickly. And when we arrive, we don't just fix it and leave — we explain what was wrong and how to prevent it in the future.</p>
+        </div>
+        <div class="differentiator">
+          <div class="diff-icon" aria-hidden="true">💰</div>
+          <h3>Flat rate pricing. No hidden fees. Ever.</h3>
+          <blockquote>
+            "Stuck to the original quoted price. Very friendly also."
+          </blockquote>
+          <p>We quote you a flat rate before we start any work. What we quote is what you pay. Free estimates, military discount available, no overtime charges sprung on you after the fact.</p>
+        </div>
+        <div class="differentiator">
+          <div class="diff-icon" aria-hidden="true">👨‍👩‍👦</div>
+          <h3>Family-owned, not a faceless corporation</h3>
+          <blockquote>
+            "Lou was among the most pleasant and professional tradesman and individual I have ever hired."
+          </blockquote>
+          <p>When you call Lou's, Lou (or Nester, his partner) shows up. You're not getting a rotating cast of subcontractors from a call center. This is our business, our name, and our reputation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-intro text-center">
+        <h2>HVAC Services in Denver</h2>
+        <p class="section-intro-sub">From emergency repairs to new equipment installations, we handle it all.</p>
+      </div>
+      <div class="grid-3 services-grid">
+        {homepageServices.map(service => (
+          <ServiceCard
+            title={service.shortTitle}
+            description={service.description}
+            icon={service.icon}
+            href={`/services/${service.slug}/`}
+          />
+        ))}
+      </div>
+      <p class="services-footer text-center">
+        Not sure what you need? <a href="tel:3039498584" class="phone-link">(303) 949-8584</a> — we'll help you figure it out.
+      </p>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-intro text-center">
+        <h2>What Denver Homeowners Say</h2>
+        <p class="section-intro-sub">★★★★★ 5.0 stars across 50+ verified reviews on Google, HomeAdvisor, and Yelp</p>
+      </div>
+      <div class="grid-3 reviews-grid">
+        {featuredReviews.map((review, i) => (
+          <ReviewCard review={review} featured={i === 0} />
+        ))}
+      </div>
+      <div class="reviews-footer text-center">
+        <a href="/reviews/" class="btn btn-outline">Read All Reviews</a>
+        <div class="review-platform-links">
+          <a href="https://www.homeadvisor.com/rated.LousHeatingandCooling.141784599.html" target="_blank" rel="noopener noreferrer">HomeAdvisor</a>
+          <a href="https://www.yelp.com/biz/lou-s-heating-and-cooling-denver" target="_blank" rel="noopener noreferrer">Yelp</a>
+          <a href="https://www.angi.com/companylist/us/co/denver/lous-heating-and-cooling-llc-reviews-1.htm" target="_blank" rel="noopener noreferrer">Angi</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section section-alt">
+    <div class="container about-preview">
+      <div class="about-preview-img">
+        <img src="/images/lou-headshot-1.jpg" alt="Lou Hernandez, owner of Lou's Heating & Cooling, Denver CO" width="400" height="400" loading="lazy" />
+      </div>
+      <div class="about-preview-text">
+        <p class="hero-eyebrow">Meet Lou</p>
+        <h2>Denver's Honest HVAC Guy</h2>
+        <p>Lou Hernandez has been working on HVAC systems in Denver since 2014. He started Lou's Heating &amp; Cooling because he kept seeing homeowners get pushed into replacements they didn't need by companies that profit from upselling.</p>
+        <p>His approach is simple: figure out what's actually wrong, explain it clearly, fix it for a fair price. That's it. No mystery charges, no unnecessary repairs, no jargon.</p>
+        <p class="about-preview-spanish" lang="es">Hablamos Español — Se habla Español.</p>
+        <a href="/about/" class="btn btn-outline">Our Full Story →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA PREVIEW -->
+  <section class="section">
+    <div class="container text-center">
+      <h2>Serving the Denver Metro</h2>
+      <p class="section-intro-sub">From the foothills to the suburbs — if you're in the Denver metro, we're your HVAC team.</p>
+      <div class="service-area-cities">
+        <span>Denver</span><span>Lakewood</span><span>Arvada</span><span>Westminster</span>
+        <span>Littleton</span><span>Wheat Ridge</span><span>Englewood</span><span>Aurora</span>
+        <span>Thornton</span><span>Golden</span><span>Morrison</span><span>Evergreen</span>
+        <span>Centennial</span><span>Cherry Hills</span><span>+ more</span>
+      </div>
+      <a href="/service-area/" class="btn btn-outline">See Full Service Area</a>
+    </div>
+  </section>
+
+  <!-- EMERGENCY CTA BANNER -->
+  <CTABanner
+    heading="HVAC Emergency? We're Here 24/7."
+    subtext="Same-day service available. Call right now — a real person answers."
+    dark={true}
+  />
+
+  <!-- CONTACT FORM -->
+  <section class="section section-alt" id="contact">
+    <div class="container-narrow">
+      <div class="section-intro text-center">
+        <h2>Schedule Your Free Estimate</h2>
+        <p class="section-intro-sub">Fill out the form below and we'll be in touch within 2 hours during business hours. For urgent needs, call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  padding: var(--space-20) 0;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 40%, #2A6F97 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero-text {
+  max-width: 640px;
+}
+.hero-eyebrow {
+  color: var(--color-primary-light);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+.hero h1 {
+  color: var(--color-white);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+.hero-sub {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-lg);
+  line-height: 1.6;
+  margin-bottom: var(--space-8);
+}
+.hero-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+@media (min-width: 480px) {
+  .hero-cta-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.hero-trust-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.hero-trust-quick span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* Grid utilities */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+@media (min-width: 640px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+/* Section intro */
+.section-intro {
+  margin-bottom: var(--space-12);
+}
+.section-intro h2 {
+  margin-bottom: var(--space-3);
+}
+.section-intro-sub {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Differentiators */
+.differentiators {
+  gap: var(--space-8);
+}
+.differentiator {
+  padding: var(--space-6);
+  border-left: 4px solid var(--color-accent);
+}
+.diff-icon {
+  font-size: 2rem;
+  margin-bottom: var(--space-3);
+}
+.differentiator h3 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-xl);
+}
+.differentiator blockquote {
+  font-style: italic;
+  color: var(--color-text-muted);
+  border-left: 2px solid var(--color-primary-light);
+  padding-left: var(--space-3);
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-sm);
+}
+.differentiator p {
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* Services grid */
+.services-footer {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+}
+
+/* Phone link */
+.phone-link {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* Reviews */
+.reviews-footer {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.review-platform-links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.review-platform-links a {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-decoration: underline;
+}
+
+/* Btn outline */
+.btn-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* About preview */
+.about-preview {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .about-preview {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.about-preview-img img {
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.about-preview-text h2 {
+  margin-bottom: var(--space-4);
+}
+.about-preview-text p {
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.about-preview-spanish {
+  color: var(--color-primary-light) !important;
+  font-style: italic;
+}
+
+/* Service area */
+.service-area-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  margin: var(--space-6) auto;
+  max-width: 700px;
+}
+.service-area-cities span {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+</style>
