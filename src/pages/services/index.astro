@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import { services } from '../../content/services.ts';
+---
+<BaseLayout
+  title="HVAC Services in Denver, CO | Lou's Heating & Cooling"
+  description="Complete HVAC services in Denver: AC repair, furnace repair, swamp cooler service, maintenance, and 24/7 emergency service. Call (303) 949-8584."
+  canonical="/services/"
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>HVAC Services in Denver, CO</h1>
+      <p>From emergency repairs to new equipment installations — we handle it all, honestly.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="grid-3">
+        {services.map(service => (
+          <ServiceCard
+            title={service.title}
+            description={service.description}
+            icon={service.icon}
+            href={`/services/${service.slug}/`}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  <CTABanner />
+</BaseLayout>

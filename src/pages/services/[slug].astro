@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import { services } from '../../content/services.ts';
+import { reviews } from '../../content/reviews.ts';
+import type { Service } from '../../content/services.ts';
+
+export async function getStaticPaths() {
+  return services.map(service => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const serviceReviews = reviews.filter(r => service.reviewIds.includes(r.id));
+const relatedServices = service.relatedSlugs
+  .map(slug => services.find(s => s.slug === slug))
+  .filter((s): s is Service => Boolean(s));
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "description": service.description,
+  "provider": {
+    "@type": "HVACBusiness",
+    "name": "Lou's Heating & Cooling",
+    "telephone": "+13039498584"
+  },
+  "areaServed": "Denver Metro, CO",
+  "url": `https://www.loushvac303.com/services/${service.slug}/`
+};
+---
+<BaseLayout
+  title={service.metaTitle}
+  description={service.metaDescription}
+  canonical={`/services/${service.slug}/`}
+  schema={serviceSchema}
+>
+  <!-- PAGE HERO -->
+  <section class="service-hero section-primary section-sm">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a> › <a href="/services/">Services</a> › {service.title}
+      </nav>
+      <h1>{service.h1}</h1>
+      <div class="service-hero-cta">
+        <a href="tel:3039498584" class="btn btn-primary btn-lg">📞 Call (303) 949-8584</a>
+        <a href="/contact/" class="btn btn-secondary">Schedule Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container service-layout">
+    <main class="service-main">
+      <!-- INTRO -->
+      <section class="service-section">
+        <p class="service-intro">{service.intro}</p>
+      </section>
+
+      <!-- SYMPTOMS -->
+      <section class="service-section">
+        <h2>Signs You Need {service.shortTitle} Service</h2>
+        <ul class="symptom-list">
+          {service.symptoms.map(s => (
+            <li>
+              <span aria-hidden="true">✓</span> {s}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="service-section">
+        <h2>What to Expect</h2>
+        <ol class="process-list">
+          {service.process.map((step, i) => (
+            <li class="process-step">
+              <div class="process-step-num" aria-hidden="true">{i + 1}</div>
+              <div>
+                <strong>{step.step}</strong>
+                <p>{step.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <!-- OUR COMMITMENT -->
+      <section class="service-commitment">
+        <h2>Our Commitment to You</h2>
+        <div class="commitment-items">
+          <div class="commitment-item">
+            <span aria-hidden="true">💰</span>
+            <div>
+              <strong>Flat Rate Pricing</strong>
+              <p>You get a price before we start any work. No hourly surprises, no hidden fees.</p>
+            </div>
+          </div>
+          <div class="commitment-item">
+            <span aria-hidden="true">🤝</span>
+            <div>
+              <strong>Free Estimates</strong>
+              <p>Free in-home estimates on all installations. No obligation to move forward.</p>
+            </div>
+          </div>
+          <div class="commitment-item">
+            <span aria-hidden="true">🛡️</span>
+            <div>
+              <strong>10-Year Warranty (New Equipment)</strong>
+              <p>All new installations include a 10-year extended parts warranty plus our 5-year workmanship warranty.</p>
+            </div>
+          </div>
+          <div class="commitment-item">
+            <span aria-hidden="true">🕐</span>
+            <div>
+              <strong>24/7 Emergency Service</strong>
+              <p>HVAC doesn't break on schedule. We answer calls around the clock.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      {serviceReviews.length > 0 && (
+        <section class="service-section">
+          <h2>What Our Customers Say</h2>
+          <div class="service-reviews">
+            {serviceReviews.slice(0, 2).map(review => (
+              <ReviewCard review={review} />
+            ))}
+          </div>
+        </section>
+      )}
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="service-sidebar">
+      <div class="sidebar-cta">
+        <h3>Ready to Schedule?</h3>
+        <a href="tel:3039498584" class="btn btn-primary btn-lg" style="width:100%; text-align:center; display:block;">
+          📞 (303) 949-8584
+        </a>
+        <p class="sidebar-or">— or —</p>
+        <a href="/contact/" class="btn btn-outline" style="width:100%; text-align:center; display:block;">
+          Schedule Online
+        </a>
+        <ul class="sidebar-badges">
+          <li>✓ Free Estimates</li>
+          <li>✓ Flat Rate Pricing</li>
+          <li>✓ BBB A+ Rated</li>
+          <li>✓ 24/7 Available</li>
+          <li>✓ Serving Denver Since 2014</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <!-- RELATED SERVICES -->
+  {relatedServices.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Related Services</h2>
+        <div class="grid-3">
+          {relatedServices.map(related => (
+            <ServiceCard
+              title={related.shortTitle}
+              description={related.description}
+              icon={related.icon}
+              href={`/services/${related.slug}/`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTABanner />
+</BaseLayout>
+
+<style>
+.service-hero { padding: var(--space-12) 0; }
+.service-hero h1 { color: var(--color-white); margin-bottom: var(--space-6); }
+.breadcrumb { color: rgba(255,255,255,0.7); font-size: var(--font-size-sm); margin-bottom: var(--space-3); }
+.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.breadcrumb a:hover { color: white; }
+.service-hero-cta { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.service-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-10); padding-top: var(--space-10); padding-bottom: var(--space-10); }
+@media (min-width: 1024px) { .service-layout { grid-template-columns: 1fr 320px; } }
+.service-section { margin-bottom: var(--space-10); }
+.service-section h2 { margin-bottom: var(--space-4); color: var(--color-primary); }
+.service-intro { font-size: var(--font-size-lg); line-height: 1.8; color: var(--color-text-muted); }
+.symptom-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.symptom-list li { display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3); background: var(--color-bg-alt); border-radius: var(--border-radius); }
+.symptom-list li span { color: var(--color-success); font-weight: 700; flex-shrink: 0; }
+.process-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+.process-step { display: flex; align-items: flex-start; gap: var(--space-4); }
+.process-step-num { width: 36px; height: 36px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.process-step p { color: var(--color-text-muted); margin: var(--space-1) 0 0; font-size: var(--font-size-sm); }
+.service-commitment { background: var(--color-bg-alt); border-radius: var(--border-radius-lg); padding: var(--space-6); margin-bottom: var(--space-10); }
+.service-commitment h2 { color: var(--color-primary); margin-bottom: var(--space-5); }
+.commitment-items { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+@media (min-width: 640px) { .commitment-items { grid-template-columns: 1fr 1fr; } }
+.commitment-item { display: flex; gap: var(--space-3); align-items: flex-start; }
+.commitment-item span { font-size: 1.5rem; flex-shrink: 0; }
+.commitment-item p { color: var(--color-text-muted); font-size: var(--font-size-sm); margin: var(--space-1) 0 0; }
+.service-reviews { display: flex; flex-direction: column; gap: var(--space-4); }
+.sidebar-cta { background: var(--color-bg-alt); border-radius: var(--border-radius-lg); padding: var(--space-6); position: sticky; top: 90px; }
+.sidebar-cta h3 { margin-bottom: var(--space-4); }
+.sidebar-or { text-align: center; color: var(--color-text-muted); margin: var(--space-3) 0; font-size: var(--font-size-sm); }
+.sidebar-badges { list-style: none; padding: 0; margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+.sidebar-badges li { font-size: var(--font-size-sm); color: var(--color-text-muted); padding-left: 0; }
+</style>
