@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { faqItems } from '../content/faq.ts';
+
+const basicsFAQ = faqItems.filter(f => f.tier === 'basics');
+const decisionsFAQ = faqItems.filter(f => f.tier === 'decisions');
+const expertFAQ = faqItems.filter(f => f.tier === 'expert');
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+<BaseLayout
+  title="HVAC FAQ | Denver AC & Furnace Questions Answered | Lou's Heating & Cooling"
+  description="Expert answers to Denver HVAC questions — from basic homeowner tips to Colorado-specific altitude and climate considerations. Ask Lou anything: (303) 949-8584."
+  canonical="/faq/"
+  schema={faqSchema}
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>HVAC FAQ for Denver Homeowners</h1>
+      <p>Honest answers from a technician who's actually worked on hundreds of systems in Colorado.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container faq-layout">
+      <nav class="faq-nav" aria-label="FAQ categories">
+        <a href="#basics">Homeowner Basics</a>
+        <a href="#decisions">Buying Decisions</a>
+        <a href="#expert">Advanced / Expert</a>
+      </nav>
+
+      <div class="faq-content">
+        <section id="basics" class="faq-tier">
+          <h2>Homeowner Basics</h2>
+          <p class="faq-tier-desc">The fundamentals — what every Denver homeowner should know about their HVAC system.</p>
+          <FAQAccordion items={basicsFAQ} />
+        </section>
+
+        <section id="decisions" class="faq-tier">
+          <h2>Repair vs. Replace: Buying Decisions</h2>
+          <p class="faq-tier-desc">When to repair, when to replace, what brands to consider, and how to evaluate quotes.</p>
+          <FAQAccordion items={decisionsFAQ} />
+        </section>
+
+        <section id="expert" class="faq-tier">
+          <h2>Advanced: Denver &amp; Colorado Specifics</h2>
+          <p class="faq-tier-desc">Deep-dive questions about altitude, climate, refrigerants, and system design for the Front Range.</p>
+          <FAQAccordion items={expertFAQ} />
+        </section>
+
+        <div class="faq-cta-inline">
+          <p>Still have questions? Call us at <a href="tel:3039498584" class="phone-link">(303) 949-8584</a> — Lou answers his own phone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>
+<style>
+.faq-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-10); }
+@media (min-width: 1024px) { .faq-layout { grid-template-columns: 220px 1fr; } }
+.faq-nav { display: flex; flex-direction: row; gap: var(--space-2); flex-wrap: wrap; }
+@media (min-width: 1024px) { .faq-nav { flex-direction: column; position: sticky; top: 90px; height: fit-content; } }
+.faq-nav a { padding: var(--space-2) var(--space-3); border-radius: var(--border-radius); background: var(--color-bg-alt); color: var(--color-text); font-size: var(--font-size-sm); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.faq-nav a:hover { background: var(--color-primary); color: white; }
+.faq-tier { margin-bottom: var(--space-12); }
+.faq-tier h2 { color: var(--color-primary); margin-bottom: var(--space-2); }
+.faq-tier-desc { color: var(--color-text-muted); margin-bottom: var(--space-6); }
+.faq-cta-inline { background: var(--color-bg-alt); border-radius: var(--border-radius); padding: var(--space-5); text-align: center; font-size: var(--font-size-lg); }
+</style>

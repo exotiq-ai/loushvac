@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import ServiceAreaMap from '../components/ServiceAreaMap.astro';
+import { serviceAreaCities } from '../content/serviceArea.ts';
+---
+<BaseLayout
+  title="HVAC Service Area — Denver Metro, CO | Lou's Heating & Cooling"
+  description="Lou's Heating & Cooling serves the entire Denver metro area: Denver, Lakewood, Arvada, Westminster, Littleton, Golden, Evergreen, and more. Call (303) 949-8584."
+  canonical="/service-area/"
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>Denver Metro HVAC Service Area</h1>
+      <p>Serving the Front Range from the mountains to the suburbs since 2014.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Where We Serve</h2>
+      <p>Lou's Heating &amp; Cooling serves the greater Denver metro area, including mountain communities along the Front Range. Our service territory covers everything from the I-25 corridor to the foothills of Jefferson County.</p>
+      <ServiceAreaMap />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>City-by-City Service</h2>
+      <div class="city-detail-grid">
+        {serviceAreaCities.map(city => (
+          <div class="city-detail">
+            <h3>{city.name}, CO</h3>
+            <p>{city.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow text-center">
+      <h2>Denver's Altitude Advantage</h2>
+      <p>At 5,280 feet, Denver's altitude affects how HVAC systems are sized and perform. Unlike HVAC companies that use generic sea-level calculations, Lou's accounts for Colorado's altitude in every system sizing and diagnostic we do. This means properly sized equipment, accurate diagnoses, and no surprises.</p>
+      <p>If you're in a mountain community (Evergreen, Morrison, Golden, Kittredge) at even higher elevations, we adjust our calculations accordingly. Altitude matters — and we know Denver's HVAC landscape because we work here every day.</p>
+      <a href="/faq/" class="btn btn-outline">Learn More: Altitude &amp; HVAC &rarr;</a>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>
+<style>
+.city-detail-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 640px) { .city-detail-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .city-detail-grid { grid-template-columns: repeat(3, 1fr); } }
+.city-detail { padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--border-radius); background: var(--color-white); }
+.city-detail h3 { color: var(--color-primary); font-size: var(--font-size-lg); margin-bottom: var(--space-2); }
+.city-detail p { color: var(--color-text-muted); font-size: var(--font-size-sm); margin: 0; }
+</style>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { reviews } from '../content/reviews.ts';
+import { externalProfiles } from '../content/externalProfiles.ts';
+
+const heroReviews = reviews.filter(r => r.tier === 'hero');
+const serviceReviews = reviews.filter(r => r.tier === 'service');
+const trustReviews = reviews.filter(r => r.tier === 'trust');
+const websiteReviews = reviews.filter(r => r.tier === 'website');
+
+const reviewPlatformLinks = externalProfiles.filter(p =>
+  ['HomeAdvisor', 'Yelp', 'Angi', 'Google Business'].includes(p.name)
+);
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Customer Reviews — Lou's Heating & Cooling",
+  "itemListElement": reviews.slice(0, 10).map((r, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": r.reviewer },
+      "reviewRating": { "@type": "Rating", "ratingValue": r.stars, "bestRating": 5 },
+      "reviewBody": r.text,
+      "itemReviewed": { "@type": "HVACBusiness", "name": "Lou's Heating & Cooling" }
+    }
+  }))
+};
+---
+<BaseLayout
+  title="Customer Reviews | Lou's Heating & Cooling Denver | 5-Star HVAC"
+  description="Read 20+ verified customer reviews for Lou's Heating & Cooling in Denver. 5 stars on HomeAdvisor, Yelp, and Angi. Call (303) 949-8584."
+  canonical="/reviews/"
+  schema={reviewSchema}
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>Customer Reviews</h1>
+      <p class="hero-rating">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 Stars &middot; 50+ Verified Reviews &middot; HomeAdvisor, Yelp, Angi</p>
+      <div class="review-platform-badges">
+        {reviewPlatformLinks.map(p => (
+          <a href={p.url} target="_blank" rel="noopener noreferrer" class="platform-badge">
+            {p.icon} {p.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Top Reviews</h2>
+      <p class="section-desc">What Denver homeowners say about Lou's Heating &amp; Cooling.</p>
+      <div class="grid-3">
+        {heroReviews.map(r => <ReviewCard review={r} featured={true} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Service-Specific Reviews</h2>
+      <div class="grid-3">
+        {serviceReviews.map(r => <ReviewCard review={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Trust &amp; Character</h2>
+      <div class="grid-3">
+        {trustReviews.map(r => <ReviewCard review={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>More Reviews</h2>
+      <div class="grid-3">
+        {websiteReviews.map(r => <ReviewCard review={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container text-center">
+      <h2>Leave a Review</h2>
+      <p>Had a great experience with Lou's? Your review helps other Denver homeowners find honest HVAC service.</p>
+      <div class="leave-review-links">
+        {externalProfiles.filter(p => ['Google Business', 'Yelp', 'HomeAdvisor', 'Angi'].includes(p.name)).map(p => (
+          <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            {p.icon} Review us on {p.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>
+<style>
+.hero-rating { font-size: var(--font-size-xl); color: var(--color-star); margin-bottom: var(--space-4); }
+.review-platform-badges { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+.platform-badge { background: rgba(255,255,255,0.15); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--border-radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: 500; }
+.platform-badge:hover { background: rgba(255,255,255,0.25); }
+.section-desc { color: var(--color-text-muted); margin-bottom: var(--space-8); }
+.leave-review-links { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; margin-top: var(--space-6); }
+</style>
