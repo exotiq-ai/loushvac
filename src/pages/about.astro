@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABanner from '../components/CTABanner.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import { reviews } from '../content/reviews.ts';
+
+const trustReviews = reviews.filter(r => r.tier === 'trust').slice(0, 3);
+const gregorioReview = reviews.find(r => r.reviewer === 'Gregorio M.');
+---
+<BaseLayout
+  title="About Lou's Heating & Cooling | Family-Owned Denver HVAC Since 2014"
+  description="Meet Lou Hernandez, owner of Lou's Heating & Cooling in Denver. Family-owned HVAC serving Denver since 2014. Honest diagnosis, fair pricing, no upselling. BBB A+."
+  canonical="/about/"
+>
+  <!-- PAGE HERO -->
+  <section class="about-hero section-primary">
+    <div class="container about-hero-inner">
+      <div class="about-hero-text">
+        <p class="hero-eyebrow">Family-Owned. Denver-Based.</p>
+        <h1>Meet Lou Hernandez</h1>
+        <p>Owner, Lou's Heating & Cooling — Serving Denver Since 2014</p>
+      </div>
+      <div class="about-hero-img">
+        <img
+          src="/images/lou-headshot-1.jpg"
+          alt="Lou Hernandez, owner and lead technician at Lou's Heating & Cooling, Denver CO"
+          width="400"
+          height="400"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- LOU'S STORY -->
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Lou's Story</h2>
+      <p>Lou Hernandez has been working on HVAC systems in the Denver metro since 2014. He started in the industry as a technician, spending years learning the trade from the inside — how systems work, how they fail, and what it really takes to diagnose a problem correctly the first time.</p>
+      <p>He formally incorporated Lou's Heating & Cooling LLC in 2022, but the business has its roots in nearly a decade of hands-on service work across the Front Range.</p>
+      <p>Lou started his own company for one reason: he kept seeing homeowners get burned. A loose connection would become a $3,000 "equipment failure." A dirty coil would become a full system replacement quote. A simple capacitor swap would come with a 2-hour labor charge and a shopping list of "recommended" services. He was tired of it.</p>
+      <p>At Lou's, the job is to find the simplest honest solution. If a $150 repair will keep your furnace running reliably for several more years, that's what Lou recommends — not a new furnace. If a tune-up will restore your AC to full capacity, you're getting a tune-up quote, not a replacement proposal.</p>
+
+      <h2>Lou and Nester</h2>
+      <p>Lou doesn't work alone. Nester, his partner and technician, is the other half of the Lou's team that customers have been complimenting by name in reviews. When you hire Lou's, you get people who take the work personally — because it is personal. This is our business, our name, and our reputation in the community we live in.</p>
+
+      <h2>How We Work</h2>
+      <p>No mystery. Here's what you can expect when you call Lou's: we answer the phone (24/7 for emergencies). We show up when we say we will. We diagnose the actual problem — not the most profitable problem. We give you a flat-rate price before we start anything. We do the work, explain what we did, and show you how to avoid the same issue in the future. Then we leave without surprising you with extra charges.</p>
+      <p>It sounds basic. You'd think it would be standard. Unfortunately, it's not — which is why so many reviews specifically call out Lou's honesty as the standout quality. Our goal is for that to feel unremarkable, because honest service should just be the baseline.</p>
+
+      <h2>Our Values (In Plain Language)</h2>
+      <p>We believe homeowners deserve to understand what's wrong with their HVAC system — in plain English, not technician-speak designed to justify a quote. We believe flat-rate pricing is the only honest way to do business. We believe a technician's job is to solve your problem, not to find new ones. And we believe that if you treat people fairly, they'll tell their neighbors.</p>
+      <p lang="es" class="about-spanish">Hablamos Español. Nuestro equipo sirve a la comunidad hispanohablante de Denver con el mismo nivel de servicio honesto y transparente.</p>
+    </div>
+  </section>
+
+  <!-- TRUST SIGNALS -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="text-center">Credentials & Guarantees</h2>
+      <div class="trust-signals-grid grid-3">
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">✓</div>
+          <h3>BBB A+ Accredited</h3>
+          <p>Accredited by the Better Business Bureau with an A+ rating since July 2024.</p>
+          <a href="https://www.bbb.org/us/co/denver/profile/heating-and-air-conditioning/lous-heating-and-cooling-1296-1000170743" target="_blank" rel="noopener noreferrer">View BBB Profile →</a>
+        </div>
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">🏆</div>
+          <h3>American Standard Authorized Dealer</h3>
+          <p>We install American Standard equipment backed by a 10-year extended parts warranty.</p>
+        </div>
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">🛡️</div>
+          <h3>Licensed & Insured in Colorado</h3>
+          <p>Lou's Heating & Cooling is fully licensed and carries general liability insurance in the State of Colorado.</p>
+        </div>
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">📋</div>
+          <h3>10-Year Parts Warranty</h3>
+          <p>New equipment installations come with a 10-year extended parts warranty on American Standard equipment.</p>
+        </div>
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">🔧</div>
+          <h3>5-Year Workmanship Warranty</h3>
+          <p>Our installation work is guaranteed for 5 years. If something fails because of how we installed it, we fix it.</p>
+        </div>
+        <div class="trust-signal">
+          <div class="trust-signal-icon" aria-hidden="true">💳</div>
+          <h3>Free Estimates & Military Discount</h3>
+          <p>Free in-home estimates on all installations. Military discount available — ask when you call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOMER REVIEWS ON ABOUT -->
+  <section class="section">
+    <div class="container">
+      <h2 class="text-center">What Our Customers Say</h2>
+      <div class="grid-3">
+        {trustReviews.map(review => (
+          <ReviewCard review={review} />
+        ))}
+      </div>
+      {gregorioReview && (
+        <div class="spanish-review-spotlight">
+          <ReviewCard review={gregorioReview} featured={true} />
+        </div>
+      )}
+      <div class="text-center" style="margin-top: var(--space-8)">
+        <a href="/reviews/" class="btn btn-outline">Read All Reviews</a>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>
+
+<style>
+.about-hero { padding: var(--space-16) 0; }
+.about-hero-inner { display: grid; grid-template-columns: 1fr; gap: var(--space-8); align-items: center; }
+@media (min-width: 768px) { .about-hero-inner { grid-template-columns: 1fr 1fr; } }
+.about-hero-text h1 { color: var(--color-white); margin-bottom: var(--space-3); }
+.about-hero-text p { color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin: 0; }
+.hero-eyebrow { color: var(--color-primary-light); font-size: var(--font-size-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-3); }
+.about-hero-img img { border-radius: var(--border-radius-lg); width: 100%; max-width: 380px; aspect-ratio: 1; object-fit: cover; margin: 0 auto; }
+.container-narrow h2 { margin-top: var(--space-10); margin-bottom: var(--space-4); }
+.container-narrow h2:first-child { margin-top: 0; }
+.about-spanish { background: var(--color-bg-alt); border-left: 4px solid var(--color-primary-light); padding: var(--space-4); border-radius: var(--border-radius); color: var(--color-primary); font-style: italic; margin-top: var(--space-8); }
+.trust-signals-grid { margin-top: var(--space-10); }
+.trust-signal { padding: var(--space-6); background: var(--color-white); border-radius: var(--border-radius-lg); border: 1px solid var(--color-border); }
+.trust-signal-icon { font-size: 2rem; margin-bottom: var(--space-3); }
+.trust-signal h3 { color: var(--color-primary); font-size: var(--font-size-lg); margin-bottom: var(--space-2); }
+.trust-signal p { color: var(--color-text-muted); font-size: var(--font-size-sm); margin-bottom: var(--space-3); }
+.trust-signal a { color: var(--color-accent); font-size: var(--font-size-sm); font-weight: 600; text-decoration: none; }
+.trust-signal a:hover { text-decoration: underline; }
+.spanish-review-spotlight { max-width: 600px; margin: var(--space-8) auto 0; }
+</style>
