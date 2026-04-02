@@ -1,0 +1,41 @@
+---
+// src/components/EmergencyCTA.astro
+---
+<div class="emergency-cta" role="complementary" aria-label="Emergency HVAC contact">
+  <a href="tel:3039498584" class="emergency-cta-inner">
+    <span class="emergency-icon" aria-hidden="true">🔥</span>
+    <span class="emergency-text">
+      <strong>HVAC Emergency?</strong>
+      <span class="emergency-sub">Call Now — 24/7</span>
+    </span>
+    <span class="emergency-phone">(303) 949-8584</span>
+  </a>
+</div>
+
+<style>
+.emergency-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: var(--color-accent);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+}
+@media (max-width: 1023px) { .emergency-cta { display: block; } }
+.emergency-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-white);
+  text-decoration: none;
+}
+.emergency-icon { font-size: 1.5rem; flex-shrink: 0; }
+.emergency-text { display: flex; flex-direction: column; line-height: 1.2; }
+.emergency-text strong { font-size: var(--font-size-base); }
+.emergency-sub { font-size: var(--font-size-xs); opacity: 0.9; }
+.emergency-phone { font-weight: 700; font-size: var(--font-size-lg); margin-left: auto; }
+</style>

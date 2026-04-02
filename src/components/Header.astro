@@ -1,0 +1,165 @@
+---
+// src/components/Header.astro
+const navLinks = [
+  { href: '/services/', label: 'Services' },
+  { href: '/about/', label: 'About' },
+  { href: '/reviews/', label: 'Reviews' },
+  { href: '/faq/', label: 'FAQ' },
+  { href: '/service-area/', label: 'Service Area' },
+  { href: '/contact/', label: 'Contact' },
+];
+const currentPath = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo-link" aria-label="Lou's Heating & Cooling — Home">
+      <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling" width="180" height="60" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class={`nav-link ${currentPath.startsWith(link.href) ? 'active' : ''}`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-cta">
+      <a href="tel:3039498584" class="header-phone">
+        <span aria-hidden="true">📞</span>
+        (303) 949-8584
+      </a>
+      <a href="/contact/" class="btn btn-primary header-schedule-btn">
+        Free Estimate
+      </a>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+    {navLinks.map(link => (
+      <a href={link.href} class="mobile-nav-link">{link.label}</a>
+    ))}
+    <a href="tel:3039498584" class="mobile-nav-phone">📞 (303) 949-8584</a>
+    <a href="/contact/" class="btn btn-primary mobile-nav-cta">Get Free Estimate</a>
+  </nav>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: 72px;
+}
+.logo-link img { height: 48px; width: auto; }
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+@media (min-width: 1024px) { .desktop-nav { display: flex; } }
+.nav-link {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: color var(--transition), background var(--transition);
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--color-primary);
+  background: var(--color-bg-alt);
+}
+.header-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+@media (min-width: 1024px) { .header-cta { margin-left: 0; } }
+.header-phone {
+  display: none;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  text-decoration: none;
+}
+.header-phone:hover { color: var(--color-accent); }
+@media (min-width: 640px) { .header-phone { display: flex; } }
+.header-schedule-btn { display: none; }
+@media (min-width: 768px) { .header-schedule-btn { display: inline-flex; } }
+.mobile-menu-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+@media (min-width: 1024px) { .mobile-menu-btn { display: none; } }
+.mobile-menu-btn span {
+  display: block;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-white);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav-link {
+  padding: var(--space-3) var(--space-2);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-nav-link:hover { color: var(--color-primary); }
+.mobile-nav-phone {
+  padding: var(--space-3) var(--space-2);
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+}
+.mobile-nav-cta { margin-top: var(--space-3); text-align: center; }
+</style>
+
+<script>
+const btn = document.getElementById('mobile-menu-btn');
+const nav = document.getElementById('mobile-nav');
+if (btn && nav) {
+  btn.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    nav.setAttribute('aria-hidden', String(!isOpen));
+  });
+}
+</script>
