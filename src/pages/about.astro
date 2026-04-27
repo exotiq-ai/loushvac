@@ -8,25 +8,26 @@ const trustReviews = reviews.filter(r => r.tier === 'trust').slice(0, 3);
 const gregorioReview = reviews.find(r => r.reviewer === 'Gregorio M.');
 ---
 <BaseLayout
-  title="About Lou's Heating & Cooling | Family-Owned Denver HVAC Since 2014"
-  description="Meet Lou Hernandez, owner of Lou's Heating & Cooling in Denver. Family-owned HVAC serving Denver since 2014. Honest diagnosis, fair pricing, no upselling. BBB A+."
+  title="About Lou's Heating & Cooling | Family-Owned Lakewood & Denver HVAC Since 2014"
+  description="Meet Lou Hernandez, owner of Lou's Heating & Cooling. Family-owned HVAC based in Lakewood, serving the Denver metro since 2014. Honest diagnosis, fair pricing, no upselling. BBB A+."
   canonical="/about/"
 >
   <!-- PAGE HERO -->
   <section class="about-hero section-primary">
     <div class="container about-hero-inner">
       <div class="about-hero-text">
-        <p class="hero-eyebrow">Family-Owned. Denver-Based.</p>
+        <p class="hero-eyebrow">Family-Owned. Lakewood-Based.</p>
         <h1>Meet Lou Hernandez</h1>
-        <p>Owner, Lou's Heating &amp; Cooling. Serving Denver Since 2014.</p>
+        <p>Owner, Lou's Heating &amp; Cooling. Serving the Denver Metro Since 2014.</p>
       </div>
       <div class="about-hero-img">
         <img
           src="/images/lou-headshot-1.jpg"
-          alt="Lou Hernandez, owner and lead technician at Lou's Heating & Cooling, Denver CO"
+          alt="Lou Hernandez, owner and lead technician at Lou's Heating & Cooling, Lakewood CO"
           width="400"
           height="400"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>

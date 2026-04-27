@@ -28,6 +28,14 @@
 /our-story                   /about/                         301
 /team                        /about/                         301
 
+# Legal pages (catch common alternates)
+/privacy-policy              /privacy/                       301
+/terms-of-service            /terms/                         301
+/terms-and-conditions        /terms/                         301
+
+# Legacy sitemap path
+/sitemap.xml                 /sitemap-index.xml              301
+
 # Catch common Squarespace default paths
 /config                      /                               301
 /cart                        /                               301

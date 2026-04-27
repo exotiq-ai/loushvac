@@ -17,19 +17,15 @@ const reviewPlatformLinks = externalProfiles.filter(p =>
 const workPhotos = [
   {
     src: '/images/lou-headshot-1.jpg',
-    alt: 'Lou Hernandez, owner of Lou\'s Heating & Cooling, Denver CO',
+    alt: 'Lou Hernandez, owner of Lou\'s Heating & Cooling, Lakewood CO',
   },
   {
     src: '/images/networx-profile.jpg',
-    alt: 'Lou\'s Heating & Cooling team in Denver',
-  },
-  {
-    src: 'https://lh3.googleusercontent.com/p/AF1QipMuC1pNh1KrW7xwljKVjgNl9cfttATdxESYjBRm=s800-w800-h600-rw',
-    alt: 'Lou\'s Heating & Cooling service work in Denver, CO',
+    alt: 'Lou\'s Heating & Cooling team serving the Denver metro',
   },
   {
     src: '/images/lou-headshot-2.jpg',
-    alt: 'Lou Hernandez HVAC technician at work in Denver',
+    alt: 'Lou Hernandez HVAC technician at work in the Denver metro',
   },
 ];
 
@@ -37,7 +33,7 @@ const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Customer Reviews: Lou's Heating & Cooling",
-  "itemListElement": reviews.slice(0, 10).map((r, i) => ({
+  "itemListElement": reviews.map((r, i) => ({
     "@type": "ListItem",
     "position": i + 1,
     "item": {

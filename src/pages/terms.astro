@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lastUpdated = 'April 2026';
+---
+<BaseLayout
+  title="Terms of Service | Lou's Heating & Cooling"
+  description="Terms governing use of the Lou's Heating & Cooling website and the services we offer."
+  canonical="/terms/"
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>Terms of Service</h1>
+      <p>Last updated: {lastUpdated}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow legal-copy">
+      <p><em>These Terms of Service are placeholder text pending finalized copy from the business owner. By using this website, you agree to the terms below in their current form.</em></p>
+
+      <h2>Use of This Site</h2>
+      <p>This website is provided by Lou's Heating & Cooling LLC ("Lou's", "we", "our") for informational purposes and to allow homeowners to request HVAC services. By accessing or using the site, you agree to these terms.</p>
+
+      <h2>Service Quotes & Estimates</h2>
+      <p>Any pricing, availability, or scheduling shown on this site is a general guide. Final pricing is provided in writing after an in-person diagnosis or estimate. Free estimates are offered on installations only; diagnostic visits may incur a service-call fee that is disclosed before the visit.</p>
+
+      <h2>Warranty</h2>
+      <p>New equipment installations include a manufacturer's parts warranty (typically up to 10 years on registered Carrier equipment) and a 5-year workmanship warranty from Lou's. Repair work carries a separate, more limited warranty disclosed at the time of service. The warranties do not cover damage caused by neglect, misuse, third-party modifications, or acts of God.</p>
+
+      <h2>Scheduling & Cancellations</h2>
+      <p>We work hard to honor scheduled appointments. If we need to reschedule, we will notify you as soon as possible. Customers who cancel within 2 hours of a scheduled visit may be subject to a small trip fee at our discretion.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>To the fullest extent permitted by Colorado law, Lou's Heating & Cooling LLC's liability for any claim arising from work performed is limited to the amount paid for that specific service. We are not liable for indirect, incidental, or consequential damages.</p>
+
+      <h2>Governing Law</h2>
+      <p>These terms are governed by the laws of the State of Colorado. Any disputes will be resolved in the state or federal courts located in Jefferson County, Colorado.</p>
+
+      <h2>Changes to These Terms</h2>
+      <p>We may update these Terms of Service from time to time. The "Last updated" date at the top reflects the most recent change.</p>
+
+      <h2>Contact</h2>
+      <p>Questions? Call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a> or email <a href="mailto:lousheatingcooling@icloud.com">lousheatingcooling@icloud.com</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.legal-copy h2 { margin-top: var(--space-8); margin-bottom: var(--space-3); color: var(--color-primary); }
+.legal-copy p, .legal-copy ul { color: var(--color-text-muted); line-height: 1.8; }
+.legal-copy ul { padding-left: var(--space-5); }
+.legal-copy li { margin-bottom: var(--space-2); }
+.legal-copy a { color: var(--color-primary); }
+.legal-copy em { color: var(--color-text-muted); font-style: italic; }
+</style>

@@ -153,7 +153,7 @@ export const faqItems: FAQItem[] = [
     id: 'brand-recommendations',
     tier: 'decisions',
     question: 'What brands do you recommend and why?',
-    answer: `Lou's Heating & Cooling is an American Standard Authorized Dealer, and I recommend them for a simple reason: reliability and warranty. American Standard equipment (same parent company as Trane) consistently ranks at the top for reliability surveys and backs their products with strong warranties, up to 10 years on parts for registered equipment. That said, most major brands (Carrier, Lennox, Bryant, Rheem) make solid equipment at their higher efficiency tiers. Where brands diverge is in the mid-range and budget tiers, and in dealer support. I'll tell you what I actually believe is right for your situation.`,
+    answer: `Lou's Heating & Cooling is an Authorized Carrier Dealer, and I recommend Carrier for a simple reason: reliability and warranty. Carrier is one of the largest and most established HVAC brands in the world (the company that essentially invented modern air conditioning), and they back their equipment with strong warranties — up to 10 years on parts for registered equipment. That said, most major brands (Trane/American Standard, Lennox, Bryant, Rheem) make solid equipment at their higher efficiency tiers. Where brands diverge is in the mid-range and budget tiers, and in dealer support. I'll tell you what I actually believe is right for your situation.`,
   },
   {
     id: 'single-vs-two-stage',
@@ -207,13 +207,13 @@ export const faqItems: FAQItem[] = [
     id: 'warranty-coverage',
     tier: 'decisions',
     question: "What does your warranty cover?",
-    answer: `Lou's Heating & Cooling provides a 5-year workmanship warranty on all installed work. This covers labor and any issues that arise from our installation. On new equipment, we register your American Standard product warranty, up to 10 years on parts for registered equipment. The workmanship warranty and manufacturer warranty work together: if something fails due to a defective part, the manufacturer covers the part; if it fails due to installation, we cover the labor. No fine print runarounds.`,
+    answer: `Lou's Heating & Cooling provides a 5-year workmanship warranty on all installed work. This covers labor and any issues that arise from our installation. On new equipment, we register your Carrier product warranty, up to 10 years on parts for registered equipment. The workmanship warranty and manufacturer warranty work together: if something fails due to a defective part, the manufacturer covers the part; if it fails due to installation, we cover the labor. No fine print runarounds.`,
   },
   {
     id: 'warranty-vs-manufacturer',
     tier: 'decisions',
     question: "What's the difference between your warranty and the manufacturer warranty?",
-    answer: `Manufacturer warranty covers defective parts: if a compressor fails due to a manufacturing defect in year 4, American Standard covers the part cost. Our workmanship warranty covers labor for installation-related issues: if there's a refrigerant leak at a fitting we made, we cover the labor to fix it. Both are important. A manufacturer warranty without workmanship coverage means you'd pay labor costs even on installation defects. We provide both.`,
+    answer: `Manufacturer warranty covers defective parts: if a compressor fails due to a manufacturing defect in year 4, Carrier covers the part cost. Our workmanship warranty covers labor for installation-related issues: if there's a refrigerant leak at a fitting we made, we cover the labor to fix it. Both are important. A manufacturer warranty without workmanship coverage means you'd pay labor costs even on installation defects. We provide both.`,
   },
   {
     id: 'heat-pump-vs-furnace',
