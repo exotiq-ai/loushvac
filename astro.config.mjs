@@ -1,8 +1,10 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   site: 'https://www.loushvac303.com',
+  adapter: netlify(),
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/admin/'),
