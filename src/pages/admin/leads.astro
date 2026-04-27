@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { supabase } from '../../lib/supabase.ts';
+
+export const prerender = false;
+
+const adminPasscode = import.meta.env.ADMIN_PASSCODE;
+const passcode = Astro.url.searchParams.get('p') || Astro.cookies.get('admin_p')?.value;
+const authorized = Boolean(adminPasscode && passcode && passcode === adminPasscode);
+
+let leads: any[] = [];
+let queryError: string | null = null;
+
+if (authorized) {
+  Astro.cookies.set('admin_p', passcode!, {
+    path: '/admin',
+    httpOnly: true,
+    sameSite: 'strict',
+    secure: true,
+    maxAge: 60 * 60 * 24 * 30,
+  });
+
+  if (supabase) {
+    const { data, error } = await supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(200);
+    if (error) {
+      queryError = error.message;
+    } else {
+      leads = data || [];
+    }
+  } else {
+    queryError = 'Supabase not configured.';
+  }
+}
+
+function fmtDate(s: string) {
+  try { return new Date(s).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' }); }
+  catch { return s; }
+}
+---
+<BaseLayout
+  title="Admin: Leads | Lou's Heating & Cooling"
+  description="Internal lead history."
+  canonical="/admin/leads/"
+>
+  <section class="section">
+    <div class="container-narrow">
+      <h1>Lead history</h1>
+
+      {!authorized && (
+        <form method="get" class="admin-login">
+          <p>Enter the admin passcode.</p>
+          <label for="p" class="sr-only">Passcode</label>
+          <input type="password" id="p" name="p" required autocomplete="off" placeholder="Passcode" />
+          <button type="submit" class="btn btn-primary">View leads</button>
+        </form>
+      )}
+
+      {authorized && queryError && (
+        <p class="admin-error">Error loading leads: {queryError}</p>
+      )}
+
+      {authorized && !queryError && leads.length === 0 && (
+        <p>No leads yet.</p>
+      )}
+
+      {authorized && leads.length > 0 && (
+        <div class="leads-table-wrap">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>When</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Source</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leads.map(lead => (
+                <tr>
+                  <td><span class="lead-when">{fmtDate(lead.created_at)}</span></td>
+                  <td>
+                    <strong>{lead.name}</strong><br/>
+                    <a href={`mailto:${lead.email}`} class="lead-email">{lead.email}</a>
+                    {lead.message && <details class="lead-msg"><summary>Message</summary><p>{lead.message}</p></details>}
+                  </td>
+                  <td><a href={`tel:${(lead.phone || '').replace(/\D/g,'')}`}>{lead.phone}</a></td>
+                  <td>{lead.service || '—'}</td>
+                  <td><span class={`lead-status lead-status--${lead.status}`}>{lead.status}</span></td>
+                  <td>{lead.source_page || '—'}</td>
+                  <td class="lead-notes-cell">{lead.notes || ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.admin-login { display: flex; flex-direction: column; gap: var(--space-3); max-width: 320px; }
+.admin-login input { padding: var(--space-3); border: 1.5px solid var(--color-border); border-radius: var(--border-radius); font-size: var(--font-size-base); }
+.admin-error { padding: var(--space-3); background: rgba(220,53,69,0.12); color: #721c24; border-radius: var(--border-radius); }
+.leads-table-wrap { overflow-x: auto; }
+.leads-table { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
+.leads-table th, .leads-table td { padding: var(--space-2) var(--space-3); text-align: left; vertical-align: top; border-bottom: 1px solid var(--color-border); }
+.leads-table th { background: var(--color-bg-alt); font-weight: 700; color: var(--color-primary); position: sticky; top: 80px; z-index: 1; }
+.lead-when { font-size: var(--font-size-xs); color: var(--color-text-muted); white-space: nowrap; }
+.lead-email { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.lead-msg summary { font-size: var(--font-size-xs); color: var(--color-primary); cursor: pointer; margin-top: 4px; }
+.lead-msg p { font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 4px 0 0; }
+.lead-status { padding: 2px 8px; border-radius: var(--border-radius-full); font-size: var(--font-size-xs); font-weight: 600; }
+.lead-status--new { background: #DBEAFE; color: #1E40AF; }
+.lead-status--contacted { background: #FEF3C7; color: #92400E; }
+.lead-status--won { background: #D1FAE5; color: #065F46; }
+.lead-status--lost { background: #FEE2E2; color: #991B1B; }
+.lead-notes-cell { font-size: var(--font-size-xs); color: var(--color-text-muted); max-width: 220px; word-wrap: break-word; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>

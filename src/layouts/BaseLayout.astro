@@ -24,6 +24,9 @@ const {
 const siteUrl = 'https://www.loushvac303.com';
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : `${siteUrl}${Astro.url.pathname}`;
 
+const umamiSrc = import.meta.env.UMAMI_SRC;
+const umamiId = import.meta.env.UMAMI_WEBSITE_ID;
+
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HVACBusiness",
@@ -121,6 +124,10 @@ const schemas = [localBusinessSchema, ...(Array.isArray(schema) ? schema : schem
   {schemas.map(s => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
   ))}
+
+  {umamiSrc && umamiId && (
+    <script defer src={umamiSrc} data-website-id={umamiId}></script>
+  )}
 </head>
 <body>
   <a href="#main-content" class="skip-nav">Skip to main content</a>

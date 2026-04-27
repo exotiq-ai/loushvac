@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABanner from '../components/CTABanner.astro';
 import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import { serviceAreaCities } from '../content/serviceArea.ts';
+import { cityPages } from '../content/cities.ts';
 ---
 <BaseLayout
   title="HVAC Service Area: Denver Metro, CO | Lou's Heating & Cooling"
@@ -26,7 +27,20 @@ import { serviceAreaCities } from '../content/serviceArea.ts';
 
   <section class="section section-alt">
     <div class="container">
-      <h2 class="city-header">City-by-City Service</h2>
+      <h2 class="city-header">Featured Service Areas</h2>
+      <p class="city-subhead text-center">Our most-served cities each have their own page with local context, neighborhoods, and reviews.</p>
+      <div class="city-feature-grid">
+        {cityPages.map(city => (
+          <a class="city-feature" href={`/service-area/${city.slug}/`}>
+            <h3>{city.name}, CO</h3>
+            <p class="city-feature-population">Population {city.population}</p>
+            <p class="city-feature-specialty">{city.specialty}</p>
+            <span class="city-feature-link">Learn more &rarr;</span>
+          </a>
+        ))}
+      </div>
+
+      <h2 class="city-header" style="margin-top: var(--space-12)">All Cities We Serve</h2>
       <div class="city-detail-grid">
         {serviceAreaCities.map(city => (
           <div class="city-detail">
@@ -50,7 +64,21 @@ import { serviceAreaCities } from '../content/serviceArea.ts';
   <CTABanner />
 </BaseLayout>
 <style>
-.city-header { margin-bottom: var(--space-8); text-align: center; }
+.city-header { margin-bottom: var(--space-3); text-align: center; }
+.city-subhead { color: var(--color-text-muted); margin-bottom: var(--space-8); }
+.city-feature-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-bottom: var(--space-8); }
+@media (min-width: 640px) { .city-feature-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .city-feature-grid { grid-template-columns: repeat(3, 1fr); } }
+.city-feature { display: block; padding: var(--space-5); border: 2px solid var(--color-primary); border-radius: var(--border-radius-lg); background: var(--color-white); text-decoration: none; transition: all var(--transition); }
+.city-feature:hover { background: var(--color-primary); color: var(--color-white); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.city-feature h3 { color: var(--color-primary); font-size: var(--font-size-xl); margin-bottom: var(--space-1); }
+.city-feature:hover h3 { color: var(--color-white); }
+.city-feature-population { color: var(--color-text-muted); font-size: var(--font-size-xs); margin: 0 0 var(--space-2); text-transform: uppercase; letter-spacing: 0.05em; }
+.city-feature:hover .city-feature-population { color: rgba(255,255,255,0.8); }
+.city-feature-specialty { color: var(--color-text); font-size: var(--font-size-sm); margin: 0 0 var(--space-3); }
+.city-feature:hover .city-feature-specialty { color: rgba(255,255,255,0.95); }
+.city-feature-link { color: var(--color-accent); font-weight: 600; font-size: var(--font-size-sm); }
+.city-feature:hover .city-feature-link { color: var(--color-white); }
 .city-detail-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 640px) { .city-detail-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .city-detail-grid { grid-template-columns: repeat(3, 1fr); } }
