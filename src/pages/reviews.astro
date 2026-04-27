@@ -14,10 +14,29 @@ const reviewPlatformLinks = externalProfiles.filter(p =>
   ['HomeAdvisor', 'Yelp', 'Angi', 'Google Business'].includes(p.name)
 );
 
+const workPhotos = [
+  {
+    src: '/images/lou-headshot-1.jpg',
+    alt: 'Lou Hernandez, owner of Lou\'s Heating & Cooling, Denver CO',
+  },
+  {
+    src: '/images/networx-profile.jpg',
+    alt: 'Lou\'s Heating & Cooling team in Denver',
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/p/AF1QipMuC1pNh1KrW7xwljKVjgNl9cfttATdxESYjBRm=s800-w800-h600-rw',
+    alt: 'Lou\'s Heating & Cooling service work in Denver, CO',
+  },
+  {
+    src: '/images/lou-headshot-2.jpg',
+    alt: 'Lou Hernandez HVAC technician at work in Denver',
+  },
+];
+
 const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "Customer Reviews — Lou's Heating & Cooling",
+  "name": "Customer Reviews: Lou's Heating & Cooling",
   "itemListElement": reviews.slice(0, 10).map((r, i) => ({
     "@type": "ListItem",
     "position": i + 1,
@@ -44,7 +63,7 @@ const reviewSchema = {
       <div class="review-platform-badges">
         {reviewPlatformLinks.map(p => (
           <a href={p.url} target="_blank" rel="noopener noreferrer" class="platform-badge">
-            {p.icon} {p.label}
+            <span set:html={p.icon} class="platform-icon"></span>{p.label}
           </a>
         ))}
       </div>
@@ -88,6 +107,64 @@ const reviewSchema = {
     </div>
   </section>
 
+  <!-- SEE OUR WORK -->
+  <section class="section">
+    <div class="container">
+      <div class="work-gallery-header">
+        <h2>See Our Work</h2>
+        <p class="section-desc">Real photos from Lou's Heating &amp; Cooling in Denver.</p>
+      </div>
+      <div class="work-photo-grid">
+        {workPhotos.map(photo => (
+          <div class="work-photo">
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              width="400"
+              height="300"
+            />
+          </div>
+        ))}
+      </div>
+      <div class="work-gallery-footer text-center">
+        <a
+          href="https://www.yelp.com/biz/lou-s-heating-and-cooling-denver"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+        >
+          See More Photos on Yelp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="instagram-section">
+        <div class="instagram-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="40" height="40"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div class="instagram-text">
+          <h2>Follow Lou on Instagram</h2>
+          <p>Job photos, before-and-afters, and behind-the-scenes from Denver's honest HVAC company.</p>
+        </div>
+        <a
+          href="https://www.instagram.com/loushvac/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-instagram"
+        >
+          @loushvac
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAVE A REVIEW -->
   <section class="section">
     <div class="container text-center">
       <h2>Leave a Review</h2>
@@ -95,7 +172,7 @@ const reviewSchema = {
       <div class="leave-review-links">
         {externalProfiles.filter(p => ['Google Business', 'Yelp', 'HomeAdvisor', 'Angi'].includes(p.name)).map(p => (
           <a href={p.url} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            {p.icon} Review us on {p.name}
+            <span set:html={p.icon} class="btn-icon"></span>Review us on {p.name}
           </a>
         ))}
       </div>
@@ -107,8 +184,101 @@ const reviewSchema = {
 <style>
 .hero-rating { font-size: var(--font-size-xl); color: var(--color-star); margin-bottom: var(--space-4); }
 .review-platform-badges { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
-.platform-badge { background: rgba(255,255,255,0.15); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--border-radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: 500; }
+.platform-badge { background: rgba(255,255,255,0.15); color: white; padding: var(--space-2) var(--space-4); border-radius: var(--border-radius-full); text-decoration: none; font-size: var(--font-size-sm); font-weight: 500; display: inline-flex; align-items: center; gap: var(--space-2); }
 .platform-badge:hover { background: rgba(255,255,255,0.25); }
+.platform-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
 .section-desc { color: var(--color-text-muted); margin-bottom: var(--space-8); }
+.text-center { text-align: center; }
 .leave-review-links { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; margin-top: var(--space-6); }
+.btn-icon { display: inline-flex; align-items: center; margin-right: 4px; }
+.btn-outline { background: transparent; color: var(--color-primary); border-color: var(--color-primary); display: inline-flex; align-items: center; gap: 6px; }
+.btn-outline:hover { background: var(--color-primary); color: var(--color-white); }
+.grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+@media (min-width: 640px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+
+/* Work photo gallery */
+.work-gallery-header { margin-bottom: var(--space-8); }
+.work-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (min-width: 768px) {
+  .work-photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.work-photo {
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  aspect-ratio: 4/3;
+  background: var(--color-bg-alt);
+}
+.work-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.work-photo:hover img {
+  transform: scale(1.04);
+}
+.work-gallery-footer {
+  margin-top: var(--space-8);
+}
+
+/* Instagram section */
+.instagram-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-5);
+  padding: var(--space-10);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--color-white);
+}
+@media (min-width: 640px) {
+  .instagram-section {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-8);
+  }
+}
+.instagram-icon {
+  color: #E1306C;
+  flex-shrink: 0;
+}
+.instagram-text h2 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-2);
+}
+.instagram-text p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin: 0;
+}
+.btn-instagram {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--border-radius-full);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+.btn-instagram:hover {
+  opacity: 0.9;
+}
 </style>

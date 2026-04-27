@@ -5,7 +5,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling" width="160" height="54" />
+      <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling" width="200" height="67" />
       <p>Family-owned HVAC serving Denver<br>and the Front Range since 2014.</p>
       <p class="footer-spanish">Se habla Español</p>
     </div>
@@ -15,7 +15,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
       <p><a href="tel:3039498584" class="phone-link">(303) 949-8584</a></p>
       <p><a href="mailto:lousheatingcooling@icloud.com">lousheatingcooling@icloud.com</a></p>
       <p>2715 S Eaton Way<br>Denver, CO 80227</p>
-      <p><strong>Hours:</strong> 24/7 — Emergency service available</p>
+      <p><strong>Hours:</strong> 24/7. Emergency service available.</p>
     </div>
 
     <div class="footer-nav">
@@ -44,7 +44,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
         <h4>Find Us Online</h4>
         {externalProfiles.map(p => (
           <a href={p.url} target="_blank" rel="noopener noreferrer">
-            {p.icon} {p.label}
+            <span set:html={p.icon} class="social-icon"></span>{p.label}
           </a>
         ))}
       </div>
@@ -71,7 +71,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
 }
 @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(4, 1fr); } }
-.footer-brand img { margin-bottom: var(--space-4); filter: brightness(0) invert(1) opacity(0.85); }
+.footer-brand img { margin-bottom: var(--space-4); }
 .footer-brand p { color: #9CA3AF; font-size: var(--font-size-sm); line-height: 1.6; margin-bottom: var(--space-2); }
 .footer-spanish { color: var(--color-primary-light) !important; font-style: italic; }
 .footer-contact h3, .footer-nav h3, .footer-links h3 { color: var(--color-white); font-size: var(--font-size-base); margin-bottom: var(--space-4); }
@@ -83,8 +83,9 @@ import { externalProfiles } from '../content/externalProfiles.ts';
 .footer-nav a:hover, .footer-links a:hover { color: var(--color-white); }
 .footer-social { margin-top: var(--space-6); }
 .footer-social h4 { color: var(--color-white); font-size: var(--font-size-sm); margin-bottom: var(--space-3); font-weight: 600; }
-.footer-social a { display: block; color: #9CA3AF; font-size: var(--font-size-sm); text-decoration: none; margin-bottom: var(--space-2); }
+.footer-social a { display: flex; align-items: center; gap: var(--space-2); color: #9CA3AF; font-size: var(--font-size-sm); text-decoration: none; margin-bottom: var(--space-2); }
 .footer-social a:hover { color: var(--color-white); }
+.social-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
 .footer-bottom { margin-top: var(--space-12); border-top: 1px solid #374151; padding: var(--space-6) 0; }
 .footer-bottom-inner { display: flex; flex-direction: column; gap: var(--space-2); }
 @media (min-width: 768px) { .footer-bottom-inner { flex-direction: row; justify-content: space-between; align-items: center; } }

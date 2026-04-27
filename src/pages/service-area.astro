@@ -5,7 +5,7 @@ import ServiceAreaMap from '../components/ServiceAreaMap.astro';
 import { serviceAreaCities } from '../content/serviceArea.ts';
 ---
 <BaseLayout
-  title="HVAC Service Area — Denver Metro, CO | Lou's Heating & Cooling"
+  title="HVAC Service Area: Denver Metro, CO | Lou's Heating & Cooling"
   description="Lou's Heating & Cooling serves the entire Denver metro area: Denver, Lakewood, Arvada, Westminster, Littleton, Golden, Evergreen, and more. Call (303) 949-8584."
   canonical="/service-area/"
 >
@@ -26,7 +26,7 @@ import { serviceAreaCities } from '../content/serviceArea.ts';
 
   <section class="section section-alt">
     <div class="container">
-      <h2>City-by-City Service</h2>
+      <h2 class="city-header">City-by-City Service</h2>
       <div class="city-detail-grid">
         {serviceAreaCities.map(city => (
           <div class="city-detail">
@@ -42,7 +42,7 @@ import { serviceAreaCities } from '../content/serviceArea.ts';
     <div class="container-narrow text-center">
       <h2>Denver's Altitude Advantage</h2>
       <p>At 5,280 feet, Denver's altitude affects how HVAC systems are sized and perform. Unlike HVAC companies that use generic sea-level calculations, Lou's accounts for Colorado's altitude in every system sizing and diagnostic we do. This means properly sized equipment, accurate diagnoses, and no surprises.</p>
-      <p>If you're in a mountain community (Evergreen, Morrison, Golden, Kittredge) at even higher elevations, we adjust our calculations accordingly. Altitude matters — and we know Denver's HVAC landscape because we work here every day.</p>
+      <p>If you're in a mountain community (Evergreen, Morrison, Golden, Kittredge) at even higher elevations, we adjust our calculations accordingly. Altitude matters. We know Denver's HVAC landscape because we work here every day.</p>
       <a href="/faq/" class="btn btn-outline">Learn More: Altitude &amp; HVAC &rarr;</a>
     </div>
   </section>
@@ -50,6 +50,7 @@ import { serviceAreaCities } from '../content/serviceArea.ts';
   <CTABanner />
 </BaseLayout>
 <style>
+.city-header { margin-bottom: var(--space-8); text-align: center; }
 .city-detail-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
 @media (min-width: 640px) { .city-detail-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .city-detail-grid { grid-template-columns: repeat(3, 1fr); } }

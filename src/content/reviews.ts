@@ -25,7 +25,7 @@ export const reviews: Review[] = [
     tier: 'hero',
     service: 'general',
     note: 'Breezair/honesty review — best hero review, contrasts Lou with big companies',
-    text: `IF I COULD WOULD GIVE AT LEAST 10 STARS. I HAVE A BREEZAIR SYSTEM THAT IS STARTING TO SHOW ITS AGE. I HAD READ REVIEWS FROM OTHERS ABOUT NIGHTMARES WITH THE ELECTRONICS GOING OUT ON THEM. I WAS PREPARED TO FACE AN ENORMOUS BILL BASED ON WHAT I SEEN. LOU AND HIS PARTNER CAME OUT, DID A THOROUGH CLEANING OF THE UNIT AND HAD IT UP AND RUNNING IN NO TIME. I ASKED WHAT THE ISSUE WAS WITH THE UNIT AND WAS INFORMED IT WAS JUST A LOOSE CONNECTION. WHAT A REFRESHING RELIEF TO FIND SOMEONE SO HONEST. STUCK TO THE ORIGINAL QUOTED PRICE. VERY FRIENDLY ALSO. I CAN IMAGINE IF I HAD CALLED ONE OF THE LARGER 'SERVICE PROVIDER' COMPANIES, I WOULD HAVE BEEN INFORMED I NEED A NEW UNIT. WOULD RECOMMEND THIS COMPANY FOR ANY OF YOUR HVAC NEEDS. THANKS AGAIN FOR YOUR HONESTY.`,
+    text: `If I could I would give at least 10 stars. I have a Breezair system that is starting to show its age. I had read reviews from others about nightmares with the electronics going out on them. I was prepared to face an enormous bill based on what I'd seen. Lou and his partner came out, did a thorough cleaning of the unit and had it up and running in no time. I asked what the issue was with the unit and was informed it was just a loose connection. What a refreshing relief to find someone so honest. Stuck to the original quoted price. Very friendly also. I can imagine if I had called one of the larger "service provider" companies, I would have been informed I need a new unit. Would recommend this company for any of your HVAC needs. Thanks again for your honesty.`,
   },
   {
     id: 2,

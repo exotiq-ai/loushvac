@@ -27,12 +27,12 @@ export const services: Service[] = [
     metaTitle: "AC Repair Denver CO | Lou's Heating & Cooling | (303) 949-8584",
     metaDescription:
       "Same-day AC repair in Denver. Honest diagnosis, flat rate pricing, no upselling. Call Lou's Heating & Cooling at (303) 949-8584.",
-    intro: `When your AC stops cooling in the middle of a Denver summer, you need someone who shows up fast, tells you exactly what's wrong, and fixes it for a fair price. That's what Lou's Heating & Cooling does. We've been repairing air conditioning systems across the Denver metro since 2014 — no surprise charges, no pushing you toward a replacement you don't need.`,
+    intro: `When your AC stops cooling in the middle of a Denver summer, you need someone who shows up fast, tells you exactly what's wrong, and fixes it for a fair price. That's what Lou's Heating & Cooling does. We've been repairing air conditioning systems across the Denver metro since 2014. No surprise charges, no pushing you toward a replacement you don't need.`,
     symptoms: [
       "Your home isn't reaching the temperature on the thermostat",
       'AC is running constantly but the house stays warm',
       'Warm or room-temperature air blowing from vents',
-      'Unusual noises — banging, clicking, grinding, or hissing',
+      'Unusual noises: banging, clicking, grinding, or hissing',
       'Ice forming on the outdoor unit or refrigerant lines',
       'Water pooling around the indoor air handler',
       'Energy bills suddenly higher than usual',
@@ -42,12 +42,12 @@ export const services: Service[] = [
       {
         step: 'Call or schedule',
         detail:
-          "Call (303) 949-8584 and we'll get you on the schedule — same day when possible.",
+          "Call (303) 949-8584 and we'll get you on the schedule. Same day when possible.",
       },
       {
         step: 'Diagnosis',
         detail:
-          "Lou (or Nester) arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find — no mystery charges.",
+          "Lou (or Nester) arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find. No mystery charges.",
       },
       {
         step: 'Flat-rate quote',
@@ -79,11 +79,11 @@ export const services: Service[] = [
       "AC Installation Denver CO | American Standard Dealer | Lou's Heating & Cooling",
     metaDescription:
       "New AC installation in Denver from an American Standard Authorized Dealer. 10-year warranty, free in-home estimate. Call (303) 949-8584.",
-    intro: `Replacing an AC unit is one of the bigger investments a Denver homeowner makes. You deserve straight talk about what you actually need — not what generates the biggest commission. Lou's Heating & Cooling is an American Standard Authorized Dealer, which means we have access to some of the most reliable equipment on the market and can back it with a 10-year extended warranty. We size every system correctly for Denver's altitude and climate — something cookie-cutter quotes often get wrong.`,
+    intro: `Replacing an AC unit is one of the bigger investments a Denver homeowner makes. You deserve straight talk about what you actually need, not what generates the biggest commission. Lou's Heating & Cooling is an American Standard Authorized Dealer, which means we have access to some of the most reliable equipment on the market and can back it with a 10-year extended warranty. We size every system correctly for Denver's altitude and climate, something cookie-cutter quotes often get wrong.`,
     symptoms: [
       'Your AC system is 15+ years old',
       'Repair costs are approaching or exceeding 50% of replacement cost',
-      'The system uses R-22 refrigerant (phased out in 2020 — expensive to service)',
+      'The system uses R-22 refrigerant (phased out in 2020, now expensive to service)',
       'Your home has persistent hot and cold spots even after repairs',
       'Energy bills keep climbing year over year',
       'The system needs frequent repairs (more than once per season)',
@@ -93,7 +93,7 @@ export const services: Service[] = [
       {
         step: 'Free in-home estimate',
         detail:
-          "We visit your home, measure the space, evaluate your ductwork, and do a proper load calculation — not just guess based on square footage. Denver's altitude changes sizing requirements.",
+          "We visit your home, measure the space, evaluate your ductwork, and do a proper load calculation, not just a guess based on square footage. Denver's altitude changes sizing requirements.",
       },
       {
         step: 'Equipment recommendation',
@@ -125,18 +125,18 @@ export const services: Service[] = [
     shortTitle: 'Furnace Repair',
     icon: '/images/service-icon-fire.png',
     description:
-      'Furnace not heating? We diagnose honestly and fix fast — 24/7 service available.',
+      'Furnace not heating? We diagnose honestly and fix fast. 24/7 service available.',
     h1: 'Furnace Repair in Denver, CO',
     metaTitle: "Furnace Repair Denver CO | 24/7 Service | Lou's Heating & Cooling",
     metaDescription:
       "Furnace repair in Denver, available 24/7. Honest diagnosis, flat rate pricing. Call Lou's Heating & Cooling at (303) 949-8584.",
-    intro: `A furnace that quits in a Denver winter isn't just uncomfortable — it's a genuine emergency. Denver's winter design temperature sits around 1-5°F, and temperatures can swing 40+ degrees in a single day. When your furnace stops working, you need someone who picks up the phone, shows up fast, and tells you exactly what's wrong. Lou's Heating & Cooling has been handling furnace repairs across the Denver metro since 2014. We answer calls 24/7 because we know furnaces don't care what time it is.`,
+    intro: `A furnace that quits in a Denver winter isn't just uncomfortable; it's a genuine emergency. Denver's winter design temperature sits around 1-5°F, and temperatures can swing 40+ degrees in a single day. When your furnace stops working, you need someone who picks up the phone, shows up fast, and tells you exactly what's wrong. Lou's Heating & Cooling has been handling furnace repairs across the Denver metro since 2014. We answer calls 24/7 because we know furnaces don't care what time it is.`,
     symptoms: [
       "Furnace won't turn on",
       'Blowing cold or lukewarm air instead of heat',
       'Furnace cycles on and off frequently (short-cycling)',
-      'Unusual smells — burning, musty, or gas-like odors',
-      'Strange noises — banging, rattling, squealing, or rumbling',
+      'Unusual smells: burning, musty, or gas-like odors',
+      'Strange noises: banging, rattling, squealing, or rumbling',
       "Pilot light or igniter issues (won't stay lit)",
       'Yellow or orange pilot flame instead of blue',
       'Carbon monoxide detector alarming near the furnace',
@@ -144,7 +144,7 @@ export const services: Service[] = [
     ],
     process: [
       {
-        step: 'Call us — 24/7',
+        step: 'Call us, 24/7',
         detail:
           'Call (303) 949-8584 any time. We answer emergency calls around the clock.',
       },
@@ -201,7 +201,7 @@ export const services: Service[] = [
       {
         step: 'Recommendation',
         detail:
-          "We recommend the right furnace for your home — not the most expensive one. As an American Standard dealer, we offer a full range of efficiency levels and configurations.",
+          "We recommend the right furnace for your home, not the most expensive one. As an American Standard dealer, we offer a full range of efficiency levels and configurations.",
       },
       {
         step: 'Installation',
@@ -233,7 +233,7 @@ export const services: Service[] = [
       "HVAC Tune-Up Denver CO | Seasonal Maintenance | Lou's Heating & Cooling",
     metaDescription:
       "HVAC maintenance and seasonal tune-ups in Denver. Prevent breakdowns, extend equipment life. Schedule at (303) 949-8584.",
-    intro: `The most expensive HVAC repair is the emergency one at 2am in January. Most of those calls could have been prevented with a proper seasonal tune-up. At Lou's Heating & Cooling, a maintenance visit isn't a box-checking exercise — it's a real inspection by someone who knows what to look for. We check the things that fail, not just the things that are easy to test. At Denver's altitude, filters clog faster due to particulate, mountain dust, and wildfire smoke. We adjust our recommendations for Colorado conditions.`,
+    intro: `The most expensive HVAC repair is the emergency one at 2am in January. Most of those calls could have been prevented with a proper seasonal tune-up. At Lou's Heating & Cooling, a maintenance visit isn't a box-checking exercise. It's a real inspection by someone who knows what to look for. We check the things that fail, not just the things that are easy to test. At Denver's altitude, filters clog faster due to particulate, mountain dust, and wildfire smoke. We adjust our recommendations for Colorado conditions.`,
     symptoms: [
       "It's been over a year since your last HVAC service",
       'Energy bills are creeping up without usage changes',
@@ -260,7 +260,7 @@ export const services: Service[] = [
       {
         step: 'Report',
         detail:
-          "We tell you what we found, what's in good shape, and what to watch. No upselling — if something needs attention, we'll tell you why.",
+          "We tell you what we found, what's in good shape, and what to watch. No upselling. If something needs attention, we'll tell you why.",
       },
       {
         step: 'Filter recommendation',
@@ -277,13 +277,13 @@ export const services: Service[] = [
     shortTitle: 'Swamp Cooler',
     icon: '/images/service-icon-water.png',
     description:
-      "Swamp cooler startup, shutdown, repair, and replacement — Denver's evaporative cooling specialist.",
+      "Swamp cooler startup, shutdown, repair, and replacement. Denver's evaporative cooling specialist.",
     h1: 'Swamp Cooler Service in Denver, CO',
     metaTitle:
       "Swamp Cooler Repair Denver CO | Evaporative Cooler Service | Lou's Heating & Cooling",
     metaDescription:
       "Swamp cooler repair, startup, and replacement in Denver. Evaporative cooling experts since 2014. Call (303) 949-8584.",
-    intro: `Swamp coolers are a Denver thing. In most of the country, evaporative cooling isn't practical — too humid. But Denver's semi-arid climate (average humidity 30-40% in summer, lower in spring and fall) makes evaporative coolers an efficient, low-cost alternative to central AC. When the dewpoint is below 55°F, a properly maintained swamp cooler can cool your home for a fraction of the electricity cost of a refrigerated AC system. Lou's Heating & Cooling knows swamp coolers — startups, shutdowns, repairs, and full replacements.`,
+    intro: `Swamp coolers are a Denver thing. In most of the country, evaporative cooling isn't practical, too humid. But Denver's semi-arid climate (average humidity 30-40% in summer, lower in spring and fall) makes evaporative coolers an efficient, low-cost alternative to central AC. When the dewpoint is below 55°F, a properly maintained swamp cooler can cool your home for a fraction of the electricity cost of a refrigerated AC system. Lou's Heating & Cooling knows swamp coolers: startups, shutdowns, repairs, and full replacements.`,
     symptoms: [
       "Cooler runs but doesn't noticeably lower temperature",
       "Water pump not working (water not flowing to pads)",
@@ -335,7 +335,7 @@ export const services: Service[] = [
       'No cooling during a heat event',
       'Gas smell near furnace or HVAC equipment (call gas company first, then us)',
       'Carbon monoxide alarm going off near furnace',
-      "Complete system failure — won't power on",
+      "Complete system failure, won't power on",
       'Flooding from condensate or water heater near HVAC equipment',
     ],
     process: [

@@ -33,7 +33,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
         </div>
         <div class="contact-detail">
           <h3>Hours</h3>
-          <p><strong>Service:</strong> 24/7 — Emergency service always available</p>
+          <p><strong>Service:</strong> 24/7. Emergency service always available.</p>
           <p><strong>Office calls:</strong> Mon–Sat, 7am–8pm</p>
         </div>
         <div class="contact-detail">
@@ -41,7 +41,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
           <div class="contact-profiles">
             {externalProfiles.map(p => (
               <a href={p.url} target="_blank" rel="noopener noreferrer" class="profile-link">
-                {p.icon} {p.label}
+                <span set:html={p.icon} class="profile-icon"></span>{p.label}
               </a>
             ))}
           </div>
@@ -82,6 +82,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
 .contact-detail a:hover { color: var(--color-accent); text-decoration: underline; }
 .contact-profiles { display: flex; flex-direction: column; gap: var(--space-2); }
 .profile-link { color: var(--color-text-muted); font-size: var(--font-size-sm); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-2); }
+.profile-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
 .profile-link:hover { color: var(--color-primary); }
 .contact-map { margin-top: var(--space-6); }
 .contact-form-wrapper h2 { margin-bottom: var(--space-3); }

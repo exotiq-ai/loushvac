@@ -11,13 +11,13 @@ export const serviceAreaCities: ServiceAreaCity[] = [
     name: 'Denver',
     slug: 'denver',
     description:
-      "Lou's Heating & Cooling is based in Denver and serves the entire city — from Capitol Hill to Green Valley Ranch. Whether you're in a 1950s ranch home or a new construction property, we know Denver HVAC inside and out.",
+      "Lou's Heating & Cooling is based in Denver and serves the entire city, from Capitol Hill to Green Valley Ranch. Whether you're in a 1950s ranch home or a new construction property, we know Denver HVAC inside and out.",
   },
   {
     name: 'Lakewood',
     slug: 'lakewood',
     description:
-      "Lakewood is one of our busiest service areas. Many Lakewood homes were built in the 1960s-1980s and have aging HVAC equipment that benefits from honest evaluation — repair when possible, replace when necessary.",
+      "Lakewood is one of our busiest service areas. Many Lakewood homes were built in the 1960s-1980s and have aging HVAC equipment that benefits from honest evaluation: repair when possible, replace when necessary.",
   },
   {
     name: 'Arvada',
@@ -35,7 +35,7 @@ export const serviceAreaCities: ServiceAreaCity[] = [
     name: 'Littleton',
     slug: 'littleton',
     description:
-      "Littleton homeowners call us for furnace repair, AC installation, and seasonal swamp cooler service. We know the neighborhoods — Ken Caryl, Columbine, Highlands Ranch — and respond quickly.",
+      "Littleton homeowners call us for furnace repair, AC installation, and seasonal swamp cooler service. We know the neighborhoods: Ken Caryl, Columbine, Highlands Ranch. We respond quickly.",
   },
   {
     name: 'Englewood',
@@ -47,7 +47,7 @@ export const serviceAreaCities: ServiceAreaCity[] = [
     name: 'Aurora',
     slug: 'aurora',
     description:
-      "Aurora is a large and growing city, and we serve it across its full length — from the urban areas near Denver to the newer neighborhoods in the east. Call us for any HVAC need in Aurora.",
+      "Aurora is a large and growing city, and we serve it across its full length, from the urban areas near Denver to the newer neighborhoods in the east. Call us for any HVAC need in Aurora.",
   },
   {
     name: 'Thornton',
@@ -83,13 +83,13 @@ export const serviceAreaCities: ServiceAreaCity[] = [
     name: 'Evergreen',
     slug: 'evergreen',
     description:
-      "Evergreen is in the mountains at 7,000+ feet — higher than Denver, which means HVAC altitude considerations are even more significant. We know mountain HVAC and serve Evergreen homeowners.",
+      "Evergreen is in the mountains at 7,000+ feet, higher than Denver, which means HVAC altitude considerations are even more significant. We know mountain HVAC and serve Evergreen homeowners.",
   },
   {
     name: 'Morrison',
     slug: 'morrison',
     description:
-      "Morrison and the surrounding foothill areas are within our service territory. Foothills homes often have unique HVAC challenges — we handle them.",
+      "Morrison and the surrounding foothill areas are within our service territory. Foothills homes often have unique HVAC challenges. We handle them.",
   },
   {
     name: 'Kittredge',
@@ -101,7 +101,7 @@ export const serviceAreaCities: ServiceAreaCity[] = [
     name: 'Indian Hills',
     slug: 'indian-hills',
     description:
-      "Indian Hills is a mountain community where a working furnace isn't optional — temperatures can drop below zero in winter. We respond to Indian Hills emergency calls.",
+      "Indian Hills is a mountain community where a working furnace isn't optional. Temperatures can drop below zero in winter. We respond to Indian Hills emergency calls.",
   },
   {
     name: 'Idledale',

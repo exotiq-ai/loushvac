@@ -3,10 +3,18 @@
 import type { Review } from '../content/reviews.ts';
 export interface Props { review: Review; featured?: boolean; }
 const { review, featured = false } = Astro.props;
-const stars = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
+const filledStars = review.stars;
+const emptyStars = 5 - review.stars;
 ---
 <article class:list={['review-card', { 'review-card--featured': featured }]}>
-  <div class="review-stars" aria-label={`${review.stars} out of 5 stars`}>{stars}</div>
+  <div class="review-stars" aria-label={`${review.stars} out of 5 stars`}>
+    {Array.from({ length: filledStars }).map(() => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" width="22" height="22" class="star star-filled"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    ))}
+    {Array.from({ length: emptyStars }).map(() => (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" width="22" height="22" class="star star-empty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    ))}
+  </div>
   {review.textEs && (
     <blockquote class="review-text review-text-es" lang="es">
       "{review.textEs}"
@@ -33,7 +41,13 @@ const stars = '★'.repeat(review.stars) + '☆'.repeat(5 - review.stars);
   box-shadow: var(--shadow);
 }
 .review-card--featured { border-color: var(--color-primary-light); border-width: 2px; }
-.review-stars { color: var(--color-star); font-size: var(--font-size-xl); letter-spacing: 0.05em; }
+.review-stars {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+.star-filled { color: #F59E0B; }
+.star-empty { color: #D1D5DB; }
 .review-text {
   font-size: var(--font-size-base);
   line-height: 1.7;
