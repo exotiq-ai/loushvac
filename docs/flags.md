@@ -85,7 +85,7 @@ The Google Business Profile URL for Lou's Heating and Cooling is not confirmed.
 **Placeholder used:** `https://maps.google.com/?cid=GOOGLE_BUSINESS_PROFILE_CID`
 
 **Human action:**
-1. Search Google Maps for: "Lou's Heating and Cooling Denver CO 80227"
+1. Search Google Maps for: "Lou's Heating and Cooling Lakewood CO 80232"
 2. Click the listing
 3. Click "Share" → "Copy link"
 4. Update `src/content/externalProfiles.ts` with the real URL

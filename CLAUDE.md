@@ -7,11 +7,11 @@ You are rebuilding the website for **Lou's Heating & Cooling**, a family-owned H
 **Owner:** Louis Hernandez Jr.
 **Phone:** (303) 949-8584
 **Email:** lousheatingcooling@icloud.com
-**Address:** 2715 S Eaton Way, Denver, CO 80227
+**Address:** 1880 S Pierce St #5, Lakewood, CO 80232
 **Instagram:** @loushvac
 **Business Hours:** 24/7 (emergency services available)
 **BBB Accredited:** Yes, A+ rating (since July 2024)
-**American Standard Dealer:** Yes
+**Authorized Carrier Dealer:** Yes
 **Warranty:** 10-year extended warranty on new equipment, 5-year workmanship warranty
 **Service Area:** Westminster, Denver, Indian Hills, Golden, Cherry Hills, Idledale, Aurora, Evergreen, Thornton, Louviers, Englewood, Commerce City, Arvada, Littleton, Morrison, Lakewood, Kittredge, Wheat Ridge, Centennial
 **Founded:** 2014 (Lou has been in the HVAC business since 2014; the current LLC was incorporated August 26, 2022)
@@ -231,7 +231,7 @@ HomeAdvisor: https://www.homeadvisor.com/rated.LousHeatingandCooling.141784599.h
 Angi: https://www.angi.com/companylist/us/co/denver/lous-heating-and-cooling-llc-reviews-1.htm
 Facebook: https://www.facebook.com/profile.php?id=61565629501334
 Instagram: https://www.instagram.com/loushvac/
-Google Business Profile: [NEEDS TO BE FOUND -- search Google Maps for "Lou's Heating and Cooling Denver CO 80227" and get the direct GBP link]
+Google Business Profile: [NEEDS TO BE FOUND -- search Google Maps for "Lou's Heating and Cooling Lakewood CO 80232" and get the direct GBP link]
 ```
 
 Build this site with **Astro** (static site generator). Rationale:
@@ -283,7 +283,7 @@ Initialize the project with the chosen tech stack and create the full directory 
 
 #### 1.5 Verify external profile links
 
-Visit each URL in the "External Profile URLs" section and confirm they're live. Find the Google Business Profile URL (search Google Maps for "Lou's Heating and Cooling Denver CO 80227"). Save all verified URLs to `/content/external-profiles.md`.
+Visit each URL in the "External Profile URLs" section and confirm they're live. Find the Google Business Profile URL (search Google Maps for "Lou's Heating and Cooling Lakewood CO 80232"). Save all verified URLs to `/content/external-profiles.md`.
 
 ---
 

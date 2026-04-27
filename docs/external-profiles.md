@@ -23,7 +23,7 @@ All URLs were provided in the project spec (CLAUDE.md). Status reflects spec-con
 ## How to Confirm the Google Business Profile URL
 
 1. Open Google Maps in a browser: maps.google.com
-2. Search for: `Lou's Heating and Cooling Denver CO 80227`
+2. Search for: `Lou's Heating and Cooling Lakewood CO 80232`
 3. Click the business listing in the results
 4. Click "Share" in the listing panel
 5. Click "Copy link"
