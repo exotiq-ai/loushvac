@@ -1,0 +1,33 @@
+# 301 Redirects: Old loushvac303.com URLs → New site structure
+# Format: /old-path  /new-path  301
+
+# Old Squarespace service section anchors/pages
+/services/heating            /services/furnace-repair/       301
+/services/heating-old        /services/furnace-repair/       301
+/services/cooling            /services/ac-repair/            301
+/services/air-conditioning   /services/ac-repair/            301
+/services/hvac               /services/                      301
+/services/repair             /services/                      301
+/services/installation       /services/furnace-replacement/  301
+
+# Old contact paths
+/contact-form                /contact/                       301
+/contact-us                  /contact/                       301
+/get-in-touch                /contact/                       301
+/book                        /contact/                       301
+/schedule                    /contact/                       301
+/estimate                    /contact/                       301
+/free-estimate               /contact/                       301
+
+# Old blog paths (if any existed)
+/blog-old/*                  /faq/                           301
+/blog/*                      /faq/                           301
+
+# Old about paths
+/about-us                    /about/                         301
+/our-story                   /about/                         301
+/team                        /about/                         301
+
+# Catch common Squarespace default paths
+/config                      /                               301
+/cart                        /                               301
