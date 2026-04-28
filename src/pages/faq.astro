@@ -11,6 +11,10 @@ const expertFAQ = faqItems.filter(f => f.tier === 'expert');
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".faq-question", ".faq-answer"]
+  },
   "mainEntity": faqItems.map(item => ({
     "@type": "Question",
     "name": item.question,

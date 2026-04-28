@@ -6,11 +6,45 @@ import { reviews } from '../content/reviews.ts';
 
 const trustReviews = reviews.filter(r => r.tier === 'trust').slice(0, 3);
 const gregorioReview = reviews.find(r => r.reviewer === 'Gregorio M.');
+
+const founderSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Louis Hernandez Jr.",
+  "givenName": "Louis",
+  "familyName": "Hernandez",
+  "jobTitle": "Owner & Lead Technician",
+  "worksFor": {
+    "@type": "HVACBusiness",
+    "name": "Lou's Heating & Cooling",
+    "url": "https://www.loushvac303.com"
+  },
+  "knowsAbout": [
+    "HVAC repair and installation",
+    "Air Conditioning",
+    "Furnace Repair",
+    "Evaporative Cooling",
+    "Carrier HVAC Equipment",
+    "Denver Altitude HVAC Sizing",
+    "Manual J Load Calculation"
+  ],
+  "image": "https://www.loushvac303.com/images/lou-headshot-1.jpg",
+  "url": "https://www.loushvac303.com/about/"
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": founderSchema,
+  "name": "Meet Lou Hernandez",
+  "url": "https://www.loushvac303.com/about/"
+};
 ---
 <BaseLayout
   title="About Lou's Heating & Cooling | Family-Owned Lakewood & Denver HVAC Since 2014"
   description="Meet Lou Hernandez, owner of Lou's Heating & Cooling. Family-owned HVAC based in Lakewood, serving the Denver metro since 2014. Honest diagnosis, fair pricing, no upselling. BBB A+."
   canonical="/about/"
+  schema={[founderSchema, profilePageSchema]}
 >
   <!-- PAGE HERO -->
   <section class="about-hero section-primary">

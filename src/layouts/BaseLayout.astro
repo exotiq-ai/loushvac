@@ -62,6 +62,48 @@ const localBusinessSchema = {
     "Arvada, CO", "Littleton, CO", "Morrison, CO", "Lakewood, CO",
     "Kittredge, CO", "Wheat Ridge, CO", "Centennial, CO"
   ],
+  "foundingDate": "2014",
+  "slogan": "Honest HVAC Service. Fair Prices. Every Time.",
+  "founder": {
+    "@type": "Person",
+    "name": "Louis Hernandez Jr.",
+    "jobTitle": "Owner & Lead Technician",
+    "knowsAbout": ["HVAC", "Air Conditioning", "Furnace Repair", "Evaporative Cooling", "Carrier HVAC Equipment"]
+  },
+  "knowsAbout": [
+    "HVAC repair and installation",
+    "Air conditioning",
+    "Furnace repair",
+    "Evaporative cooling",
+    "Carrier HVAC equipment",
+    "Denver altitude HVAC sizing",
+    "Manual J load calculation",
+    "R-410A and R-454B refrigerants",
+    "24/7 emergency HVAC service"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+13039498584",
+      "contactType": "emergency",
+      "availableLanguage": "English",
+      "hoursAvailable": "Mo-Su 00:00-23:59",
+      "areaServed": "US-CO"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+13039498584",
+      "contactType": "customer service",
+      "availableLanguage": "English",
+      "areaServed": "US-CO"
+    },
+    {
+      "@type": "ContactPoint",
+      "email": "lousheatingcooling@icloud.com",
+      "contactType": "customer service",
+      "availableLanguage": "English"
+    }
+  ],
   "priceRange": "$$",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Credit Card",
@@ -92,7 +134,16 @@ const localBusinessSchema = {
   }
 };
 
-const schemas = [localBusinessSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Lou's Heating & Cooling",
+  "url": siteUrl,
+  "inLanguage": "en-US",
+  "publisher": { "@type": "HVACBusiness", "name": "Lou's Heating & Cooling" }
+};
+
+const schemas = [localBusinessSchema, websiteSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -102,6 +153,8 @@ const schemas = [localBusinessSchema, ...(Array.isArray(schema) ? schema : schem
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="alternate" hreflang="en-US" href={canonicalUrl} />
+  <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
   <!-- Open Graph -->
   <meta property="og:title" content={title} />

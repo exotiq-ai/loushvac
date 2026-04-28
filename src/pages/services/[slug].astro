@@ -5,6 +5,7 @@ import CTABanner from '../../components/CTABanner.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
 import { services } from '../../content/services.ts';
 import { reviews } from '../../content/reviews.ts';
+import { getFaqsForService } from '../../content/serviceFaqs.ts';
 import type { Service } from '../../content/services.ts';
 
 export async function getStaticPaths() {
@@ -23,6 +24,7 @@ const serviceReviews = reviews.filter(r => service.reviewIds.includes(r.id));
 const relatedServices = service.relatedSlugs
   .map(slug => services.find(s => s.slug === slug))
   .filter((s): s is Service => Boolean(s));
+const serviceFaqs = getFaqsForService(service.slug);
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -75,12 +77,26 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://www.loushvac303.com/services/${service.slug}/` }
   ]
 };
+
+const faqPageSchema = serviceFaqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".service-faq-q", ".service-faq-a"]
+  },
+  "mainEntity": serviceFaqs.map(f => ({
+    "@type": "Question",
+    "name": f.question,
+    "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+  }))
+} : null;
 ---
 <BaseLayout
   title={service.metaTitle}
   description={service.metaDescription}
   canonical={`/services/${service.slug}/`}
-  schema={[serviceSchema, breadcrumbSchema]}
+  schema={faqPageSchema ? [serviceSchema, breadcrumbSchema, faqPageSchema] : [serviceSchema, breadcrumbSchema]}
 >
   <!-- PAGE HERO -->
   <section class="service-hero section-primary section-sm">
@@ -189,6 +205,24 @@ const breadcrumbSchema = {
           </div>
         </section>
       )}
+
+      <!-- SERVICE FAQ -->
+      {serviceFaqs.length > 0 && (
+        <section class="service-section">
+          <h2>{service.shortTitle} FAQs</h2>
+          <div class="service-faq-list">
+            {serviceFaqs.map(f => (
+              <details class="service-faq-item">
+                <summary class="service-faq-q">
+                  {f.question}
+                  <span class="service-faq-icon" aria-hidden="true">+</span>
+                </summary>
+                <div class="service-faq-a"><p>{f.answer}</p></div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
 
     <!-- SIDEBAR -->
@@ -278,6 +312,16 @@ const breadcrumbSchema = {
 .commitment-icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
 .commitment-item p { color: var(--color-text-muted); font-size: var(--font-size-sm); margin: var(--space-1) 0 0; }
 .service-reviews { display: flex; flex-direction: column; gap: var(--space-4); }
+.service-faq-list { display: flex; flex-direction: column; gap: var(--space-2); }
+.service-faq-item { border: 1px solid var(--color-border); border-radius: var(--border-radius); background: var(--color-white); overflow: hidden; }
+.service-faq-item[open] { border-color: var(--color-primary-light); }
+.service-faq-q { display: flex; justify-content: space-between; align-items: center; padding: var(--space-4) var(--space-5); cursor: pointer; font-size: var(--font-size-base); font-weight: 600; color: var(--color-text); list-style: none; gap: var(--space-3); }
+.service-faq-q::-webkit-details-marker { display: none; }
+.service-faq-item[open] .service-faq-q { color: var(--color-primary); }
+.service-faq-icon { flex-shrink: 0; font-size: var(--font-size-xl); color: var(--color-primary); transition: transform var(--transition); font-weight: 300; }
+.service-faq-item[open] .service-faq-icon { transform: rotate(45deg); }
+.service-faq-a { padding: 0 var(--space-5) var(--space-5); }
+.service-faq-a p { color: var(--color-text-muted); line-height: 1.8; margin: 0; }
 .sidebar-cta { background: var(--color-bg-alt); border-radius: var(--border-radius-lg); padding: var(--space-6); position: sticky; top: 90px; }
 .sidebar-cta h3 { margin-bottom: var(--space-4); }
 .sidebar-or { text-align: center; color: var(--color-text-muted); margin: var(--space-3) 0; font-size: var(--font-size-sm); }
