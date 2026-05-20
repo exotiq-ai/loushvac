@@ -22,12 +22,12 @@ export const services: Service[] = [
     title: 'Air Conditioning Repair',
     shortTitle: 'AC Repair',
     icon: '/images/service-icon-snowflake.png',
-    description: 'Fast diagnosis and honest repair for any AC system in the Denver metro.',
+    description: 'Fast diagnosis and honest air conditioning repair for any AC system in the Denver metro.',
     h1: 'Air Conditioning Repair in Denver, CO',
-    metaTitle: "AC Repair Denver CO | Lou's Heating & Cooling | (303) 949-8584",
+    metaTitle: "Air Conditioning Repair Denver CO | AC Repair | Lou's Heating & Cooling | (303) 949-8584",
     metaDescription:
-      "Same-day AC repair in Denver. Honest diagnosis, flat rate pricing, no upselling. Call Lou's Heating & Cooling at (303) 949-8584.",
-    intro: `When your AC stops cooling in the middle of a Denver summer, you need someone who shows up fast, tells you exactly what's wrong, and fixes it for a fair price. That's what Lou's Heating & Cooling does. We've been repairing air conditioning systems across the Denver metro since 2014. No surprise charges, no pushing you toward a replacement you don't need.`,
+      "Same-day air conditioning repair in Denver. AC not cooling? Honest diagnosis, flat rate pricing, no upselling. Call Lou's Heating & Cooling at (303) 949-8584.",
+    intro: `When your air conditioning stops cooling in the middle of a Denver summer, you need someone who shows up fast, tells you exactly what's wrong, and fixes it for a fair price. That's what Lou's Heating & Cooling does. We've been repairing air conditioning systems across the Denver metro since 2014 — and we know Denver's altitude and climate create AC challenges that sea-level technicians wouldn't think to check. At 5,280 feet, your air conditioning system works against thinner air and lower air density, which means undersized systems struggle harder than they would in Dallas or Atlanta. Add Front Range hail damage to outdoor condensers, wildfire smoke seasons that clog filters fast, and 40-degree temperature swings in a single day, and you need a technician who understands Colorado-specific AC repair. No surprise charges, no pushing you toward a replacement you don't need.`,
     symptoms: [
       "Your home isn't reaching the temperature on the thermostat",
       'AC is running constantly but the house stays warm',
@@ -73,13 +73,13 @@ export const services: Service[] = [
     title: 'Air Conditioning Replacement & Installation',
     shortTitle: 'AC Installation',
     icon: '/images/service-icon-snowflake.png',
-    description: 'New AC installation from an Authorized Carrier Dealer with a 10-year warranty.',
+    description: 'New air conditioning installation and AC replacement from an Authorized Carrier Dealer with a 10-year warranty.',
     h1: 'Air Conditioning Replacement & Installation in the Denver Metro',
     metaTitle:
-      "AC Installation Denver Metro | Authorized Carrier Dealer | Lou's Heating & Cooling",
+      "Air Conditioning Installation Denver Metro | AC Replacement | Carrier Dealer | Lou's Heating & Cooling",
     metaDescription:
-      "New AC installation across the Denver metro from an Authorized Carrier Dealer. 10-year warranty, free in-home estimate. Call (303) 949-8584.",
-    intro: `Replacing an AC unit is one of the bigger investments a Denver-metro homeowner makes. You deserve straight talk about what you actually need, not what generates the biggest commission. Lou's Heating & Cooling is an Authorized Carrier Dealer, which means we install one of the most established and reliable HVAC brands on the market and back it with a 10-year extended warranty. We size every system correctly for Denver's altitude and climate, something cookie-cutter quotes often get wrong.`,
+      "New air conditioning installation and AC replacement across the Denver metro. Authorized Carrier Dealer, 10-year warranty, free in-home estimate. Call (303) 949-8584.",
+    intro: `Replacing an air conditioning unit is one of the bigger investments a Denver-metro homeowner makes. You deserve straight talk about what you actually need, not what generates the biggest commission. Lou's Heating & Cooling is an Authorized Carrier Dealer, which means we install one of the most established and reliable air conditioning brands on the market and back it with a 10-year extended warranty. We size every air conditioning system correctly for Denver's altitude and climate — at 5,280 feet, AC units need to be 10-15% larger than sea-level sizing rules suggest, and ductwork often needs to be 15% larger to compensate for reduced air density. Cookie-cutter quotes from companies using sea-level calculators get this wrong. We also factor in the Front Range's unique weather: intense afternoon sun, hail exposure on outdoor condensers, and rapid temperature drops that stress equipment. If you're replacing an old R-22 system (phased out in 2020, now expensive to service), we'll walk you through the newer R-410A and R-454B refrigerant options.`,
     symptoms: [
       'Your AC system is 15+ years old',
       'Repair costs are approaching or exceeding 50% of replacement cost',
@@ -125,12 +125,12 @@ export const services: Service[] = [
     shortTitle: 'Furnace Repair',
     icon: '/images/service-icon-fire.png',
     description:
-      'Furnace not heating? We diagnose honestly and fix fast. 24/7 service available.',
+      'Furnace not heating? Heating system repair with honest diagnosis. We fix fast. 24/7 service available.',
     h1: 'Furnace Repair in Denver, CO',
-    metaTitle: "Furnace Repair Denver CO | 24/7 Service | Lou's Heating & Cooling",
+    metaTitle: "Furnace Repair Denver CO | Heating Repair | 24/7 Service | Lou's Heating & Cooling",
     metaDescription:
-      "Furnace repair in Denver, available 24/7. Honest diagnosis, flat rate pricing. Call Lou's Heating & Cooling at (303) 949-8584.",
-    intro: `A furnace that quits in a Denver winter isn't just uncomfortable; it's a genuine emergency. Denver's winter design temperature sits around 1-5°F, and temperatures can swing 40+ degrees in a single day. When your furnace stops working, you need someone who picks up the phone, shows up fast, and tells you exactly what's wrong. Lou's Heating & Cooling has been handling furnace repairs across the Denver metro since 2014. We answer calls 24/7 because we know furnaces don't care what time it is.`,
+      "Furnace and heating repair in Denver, available 24/7. Furnace blowing cold air? Honest diagnosis, flat rate pricing. Call Lou's Heating & Cooling at (303) 949-8584.",
+    intro: `A furnace that quits in a Denver winter isn't just uncomfortable — it's a genuine heating emergency. Denver's winter design temperature sits around 1-5°F, and temperatures can swing 40+ degrees in a single day. Colorado homes need 25-40 BTU per square foot for heating (compared to 20-25 in milder states), and at 5,280 feet altitude, gas furnaces lose roughly 4% of their rated BTU capacity per 1,000 feet of elevation. That means a 100,000 BTU furnace in Denver only delivers about 80,000 BTU of actual heating input. When your furnace or heating system stops working, you need someone who understands Denver-altitude heating repair — someone who picks up the phone, shows up fast, and tells you exactly what's wrong. Lou's Heating & Cooling has been handling furnace and heating repairs across the Denver metro since 2014. We answer calls 24/7 because furnaces don't care what time it is.`,
     symptoms: [
       "Furnace won't turn on",
       'Blowing cold or lukewarm air instead of heat',
@@ -177,13 +177,13 @@ export const services: Service[] = [
     shortTitle: 'Furnace Installation',
     icon: '/images/service-icon-fire.png',
     description:
-      "New furnace installation sized correctly for Denver's altitude and climate.",
+      "New furnace and heating system installation sized correctly for Denver's altitude and climate.",
     h1: 'Furnace Replacement & Installation in the Denver Metro',
     metaTitle:
-      "Furnace Installation Denver Metro | Authorized Carrier Dealer | Lou's Heating & Cooling",
+      "Furnace Installation Denver Metro | Heating System Replacement | Carrier Dealer | Lou's Heating & Cooling",
     metaDescription:
-      "New furnace installation across the Denver metro. Properly sized for Colorado altitude. Authorized Carrier Dealer. Free estimate: (303) 949-8584.",
-    intro: `Installing a furnace in Denver isn't the same as installing one in Dallas or Atlanta. Denver sits at 5,280 feet, and altitude derating means gas furnaces deliver roughly 80% of their rated BTU output compared to sea level. If a company sizes your furnace without accounting for altitude, you'll end up with an undersized system that runs constantly and can't keep up on the coldest days. Lou's Heating & Cooling does it right. We calculate the actual heating load for your home, account for Denver's altitude, and install equipment that will keep you comfortable through a Colorado winter.`,
+      "New furnace and heating system installation across the Denver metro. Properly sized for Colorado altitude. Authorized Carrier Dealer. Free estimate: (303) 949-8584.",
+    intro: `Installing a new furnace or heating system in Denver isn't the same as installing one in Dallas or Atlanta. Denver sits at 5,280 feet, and altitude derating means gas furnaces deliver roughly 80% of their rated BTU output compared to sea level. A 100,000 BTU furnace here, after altitude derating and a 96% AFUE efficiency rating, delivers about 76,800 BTU of actual usable heat. If a company sizes your furnace without accounting for altitude, you'll end up with an undersized heating system that runs constantly and can't keep up on the coldest days. Lou's Heating & Cooling does it right. We run a proper Manual J load calculation for every Denver home — accounting for altitude, insulation levels, window exposure, and our extreme temperature swings. Many Lakewood and Wheat Ridge homes built in the 1960s-1980s have original ductwork that was sized for less efficient equipment; when we install new heating equipment, we evaluate the whole system, not just swap the unit. Whether you need a high-efficiency condensing furnace, a two-stage system, or a dual-fuel heat pump setup, we'll recommend the heating solution that actually fits your home and budget.`,
     symptoms: [
       'Furnace is 15-20+ years old (average furnace lifespan is 15-20 years)',
       'Repair costs exceed 50% of replacement cost',

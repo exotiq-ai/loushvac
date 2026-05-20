@@ -2,10 +2,12 @@
 # Format: /old-path  /new-path  301
 
 # Old Squarespace service section anchors/pages
-/services/heating            /services/furnace-repair/       301
 /services/heating-old        /services/furnace-repair/       301
 /services/cooling            /services/ac-repair/            301
 /services/air-conditioning   /services/ac-repair/            301
+/services/air-conditioning-repair  /services/ac-repair/      301
+/services/heating-repair     /services/heating/              301
+/services/furnace-service    /services/furnace-repair/       301
 /services/hvac               /services/                      301
 /services/repair             /services/                      301
 /services/installation       /services/furnace-replacement/  301

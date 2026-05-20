@@ -25,7 +25,7 @@ export const cityPages: CityPage[] = [
     population: '~155,000',
     metaTitle: "HVAC Repair & Installation in Lakewood, CO | Lou's Heating & Cooling",
     metaDescription:
-      "Local HVAC service in Lakewood, CO. Based at 1880 S Pierce St. AC repair, furnace repair, swamp cooler service. Honest, flat-rate pricing. Call (303) 949-8584.",
+      "Local HVAC service in Lakewood, CO. Based at 1880 S Pierce St. Air conditioning repair, furnace & heating repair, swamp cooler service. Flat-rate pricing. Call (303) 949-8584.",
     h1: 'HVAC Repair & Installation in Lakewood, CO',
     intro:
       "Lou's Heating & Cooling is based right here in Lakewood. Our shop is at 1880 S Pierce St #5, just south of Mississippi, which means we're across town in minutes for most Lakewood addresses. We've been serving Lakewood homes since 2014, and many of our customers are repeat business or referrals from neighbors. Local matters when your AC fails on a 95-degree afternoon.",
@@ -33,7 +33,7 @@ export const cityPages: CityPage[] = [
     housingNote:
       "A lot of Lakewood was built between 1955 and 1985, which means we see a lot of original-era furnaces hitting end of life and original ductwork that was sized for smaller, less efficient equipment. We do honest evaluations: if your 25-year-old furnace has another five years in it with a $200 repair, that's what we'll tell you.",
     localAngle:
-      "Lakewood's water is on the harder side, which accelerates mineral buildup on swamp cooler pads and water pumps. We see it every spring during startup season. We replace pads and clean reservoirs as part of every spring startup so you're getting the cooling you paid for.",
+      "Lakewood's water is on the harder side, which accelerates mineral buildup on swamp cooler pads and water pumps. We see it every spring during startup season. We replace pads and clean reservoirs as part of every spring startup so you're getting the cooling you paid for. For air conditioning and heating, Lakewood's 1960s-1980s housing stock often has ductwork that was sized for less efficient equipment — we evaluate the whole system on every furnace replacement and AC installation.",
     specialty: 'Local HQ — fastest response times in Lakewood',
     relatedReviewIds: [1, 4, 6],
     mapEmbedQuery: 'Lakewood+CO',
@@ -45,7 +45,7 @@ export const cityPages: CityPage[] = [
     population: '~715,000',
     metaTitle: "HVAC Repair & Installation in Denver, CO | Lou's Heating & Cooling",
     metaDescription:
-      "HVAC service across Denver: AC repair, furnace repair, swamp cooler service, 24/7 emergency. Honest diagnosis, flat-rate pricing. Call (303) 949-8584.",
+      "Air conditioning repair, furnace & heating repair, swamp cooler service across Denver. 24/7 emergency HVAC. Honest diagnosis, flat-rate pricing. Call (303) 949-8584.",
     h1: 'HVAC Repair & Installation in Denver, CO',
     intro:
       "Denver is a big, diverse city, and the HVAC needs vary block by block. A 1900s Victorian in Capitol Hill has very different requirements from a modern infill in RiNo. We've worked across most of Denver since 2014, and we know what to expect in each neighborhood — original radiator systems in older homes, swamp coolers retrofitted into mid-century houses, and high-efficiency installs going into new construction in Stapleton and Lowry.",
@@ -53,7 +53,7 @@ export const cityPages: CityPage[] = [
     housingNote:
       "Denver's housing stock is some of the most varied in the metro: from 120-year-old Victorians with steam radiators to brand-new condos with high-efficiency heat pumps. We size every system for the actual home — not a generic square-footage rule — and we account for Denver's altitude in every calculation.",
     localAngle:
-      "Many Denver homes still have working swamp coolers (a great fit for our dry climate), but they need annual startup and shutdown. We handle both, plus the seasonal switch over to AC during monsoon weeks in July and August. If your home has both systems, we keep them both running smoothly.",
+      "Many Denver homes still have working swamp coolers (a great fit for our dry climate), but they need annual startup and shutdown. We handle both, plus the seasonal switch over to air conditioning during monsoon weeks in July and August. Whether you need air conditioning repair, furnace and heating service, or swamp cooler maintenance, we keep every system in your Denver home running smoothly year-round.",
     specialty: 'Largest service area — full Denver metro coverage',
     relatedReviewIds: [2, 3, 8],
     mapEmbedQuery: 'Denver+CO',

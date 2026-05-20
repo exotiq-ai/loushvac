@@ -56,13 +56,22 @@ export const GET: APIRoute = () => {
       "Military discount available",
       "Financing available (subject to qualification)",
     ],
-    services: services.map(s => ({
-      slug: s.slug,
-      title: s.title,
-      short_title: s.shortTitle,
-      description: s.description,
-      url: `https://www.loushvac303.com/services/${s.slug}/`,
-    })),
+    services: [
+      ...services.map(s => ({
+        slug: s.slug,
+        title: s.title,
+        short_title: s.shortTitle,
+        description: s.description,
+        url: `https://www.loushvac303.com/services/${s.slug}/`,
+      })),
+      {
+        slug: 'heating',
+        title: 'Heating Services',
+        short_title: 'Heating',
+        description: 'Complete heating services: furnace repair, heating system installation, emergency heating repair, and maintenance.',
+        url: 'https://www.loushvac303.com/services/heating/',
+      },
+    ],
     service_area: {
       headquarters: "Lakewood, CO",
       featured_cities: cityPages.map(c => ({
