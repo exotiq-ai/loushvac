@@ -49,8 +49,8 @@ The contact form uses a custom API route (`/api/contact`) powered by three servi
 ```bash
 # Resend (transactional email — sends lead notifications to Lou)
 RESEND_API_KEY=re_xxxxxxxxxxxx         # Get from resend.com/api-keys
-RESEND_FROM_EMAIL=leads@loushvac303.com  # Must be a verified domain in Resend
-RESEND_TO_EMAIL=lousheatingcooling@icloud.com  # Lou's inbox
+RESEND_FROM_EMAIL=leads@loushvac.com  # Must be a verified domain in Resend
+RESEND_TO_EMAIL=admin@loushvac.com  # Lou's inbox
 
 # Supabase (lead history — optional but recommended)
 SUPABASE_URL=https://xxxxx.supabase.co
@@ -93,7 +93,7 @@ The form also includes `data-netlify="true"` which means Netlify will capture su
 If you don't want to configure Resend/Supabase/HCP:
 1. Remove `action="/api/contact"` from `src/components/ContactForm.astro`
 2. Netlify Forms will automatically intercept submissions
-3. Configure email notifications in Netlify → Forms → Notifications → lousheatingcooling@icloud.com
+3. Configure email notifications in Netlify → Forms → Notifications → admin@loushvac.com
 
 ---
 

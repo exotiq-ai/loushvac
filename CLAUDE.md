@@ -6,7 +6,7 @@ You are rebuilding the website for **Lou's Heating & Cooling**, a family-owned H
 
 **Owner:** Louis Hernandez Jr.
 **Phone:** (303) 949-8584
-**Email:** lousheatingcooling@icloud.com
+**Email:** admin@loushvac.com
 **Address:** 1880 S Pierce St #5, Lakewood, CO 80232
 **Instagram:** @loushvac
 **Business Hours:** 24/7 (emergency services available)
@@ -803,7 +803,7 @@ lous-hvac-site/
 
 #### 8.3 Quality checklist before delivery
 
-- [ ] Every CTA links to a real action (phone, form, or real email: lousheatingcooling@icloud.com)
+- [ ] Every CTA links to a real action (phone, form, or real email: admin@loushvac.com)
 - [ ] Phone number (303) 949-8584 is clickable on mobile (tel: link) and visible in header on every page
 - [ ] No placeholder text anywhere ("Lorem ipsum", "email@example.com", etc.)
 - [ ] "Serving Denver Since 2014" is used consistently

@@ -29,7 +29,7 @@ export const GET: APIRoute = () => {
   out.push('- Founded: 2014 (LLC incorporated August 26, 2022)');
   out.push('- Address: 1880 S Pierce St #5, Lakewood, CO 80232');
   out.push('- Phone: (303) 949-8584');
-  out.push('- Email: lousheatingcooling@icloud.com');
+  out.push('- Email: admin@loushvac.com');
   out.push('- Hours: 24 hours a day, 7 days a week (emergency service always available)');
   out.push('- License/Insurance: Licensed and insured in Colorado');
   out.push('- Accreditations: BBB A+ Accredited (since July 2024); Authorized Carrier Dealer; Top 3 HVAC Contractors — Lakewood Business Rate 2025');

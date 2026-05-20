@@ -1,8 +1,8 @@
 import { Resend } from 'resend';
 
 const apiKey = import.meta.env.RESEND_API_KEY;
-const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'leads@loushvac303.com';
-const toEmail = import.meta.env.RESEND_TO_EMAIL || 'lousheatingcooling@icloud.com';
+const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'leads@loushvac.com';
+const toEmail = import.meta.env.RESEND_TO_EMAIL || 'admin@loushvac.com';
 
 const resend = apiKey ? new Resend(apiKey) : null;
 
