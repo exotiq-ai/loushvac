@@ -6,10 +6,16 @@ const { compact = false, sourcePage } = Astro.props;
 <form
   class:list={['contact-form', { 'contact-form--compact': compact }]}
   data-source-page={sourcePage || ''}
+  method="POST"
+  action="/api/contact"
+  data-netlify="true"
+  netlify-honeypot="_gotcha"
+  name="contact"
   novalidate
 >
   <noscript>
-    <p class="form-noscript">JavaScript is required to submit this form. Please enable JS or call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
+    <input type="hidden" name="source_page" value={sourcePage || 'unknown'} />
+    <p class="form-noscript">Form will submit without JavaScript. For fastest response, call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
   </noscript>
 
   <div class="form-status" data-status hidden></div>

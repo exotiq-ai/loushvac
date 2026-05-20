@@ -1764,7 +1764,7 @@ const localBusinessSchema = {
   "description": "Family-owned HVAC company serving Denver, CO and surrounding areas since 2014. Air conditioning repair, furnace repair, swamp cooler service, and 24/7 emergency HVAC.",
   "url": siteUrl,
   "telephone": "+13039498584",
-  "email": "lousheatingcooling@icloud.com",
+  "email": "admin@loushvac.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "2715 S Eaton Way",
@@ -2058,7 +2058,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
     <div class="footer-contact">
       <h3>Contact</h3>
       <p><a href="tel:3039498584" class="phone-link">(303) 949-8584</a></p>
-      <p><a href="mailto:lousheatingcooling@icloud.com">lousheatingcooling@icloud.com</a></p>
+      <p><a href="mailto:admin@loushvac.com">admin@loushvac.com</a></p>
       <p>2715 S Eaton Way<br>Denver, CO 80227</p>
       <p><strong>Hours:</strong> 24/7 — Emergency service available</p>
     </div>
@@ -2908,7 +2908,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
         </div>
         <div class="contact-detail">
           <h3>Email</h3>
-          <a href="mailto:lousheatingcooling@icloud.com">lousheatingcooling@icloud.com</a>
+          <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>
         </div>
         <div class="contact-detail">
           <h3>Address</h3>
@@ -3854,7 +3854,7 @@ Output Directory: `dist/`
 The contact form uses Formspree. Before the site goes live:
 
 1. Go to formspree.io and create a free account
-2. Create a new form — use `lousheatingcooling@icloud.com` as the destination email
+2. Create a new form — use `admin@loushvac.com` as the destination email
 3. Copy your form endpoint URL (format: `https://formspree.io/f/xxxxxxxx`)
 4. Open `src/components/ContactForm.astro`
 5. Replace `FORMSPREE_ENDPOINT_HERE` with your endpoint URL

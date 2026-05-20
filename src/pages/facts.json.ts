@@ -31,7 +31,7 @@ export const GET: APIRoute = () => {
       geo: { latitude: 39.7066, longitude: -105.0903 },
       phone: "+13039498584",
       phone_formatted: "(303) 949-8584",
-      email: "lousheatingcooling@icloud.com",
+      email: "admin@loushvac.com",
       website: "https://www.loushvac303.com",
       hours: "24/7 (emergency service always available)",
     },

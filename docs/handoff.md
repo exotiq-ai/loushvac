@@ -1,7 +1,7 @@
 # Handoff Documentation — Lou's Heating & Cooling Website
 
 Built: 2026-04-02
-Tech Stack: Astro 4.x (static), CSS custom properties, Formspree
+Tech Stack: Astro 6.x (hybrid static + serverless), Netlify adapter, Resend, Supabase, Housecall Pro
 Build Command: `npm run build`
 Output Directory: `dist/`
 
@@ -38,19 +38,62 @@ Output Directory: `dist/`
 
 ## 2. Contact Form Setup (REQUIRED before launch)
 
-The contact form uses Formspree. Before the site goes live:
+The contact form uses a custom API route (`/api/contact`) powered by three services:
 
-1. Go to formspree.io and create a free account
-2. Create a new form — use `lousheatingcooling@icloud.com` as the destination email
-3. Copy your form endpoint URL (format: `https://formspree.io/f/xxxxxxxx`)
-4. Open `src/components/ContactForm.astro`
-5. Replace `FORMSPREE_ENDPOINT_HERE` with your endpoint URL
-6. Rebuild and redeploy
+1. **Resend** — Sends an email notification to Lou when a lead comes in
+2. **Supabase** — Stores leads in a database (viewable at `/admin/leads/`)
+3. **Housecall Pro** — Creates a customer and lead in Lou's job management system
 
-**Alternative: Netlify Forms (if deploying to Netlify)**
-1. Add `data-netlify="true"` attribute to the `<form>` tag in ContactForm.astro
-2. Remove the `action` and `method` attributes
-3. Netlify will automatically intercept form submissions
+### Required Environment Variables (set in Netlify → Site Settings → Environment Variables)
+
+```bash
+# Resend (transactional email — sends lead notifications to Lou)
+RESEND_API_KEY=re_xxxxxxxxxxxx         # Get from resend.com/api-keys
+RESEND_FROM_EMAIL=leads@loushvac.com  # Must be a verified domain in Resend
+RESEND_TO_EMAIL=admin@loushvac.com  # Lou's inbox
+
+# Supabase (lead history — optional but recommended)
+SUPABASE_URL=https://xxxxx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGc...
+
+# Housecall Pro (CRM integration — optional)
+HCP_API_BASE=https://api.housecallpro.com
+HCP_CLIENT_ID=
+HCP_CLIENT_SECRET=
+HCP_ACCOUNT_TOKEN=
+HCP_API_VERSION=2024-01-01
+
+# Admin panel passcode (protects /admin/leads/ page)
+ADMIN_PASSCODE=choose-a-strong-passcode
+```
+
+### Minimum Setup (email only)
+
+At minimum, you need `RESEND_API_KEY` configured. Without it, the form cannot deliver messages to Lou's email. Steps:
+
+1. Sign up at [resend.com](https://resend.com)
+2. Verify the domain `loushvac303.com` (or use Resend's free testing domain for initial testing)
+3. Create an API key
+4. Add `RESEND_API_KEY` to Netlify environment variables
+5. Deploy
+
+### Graceful Degradation
+
+The form pipeline is designed to degrade gracefully:
+- If Resend fails but Supabase captures the lead → User sees success (Lou checks `/admin/leads/`)
+- If Resend fails but HCP captures the lead → User sees success (Lou sees it in HCP inbox)
+- If ALL services fail → User sees error with a prompt to call (303) 949-8584
+- If JavaScript is disabled → Form submits via standard HTML POST to the same API
+
+### Netlify Forms Backup
+
+The form also includes `data-netlify="true"` which means Netlify will capture submissions as a backup even if the serverless function has issues. Check Netlify → Forms for any captured submissions.
+
+**Alternative: Netlify Forms only (simplest possible setup)**
+If you don't want to configure Resend/Supabase/HCP:
+1. Remove `action="/api/contact"` from `src/components/ContactForm.astro`
+2. Netlify Forms will automatically intercept submissions
+3. Configure email notifications in Netlify → Forms → Notifications → admin@loushvac.com
 
 ---
 
@@ -109,7 +152,8 @@ The contact form uses Formspree. Before the site goes live:
 ## 6. Recommended Next Steps (Priority Order)
 
 ### Immediate (before launch)
-- [ ] Set up Formspree endpoint (see Section 2)
+- [ ] Set up Resend API key and verify domain (see Section 2)
+- [ ] Optionally set up Supabase for lead history (see Section 2)
 - [ ] Add Google Business Profile URL to `src/content/externalProfiles.ts`
 - [ ] Get Colorado contractor license number and add to Footer.astro and about.astro
 - [ ] Verify BBB badge embed code and add to about.astro
@@ -141,7 +185,7 @@ The contact form uses Formspree. Before the site goes live:
 
 See `docs/flags.md` for the complete list. Key items:
 
-1. **Formspree endpoint** — Must be set up before any form can receive submissions
+1. **Resend API key** — Must be configured in Netlify environment variables before forms can deliver email
 2. **Google Business Profile URL** — Find and update in `src/content/externalProfiles.ts`
 3. **Contractor license number** — Add to Footer.astro and about.astro
 4. **BBB badge** — Get official embed code from BBB account
@@ -158,6 +202,7 @@ Pages:                            Meta Title
 /                                 Lou's Heating & Cooling | Denver's Honest HVAC Company | (303) 949-8584
 /about/                           About Lou's Heating & Cooling | Family-Owned Denver HVAC Since 2014
 /contact/                         Contact Lou's Heating & Cooling | Denver HVAC | (303) 949-8584
+/contact/thank-you/               Message Received | Lou's Heating & Cooling
 /faq/                             HVAC FAQ | Denver AC & Furnace Questions | Lou's Heating & Cooling
 /reviews/                         Customer Reviews | Lou's Heating & Cooling Denver | 5-Star HVAC
 /service-area/                    HVAC Service Area — Denver Metro, CO | Lou's Heating & Cooling
