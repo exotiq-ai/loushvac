@@ -66,15 +66,24 @@ No Denver-specific hero background image was available from the original site. T
 
 ---
 
-## [FLAG: CONTACT FORM — FORMSPREE ENDPOINT NEEDED]
+## [FLAG: CONTACT FORM — RESEND API KEY REQUIRED]
 
-The contact form is built to submit to Formspree. The endpoint URL is a placeholder.
+The contact form submits to `/api/contact` (a Netlify serverless function) which emails leads to Lou via Resend, stores them in Supabase, and creates them in Housecall Pro.
+
+**Status:** The code is fully wired up. Lou's email (`lousheatingcooling@icloud.com`) is correctly configured as the recipient. The form degrades gracefully — if email fails but Supabase or HCP captures the lead, users still see a success message.
 
 **Human action before publishing:**
-1. Create a free account at formspree.io
-2. Create a new form pointing to: lousheatingcooling@icloud.com
-3. Copy the form endpoint (format: `https://formspree.io/f/XXXXXXXX`)
-4. Replace `FORMSPREE_ENDPOINT_HERE` in `src/components/ContactForm.astro`
+1. Sign up at [resend.com](https://resend.com) and get an API key
+2. Verify the `loushvac303.com` domain in Resend (or use a test domain initially)
+3. In Netlify → Site Settings → Environment Variables, add:
+   - `RESEND_API_KEY` = your Resend API key
+   - `RESEND_FROM_EMAIL` = `leads@loushvac303.com`
+   - `RESEND_TO_EMAIL` = `lousheatingcooling@icloud.com`
+4. (Optional) Set up Supabase and add `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`
+5. (Optional) Set up Housecall Pro and add HCP credentials
+6. Test the form end-to-end after deploying
+
+**Fallback:** Even without any env vars, Netlify Forms will capture submissions as a backup (form has `data-netlify="true"`). Check Netlify → Forms dashboard.
 
 ---
 

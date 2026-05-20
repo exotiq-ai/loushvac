@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Message Received | Lou's Heating & Cooling"
+  description="Your message has been received. Lou will be in touch within 2 hours."
+  canonical="/contact/thank-you/"
+>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>Message Received</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container text-center thankyou-content">
+      <div class="thankyou-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="64" height="64"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h2>Got it — Lou will be in touch within 2 hours.</h2>
+      <p>During business hours (Mon–Sat, 7am–8pm), expect a call or text back quickly. For emergencies, don't wait — call us directly.</p>
+      <div class="thankyou-cta">
+        <a href="tel:3039498584" class="btn btn-primary btn-lg">Call (303) 949-8584</a>
+        <a href="/" class="btn btn-secondary">Back to Homepage</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.thankyou-content { max-width: 600px; margin: 0 auto; }
+.thankyou-icon { color: var(--color-success, #10B981); margin-bottom: var(--space-6); }
+.thankyou-content h2 { margin-bottom: var(--space-4); }
+.thankyou-content p { color: var(--color-text-muted); margin-bottom: var(--space-8); font-size: var(--font-size-lg); }
+.thankyou-cta { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; }
+</style>

@@ -9,6 +9,10 @@ export const prerender = false;
 const recent = new Map<string, number>();
 const RATE_LIMIT_MS = 30_000;
 
+function redirectHtml(url: string): string {
+  return `<!doctype html><html><head><meta http-equiv="refresh" content="0;url=${url}"></head><body><p>Redirecting… <a href="${url}">Click here</a>.</p></body></html>`;
+}
+
 function getIp(req: Request): string {
   return (
     req.headers.get('x-nf-client-connection-ip') ||
@@ -36,10 +40,12 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  const ct = request.headers.get('content-type') || '';
+  const isJson = ct.includes('application/json');
+
   let payload: unknown;
   try {
-    const ct = request.headers.get('content-type') || '';
-    if (ct.includes('application/json')) {
+    if (isJson) {
       payload = await request.json();
     } else {
       const form = await request.formData();
@@ -85,13 +91,28 @@ export const POST: APIRoute = async ({ request }) => {
 
   recent.set(ip, now);
 
-  if (emailRes.error) {
+  const leadCaptured = !dbRes.error || !hcpRes.error;
+
+  if (emailRes.error && !leadCaptured) {
+    if (!isJson) {
+      return new Response(redirectHtml('/contact/?form=error'), {
+        status: 303,
+        headers: { 'Content-Type': 'text/html', 'Location': '/contact/?form=error' },
+      });
+    }
     return new Response(JSON.stringify({
       ok: false,
       error: "We couldn't deliver your message. Please call (303) 949-8584 directly.",
     }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (!isJson) {
+    return new Response(redirectHtml('/contact/thank-you/'), {
+      status: 303,
+      headers: { 'Content-Type': 'text/html', 'Location': '/contact/thank-you/' },
     });
   }
 
