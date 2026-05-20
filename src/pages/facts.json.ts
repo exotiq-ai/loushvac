@@ -15,7 +15,7 @@ export const GET: APIRoute = () => {
       name: "Lou's Heating & Cooling",
       legal_name: "Lou's Heating & Cooling LLC",
       owner: "Louis (Lou) Hernandez Jr.",
-      partner: "Nester",
+      team: "Owner-operated with in-house technicians",
       founded: 2014,
       llc_incorporated: "2022-08-26",
       slogan: "Honest HVAC Service. Fair Prices. Every Time.",
@@ -50,7 +50,7 @@ export const GET: APIRoute = () => {
     differentiators: [
       "Flat-rate pricing quoted before work starts",
       "No upselling — recommend the simplest honest fix",
-      "Owner-operated; same names on every job (Lou or Nester)",
+      "Owner-operated; same team on every job, no subcontractors",
       "24/7 emergency response across the Denver metro",
       "Free in-home estimates on installations",
       "Military discount available",

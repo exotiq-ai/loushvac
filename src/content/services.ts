@@ -47,7 +47,7 @@ export const services: Service[] = [
       {
         step: 'Diagnosis',
         detail:
-          "Lou (or Nester) arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find. No mystery charges.",
+          "Lou arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find. No mystery charges.",
       },
       {
         step: 'Flat-rate quote',
