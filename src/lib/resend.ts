@@ -28,14 +28,16 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
 
   const html = `<!doctype html>
 <html><body style="font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #222;">
-  <h2 style="color: #1B4965; margin: 0 0 16px;">New lead from loushvac303.com</h2>
+  <h2 style="color: #1B4965; margin: 0 0 16px;">New lead from <a href="https://www.loushvac303.com" style="color: #1B4965;">loushvac303.com</a></h2>
   <p style="font-size: 20px; margin: 0 0 24px;"><strong>${escape(data.name)}</strong></p>
-  <p style="margin: 0 0 8px;"><strong>Phone:</strong> <a href="tel:${phoneDigits}" style="color: #1B4965; font-size: 20px; font-weight: 700;">${escape(data.phone)}</a></p>
-  <p style="margin: 0 0 8px;"><strong>Email:</strong> <a href="mailto:${escape(data.email)}">${escape(data.email)}</a></p>
+  <p style="margin: 0 0 8px;"><strong>Phone:</strong> ${escape(data.phone)}</p>
+  <p style="margin: 0 0 8px;"><strong>Email:</strong> ${escape(data.email)}</p>
   ${data.service ? `<p style="margin: 0 0 8px;"><strong>Service:</strong> ${escape(data.service)}</p>` : ''}
   ${data.preferred_time ? `<p style="margin: 0 0 8px;"><strong>Preferred time:</strong> ${escape(data.preferred_time)}</p>` : ''}
   ${data.message ? `<div style="margin: 16px 0; padding: 16px; background: #F5F5F5; border-radius: 8px;"><strong>Message:</strong><br>${escape(data.message).replace(/\n/g, '<br>')}</div>` : ''}
   <p style="color: #888; font-size: 12px; margin-top: 24px;">Source: ${escape(data.source_page || 'unknown')}</p>
+  <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0 12px;" />
+  <p style="color: #aaa; font-size: 11px;">Sent by <a href="https://www.loushvac303.com" style="color: #aaa;">Lou's Heating &amp; Cooling</a> lead system</p>
 </body></html>`;
 
   const text = [
