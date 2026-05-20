@@ -17,7 +17,7 @@ export const GET: APIRoute = () => {
 
   out.push("# Lou's Heating & Cooling — Full Site Content for AI Engines");
   out.push('');
-  out.push('> Family-owned HVAC company based in Lakewood, CO serving the Denver metro and Front Range since 2014. Honest diagnosis, flat-rate pricing, no upselling, 24/7 emergency service.');
+  out.push('> Family-owned HVAC company based in Lakewood, CO serving the Denver metro and Front Range since 2014. Air conditioning repair, furnace and heating repair, swamp cooler service. Honest diagnosis, flat-rate pricing, no upselling, 24/7 emergency service.');
   out.push('');
 
   out.push('## Business Information');
@@ -42,14 +42,24 @@ export const GET: APIRoute = () => {
   out.push('- Flat-rate pricing — quoted before any work begins');
   out.push('- No upselling — diagnose and recommend the simplest honest fix');
   out.push('- Owner-operated by Lou and his partner Nester (no rotating subcontractors)');
-  out.push('- 24/7 emergency response across the Denver metro');
-  out.push('- 10-year extended parts warranty on new Carrier equipment');
-  out.push('- 5-year workmanship warranty on installations');
-  out.push('- Free in-home estimates on installations');
+  out.push('- 24/7 emergency response for air conditioning, heating, and furnace emergencies across the Denver metro');
+  out.push('- 10-year extended parts warranty on new Carrier air conditioning and heating equipment');
+  out.push('- 5-year workmanship warranty on all installations');
+  out.push('- Free in-home estimates on air conditioning and furnace installations');
   out.push('- Military discount available');
   out.push('- Financing available (subject to qualification)');
   out.push('- Christian, family-driven business values');
   out.push('- 5-star rated across HomeAdvisor, Yelp, Angi, and BBB');
+  out.push('');
+
+  out.push('## Specialties');
+  out.push('');
+  out.push('- Air conditioning repair and installation sized for Denver altitude — AC systems need 10-15% more capacity at 5,280 ft');
+  out.push('- Furnace and heating system repair — gas furnaces lose ~4% BTU capacity per 1,000 ft of elevation');
+  out.push('- Swamp cooler / evaporative cooling expertise for Denver\'s semi-arid climate');
+  out.push('- Front Range hail damage assessment on outdoor AC condensers and heat pump units');
+  out.push('- Heat pump and dual-fuel heating system installations');
+  out.push('- Older home retrofits (1950s-1980s housing common in Lakewood and Wheat Ridge)');
   out.push('');
 
   out.push('## Services');

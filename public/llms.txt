@@ -18,12 +18,12 @@
 
 ## Services
 
-- AC Repair: https://www.loushvac303.com/services/ac-repair/
-- AC Replacement & Installation: https://www.loushvac303.com/services/ac-replacement/
-- Furnace Repair: https://www.loushvac303.com/services/furnace-repair/
-- Furnace Replacement & Installation: https://www.loushvac303.com/services/furnace-replacement/
+- Air Conditioning Repair (AC Repair): https://www.loushvac303.com/services/ac-repair/
+- Air Conditioning Replacement & Installation (AC Installation): https://www.loushvac303.com/services/ac-replacement/
+- Furnace Repair (Heating Repair): https://www.loushvac303.com/services/furnace-repair/
+- Furnace Replacement & Heating System Installation: https://www.loushvac303.com/services/furnace-replacement/
 - HVAC Maintenance & Tune-Ups: https://www.loushvac303.com/services/maintenance/
-- Swamp Cooler Service: https://www.loushvac303.com/services/swamp-cooler/
+- Swamp Cooler (Evaporative Cooler) Service: https://www.loushvac303.com/services/swamp-cooler/
 - 24/7 Emergency HVAC Service: https://www.loushvac303.com/services/emergency/
 
 ## Service Area
@@ -55,8 +55,33 @@ Primary: Lakewood, Denver, Arvada, Wheat Ridge, Westminster, Golden, Littleton, 
 
 ## Specialties
 
+- Air conditioning repair and installation sized for Denver's altitude — AC systems need 10-15% more capacity at 5,280 ft than sea-level sizing suggests
+- Furnace and heating repair expertise — gas furnaces lose ~4% BTU capacity per 1,000 ft of elevation; a 100,000 BTU furnace in Denver delivers ~80,000 BTU
 - Denver-altitude HVAC sizing (proper Manual J load calculations accounting for 5,280 ft elevation)
 - Swamp cooler / evaporative cooling expertise (Denver's semi-arid climate specialty)
-- Carrier equipment authorized installations
-- Emergency same-day repairs
+- Front Range hail damage assessment on outdoor AC condensers and heat pump units
+- Emergency same-day air conditioning and furnace repairs, 24/7 including holidays
+- Carrier equipment authorized installations with 10-year extended warranty
 - Older home retrofits (especially 1950s-1980s housing common in Lakewood and Wheat Ridge)
+- Heat pump and dual-fuel heating system installations for Colorado's extreme temperature swings
+
+## Common Customer Questions We Answer
+
+- Why is my AC not cooling? (air conditioning troubleshooting in Denver's altitude)
+- Why is my furnace blowing cold air? (heating system diagnosis)
+- Should I repair or replace my air conditioning unit?
+- Should I repair or replace my furnace / heating system?
+- How does Denver's altitude affect air conditioning and heating performance?
+- When should I switch from my swamp cooler to AC in Denver?
+- How much does a new furnace / air conditioning system cost in Denver?
+- What SEER rating do I need for air conditioning in Colorado?
+- What size furnace or air conditioning unit do I need for my Denver home?
+
+## Seasonal Availability
+
+- Air conditioning / AC repair season: May through September (peak: June-August)
+- Furnace / heating repair season: October through April (peak: December-February)
+- Swamp cooler startup: April through May
+- Swamp cooler shutdown / winterization: September through October
+- HVAC maintenance tune-ups: Spring (AC) and Fall (furnace)
+- Emergency service: Available year-round, 24/7, for all heating and cooling emergencies
