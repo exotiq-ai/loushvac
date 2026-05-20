@@ -64,7 +64,7 @@ The current site is a single-page Squarespace build that fails at its core job: 
 | No FAQ section | 35+ FAQ questions across 3 tiers with FAQPage schema markup |
 | No mention of specific Denver metro service area | Dedicated /service-area/ page with individual city paragraphs for local SEO |
 | No seasonal content | Winter/furnace and summer/AC framing on relevant service pages; seasonal CTAs |
-| About section is bland and generic | First-person narrative about Lou's background, values, and Nester; specific differentiators called out |
+| About section is bland and generic | First-person narrative about Lou's background and values; specific differentiators called out |
 | No mention of Spanish-language service | "Se habla Español" note on About page; Spanish review by Gregorio M. displayed with translation |
 
 ---
@@ -106,9 +106,9 @@ Customers describe pricing as "very reasonable," "quite reasonable," and note th
 **How it's used:** "Flat rate pricing. No hidden fees. Ever." block in homepage differentiators; flat rate callout on every service page; TrustBar.
 
 ### 5. Family-Owned / Personal Touch
-Lou and Nester show up themselves. Customers build a personal relationship with the actual owner, not a dispatcher or rotating technicians. This is a strong contrast to large HVAC franchises.
+Lou shows up himself. Customers build a personal relationship with the actual owner, not a dispatcher or rotating technicians. This is a strong contrast to large HVAC franchises.
 
-**How it's used:** "Family-owned, not a faceless corporation" block in homepage differentiators; About page story; "Meet Lou" section.
+**How it's used:** "Owner-operated, every time" block in homepage differentiators; About page story; "Meet Lou" section.
 
 ### 6. American Standard Dealer with Strong Warranty
 10-year extended warranty on new equipment, 5-year workmanship warranty. These are specific, verifiable claims that larger box stores and franchise companies often cannot match.

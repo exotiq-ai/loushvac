@@ -326,10 +326,9 @@ If no suitable photo of Lou exists, **HUMAN ACTION NEEDED:** Take a new headshot
 
 Instagram photos (@loushvac) blocked by robots.txt and could not be scraped.
 **HUMAN ACTION NEEDED:** Manually export or screenshot the best 5-10 Instagram photos showing:
-- Lou or Nester at work
+- Lou at work
 - Completed installations (before/after)
 - Van/truck branding (if any)
-- Team photos
 
 Save to `public/images/` and reference in updated image-audit.md.
 
@@ -593,7 +592,7 @@ Generated: 2026-04-02 — Pre-build audit of existing Squarespace site.
 | Generic HVAC boilerplate | All copy written in Lou's voice with Denver-specific details |
 | No FAQ | 45+ FAQ questions across 3 tiers with schema markup |
 | No service area detail | Dedicated /service-area/ page + brief city paragraphs for local SEO |
-| Weak About section | First-person narrative + Nester mention + trust signals + values |
+| Weak About section | First-person narrative + owner-operated emphasis + trust signals + values |
 
 ## Competitive Advantages to Lead With
 
@@ -601,7 +600,7 @@ Generated: 2026-04-02 — Pre-build audit of existing Squarespace site.
 2. **Speed & Responsiveness** — Shows up fast, first to respond when others ignore
 3. **Clear Communication** — Educates customers, explains everything
 4. **Fair Pricing** — Flat rate, no hidden fees, sticks to quoted price
-5. **Family-owned** — Lou and Nester show up themselves
+5. **Owner-operated** — Lou shows up himself on every job
 6. **American Standard Dealer** — 10-year extended warranty
 7. **BBB A+ Accredited**
 8. **24/7 Emergency Service**
@@ -742,8 +741,7 @@ export const reviews: Review[] = [
     stars: 5,
     tier: 'service',
     service: 'general',
-    note: 'Names both Lou and Nester',
-    text: `Crew was on time, courteous, knowledgeable, and professional. Louis and Nester were fantastic! Quickly diagnosed the issue and had everything running in no time. Would definitely hire them again.`,
+    text: `Crew was on time, courteous, knowledgeable, and professional. Quickly diagnosed the issue and had everything running in no time. Would definitely hire them again.`,
   },
   {
     id: 11,
@@ -904,7 +902,7 @@ export const services: Service[] = [
     ],
     process: [
       { step: 'Call or schedule', detail: 'Call (303) 949-8584 and we\'ll get you on the schedule — same day when possible.' },
-      { step: 'Diagnosis', detail: 'Lou (or Nester) arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find — no mystery charges.' },
+      { step: 'Diagnosis', detail: 'Lou arrives and does a full diagnostic. We check refrigerant levels, electrical components, capacitors, contactors, and coils. We tell you what we find — no mystery charges.' },
       { step: 'Flat-rate quote', detail: 'Before we touch anything, you get a flat-rate price. What we quote is what you pay. No surprises.' },
       { step: 'Repair', detail: 'We fix it on the spot when parts are available. Most repairs are completed same visit.' },
       { step: 'Test and explain', detail: 'We run the system, confirm it\'s cooling properly, and explain what we did and how to prevent the issue in the future.' },
@@ -2701,7 +2699,7 @@ const pageSchema = {
           <blockquote>
             "Lou was among the most pleasant and professional tradesman and individual I have ever hired."
           </blockquote>
-          <p>When you call Lou's, Lou (or Nester, his partner) shows up. You're not getting a rotating cast of subcontractors from a call center. This is our business, our name, and our reputation.</p>
+          <p>When you call Lou's, Lou shows up. You're not getting a rotating cast of subcontractors from a call center. This is Lou's business, his name, and his reputation on the line every single time.</p>
         </div>
       </div>
     </div>
@@ -3027,8 +3025,8 @@ const gregorioReview = reviews.find(r => r.reviewer === 'Gregorio M.');
       <p>Lou started his own company for one reason: he kept seeing homeowners get burned. A loose connection would become a $3,000 "equipment failure." A dirty coil would become a full system replacement quote. A simple capacitor swap would come with a 2-hour labor charge and a shopping list of "recommended" services. He was tired of it.</p>
       <p>At Lou's, the job is to find the simplest honest solution. If a $150 repair will keep your furnace running reliably for several more years, that's what Lou recommends — not a new furnace. If a tune-up will restore your AC to full capacity, you're getting a tune-up quote, not a replacement proposal.</p>
 
-      <h2>Lou and Nester</h2>
-      <p>Lou doesn't work alone. Nester, his partner and technician, is the other half of the Lou's team that customers have been complimenting by name in reviews. When you hire Lou's, you get people who take the work personally — because it is personal. This is our business, our name, and our reputation in the community we live in.</p>
+      <h2>Owner-Operated, Every Job</h2>
+      <p>When you call Lou's, Lou shows up. This isn't a dispatch center sending whoever's available. Lou is personally on every job, from the diagnosis to the final walkthrough. That level of accountability is rare in this industry, and it's exactly why customers keep coming back. Your home isn't a ticket number. It's Lou's reputation on the line, every single time.</p>
 
       <h2>How We Work</h2>
       <p>No mystery. Here's what you can expect when you call Lou's: we answer the phone (24/7 for emergencies). We show up when we say we will. We diagnose the actual problem — not the most profitable problem. We give you a flat-rate price before we start anything. We do the work, explain what we did, and show you how to avoid the same issue in the future. Then we leave without surprising you with extra charges.</p>

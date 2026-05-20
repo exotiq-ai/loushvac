@@ -25,7 +25,6 @@ export const GET: APIRoute = () => {
   out.push('- Name: Lou\'s Heating & Cooling');
   out.push('- Legal name: Lou\'s Heating & Cooling LLC');
   out.push('- Owner: Louis (Lou) Hernandez Jr.');
-  out.push('- Partner / Technician: Nester');
   out.push('- Founded: 2014 (LLC incorporated August 26, 2022)');
   out.push('- Address: 1880 S Pierce St #5, Lakewood, CO 80232');
   out.push('- Phone: (303) 949-8584');
@@ -41,7 +40,7 @@ export const GET: APIRoute = () => {
   out.push('');
   out.push('- Flat-rate pricing — quoted before any work begins');
   out.push('- No upselling — diagnose and recommend the simplest honest fix');
-  out.push('- Owner-operated by Lou and his partner Nester (no rotating subcontractors)');
+  out.push('- Owner-operated — Lou is personally on every job (no rotating subcontractors)');
   out.push('- 24/7 emergency response across the Denver metro');
   out.push('- 10-year extended parts warranty on new Carrier equipment');
   out.push('- 5-year workmanship warranty on installations');
@@ -138,7 +137,7 @@ export const GET: APIRoute = () => {
   out.push('');
   out.push('Lou started his own company because he kept seeing homeowners get burned by upsell-driven service: a loose connection becoming a $3,000 "equipment failure," a dirty coil becoming a full system replacement quote. At Lou\'s, the job is to find the simplest honest solution. If a $150 repair will keep your furnace running reliably for several more years, that\'s what Lou recommends — not a new furnace.');
   out.push('');
-  out.push('Lou doesn\'t work alone. Nester, his partner and technician, is the other half of the team. When you hire Lou\'s, you get the same names on the truck every time — no rotating subcontractors.');
+  out.push('When you hire Lou\'s, Lou shows up personally. This is an owner-operated business — no rotating subcontractors, no dispatch center sending whoever\'s available. Lou is on every job, from diagnosis to final walkthrough.');
   out.push('');
 
   return new Response(out.join('\n'), {

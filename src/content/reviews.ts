@@ -109,8 +109,7 @@ export const reviews: Review[] = [
     stars: 5,
     tier: 'service',
     service: 'general',
-    note: 'Names both Lou and Nester',
-    text: `Crew was on time, courteous, knowledgeable, and professional. Louis and Nester were fantastic! Quickly diagnosed the issue and had everything running in no time. Would definitely hire them again.`,
+    text: `Crew was on time, courteous, knowledgeable, and professional. Quickly diagnosed the issue and had everything running in no time. Would definitely hire them again.`,
   },
   {
     id: 11,

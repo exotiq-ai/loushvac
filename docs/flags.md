@@ -47,7 +47,7 @@ The following photos were downloaded successfully and are available, but human r
 Instagram photos from @loushvac are blocked by robots.txt. Cannot scrape programmatically.
 
 **Human action needed:** Manually export or screenshot the best 5–10 Instagram photos from @loushvac showing:
-- Lou or Nester at work on a job site
+- Lou at work on a job site
 - Completed installations (before/after shots)
 - Van/truck branding (if vehicle is branded)
 - Team photos
