@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { ContactFormSchema } from '../../lib/validation.ts';
-import { sendLeadEmail } from '../../lib/resend.ts';
+import { sendLeadEmail, sendCustomerConfirmation } from '../../lib/resend.ts';
 import { insertLead } from '../../lib/supabase.ts';
 import { findOrCreateCustomerAndLead } from '../../lib/housecallpro.ts';
 
@@ -90,6 +90,8 @@ export const POST: APIRoute = async ({ request }) => {
   });
 
   recent.set(ip, now);
+
+  sendCustomerConfirmation({ name, email, service }).catch(() => {});
 
   const leadCaptured = !dbRes.error || !hcpRes.error;
 

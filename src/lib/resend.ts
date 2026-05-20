@@ -68,3 +68,66 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
     return { error: err?.message || 'Resend send failed' };
   }
 }
+
+export async function sendCustomerConfirmation(data: { name: string; email: string; service?: string }): Promise<{ id?: string; error?: string }> {
+  if (!resend) return { error: 'Resend not configured' };
+
+  const firstName = data.name.trim().split(/\s+/)[0];
+
+  const html = `<!doctype html>
+<html><body style="font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #222; line-height: 1.6;">
+  <div style="text-align: center; margin-bottom: 24px;">
+    <h1 style="color: #1B4965; font-size: 22px; margin: 0;">Lou's Heating &amp; Cooling</h1>
+    <p style="color: #6B7280; font-size: 13px; margin: 4px 0 0;">Serving the Denver Metro Since 2014</p>
+  </div>
+  <hr style="border: none; border-top: 2px solid #1B4965; margin: 0 0 24px;" />
+  <p style="font-size: 16px;">Hi ${escape(firstName)},</p>
+  <p>Thank you for reaching out to Lou's Heating &amp; Cooling. I genuinely appreciate your trust.</p>
+  ${data.service ? `<p>We received your inquiry about <strong>${escape(data.service.replace(/-/g, ' '))}</strong> and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.</p>` : `<p>We received your message and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.</p>`}
+  <div style="background: #FFF7ED; border-left: 4px solid #F28C28; padding: 16px; margin: 24px 0; border-radius: 4px;">
+    <p style="margin: 0; font-weight: 600; color: #1A1A2E;">HVAC emergency? Don't wait.</p>
+    <p style="margin: 8px 0 0; font-size: 20px; font-weight: 800; color: #1B4965;">(303) 949-8584</p>
+    <p style="margin: 4px 0 0; color: #6B7280; font-size: 13px;">Available 24/7 for emergencies</p>
+  </div>
+  <p>— Lou Hernandez<br><span style="color: #6B7280;">Owner, Lou's Heating &amp; Cooling</span></p>
+  <hr style="border: none; border-top: 1px solid #eee; margin: 32px 0 16px;" />
+  <p style="color: #aaa; font-size: 11px; text-align: center;">
+    Lou's Heating &amp; Cooling · 1880 S Pierce St #5, Lakewood, CO 80232<br>
+    BBB A+ Accredited · Authorized Carrier Dealer · Licensed &amp; Insured
+  </p>
+</body></html>`;
+
+  const text = [
+    `Hi ${firstName},`,
+    ``,
+    `Thank you for reaching out to Lou's Heating & Cooling. I genuinely appreciate your trust.`,
+    ``,
+    data.service
+      ? `We received your inquiry about ${data.service.replace(/-/g, ' ')} and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.`
+      : `We received your message and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.`,
+    ``,
+    `HVAC emergency? Don't wait — call (303) 949-8584. Available 24/7.`,
+    ``,
+    `— Lou Hernandez`,
+    `Owner, Lou's Heating & Cooling`,
+    ``,
+    `---`,
+    `Lou's Heating & Cooling · 1880 S Pierce St #5, Lakewood, CO 80232`,
+    `BBB A+ Accredited · Authorized Carrier Dealer · Licensed & Insured`,
+  ].join('\n');
+
+  try {
+    const result = await resend.emails.send({
+      from: `Lou's Heating & Cooling <${fromEmail}>`,
+      to: data.email,
+      replyTo: toEmail,
+      subject: `Thanks for contacting Lou's Heating & Cooling`,
+      html,
+      text,
+    });
+    if (result.error) return { error: String(result.error.message || result.error) };
+    return { id: result.data?.id };
+  } catch (err: any) {
+    return { error: err?.message || 'Resend confirmation send failed' };
+  }
+}
