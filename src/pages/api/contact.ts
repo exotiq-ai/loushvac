@@ -91,7 +91,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   recent.set(ip, now);
 
-  sendCustomerConfirmation({ name, email, service }).catch(() => {});
+  await sendCustomerConfirmation({ name, email, service }).catch(() => {});
 
   const leadCaptured = !dbRes.error || !hcpRes.error;
 
