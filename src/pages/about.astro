@@ -28,7 +28,7 @@ const founderSchema = {
     "Denver Altitude HVAC Sizing",
     "Manual J Load Calculation"
   ],
-  "image": "https://www.loushvac303.com/images/lou-headshot-1.jpg",
+  "image": "https://www.loushvac303.com/images/lou-about-900.jpg",
   "url": "https://www.loushvac303.com/about/"
 };
 
@@ -55,14 +55,23 @@ const profilePageSchema = {
         <p>Owner, Lou's Heating &amp; Cooling. Serving the Denver Metro Since 2014.</p>
       </div>
       <div class="about-hero-img">
-        <img
-          src="/images/lou-headshot-1.jpg"
-          alt="Lou Hernandez, owner and lead technician at Lou's Heating & Cooling, Lakewood CO"
-          width="400"
-          height="400"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/images/lou-about-600.webp 600w, /images/lou-about-900.webp 900w, /images/lou-about-1200.webp 1200w"
+            sizes="(min-width: 768px) 420px, 90vw"
+          />
+          <img
+            src="/images/lou-about-900.jpg"
+            srcset="/images/lou-about-600.jpg 600w, /images/lou-about-900.jpg 900w, /images/lou-about-1200.jpg 1200w"
+            sizes="(min-width: 768px) 420px, 90vw"
+            alt="Lou Hernandez, owner of Lou's Heating & Cooling, holding his young son in front of the branded service truck in Lakewood, Colorado"
+            width="900"
+            height="1350"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
     </div>
   </section>
@@ -75,6 +84,26 @@ const profilePageSchema = {
       <p>He formally incorporated Lou's Heating &amp; Cooling LLC in 2022, but the business has its roots in nearly a decade of hands-on service work across the Front Range. Lou's Christian faith and his family shape how the company operates day to day &mdash; honest answers, fair prices, treating customers like neighbors.</p>
       <p>Lou started his own company for one reason: he kept seeing homeowners get burned. A loose connection would become a $3,000 "equipment failure." A dirty coil would become a full system replacement quote. A simple capacitor swap would come with a 2-hour labor charge and a shopping list of "recommended" services. He was tired of it.</p>
       <p>At Lou's, the job is to find the simplest honest solution. If a $150 repair will keep your furnace running reliably for several more years, that's what Lou recommends, not a new furnace. If a tune-up will restore your AC to full capacity, you're getting a tune-up quote, not a replacement proposal.</p>
+
+      <figure class="story-figure">
+        <picture>
+          <source
+            type="image/webp"
+            srcset="/images/lous-future-600.webp 600w, /images/lous-future-900.webp 900w, /images/lous-future-1200.webp 1200w"
+            sizes="(min-width: 768px) 480px, 92vw"
+          />
+          <img
+            src="/images/lous-future-900.jpg"
+            srcset="/images/lous-future-600.jpg 600w, /images/lous-future-900.jpg 900w, /images/lous-future-1200.jpg 1200w"
+            sizes="(min-width: 768px) 480px, 92vw"
+            alt="Lou's young son sitting with the tool bags in front of the Lou's Heating & Cooling truck"
+            width="1200"
+            height="1800"
+            loading="lazy"
+          />
+        </picture>
+        <figcaption>Family-owned and built to last &mdash; the next generation of Lou's.</figcaption>
+      </figure>
 
       <h2>Owner-Operated, Every Job</h2>
       <p>When you call Lou's, Lou shows up. This isn't a dispatch center sending whoever's available. Lou is personally on every job, from the diagnosis to the final walkthrough. That level of accountability is rare in this industry, and it's exactly why customers keep coming back. Your home isn't a ticket number. It's Lou's reputation on the line, every single time.</p>
@@ -170,7 +199,11 @@ const profilePageSchema = {
 .about-hero-text h1 { color: var(--color-white); margin-bottom: var(--space-3); }
 .about-hero-text p { color: rgba(255,255,255,0.85); font-size: var(--font-size-lg); margin: 0; }
 .hero-eyebrow { color: var(--color-primary-light); font-size: var(--font-size-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-3); }
-.about-hero-img img { border-radius: var(--border-radius-lg); width: 100%; max-width: 380px; aspect-ratio: 1; object-fit: cover; margin: 0 auto; }
+.about-hero-img { display: flex; justify-content: center; }
+.about-hero-img img { border-radius: var(--border-radius-lg); width: 100%; max-width: 420px; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 30%; margin: 0 auto; }
+.story-figure { margin: var(--space-10) 0 0; }
+.story-figure img { display: block; width: 100%; max-width: 480px; margin: 0 auto; border-radius: var(--border-radius-lg); aspect-ratio: 2 / 3; object-fit: cover; object-position: center 35%; }
+.story-figure figcaption { text-align: center; color: var(--color-text-muted); font-size: var(--font-size-sm); font-style: italic; margin-top: var(--space-3); }
 .container-narrow h2 { margin-top: var(--space-10); margin-bottom: var(--space-4); }
 .container-narrow h2:first-child { margin-top: 0; }
 .trust-signals-grid { margin-top: var(--space-10); }
