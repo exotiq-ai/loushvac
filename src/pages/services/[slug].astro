@@ -65,16 +65,16 @@ const serviceSchema = {
     "opens": "00:00",
     "closes": "23:59"
   },
-  "url": `https://www.loushvac303.com/services/${service.slug}/`
+  "url": `https://loushvac303.com/services/${service.slug}/`
 };
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.loushvac303.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.loushvac303.com/services/" },
-    { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://www.loushvac303.com/services/${service.slug}/` }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://loushvac303.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://loushvac303.com/services/" },
+    { "@type": "ListItem", "position": 3, "name": service.title, "item": `https://loushvac303.com/services/${service.slug}/` }
   ]
 };
 
@@ -289,7 +289,7 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
 .service-hero { padding: var(--space-12) 0; }
 .service-hero h1 { color: var(--color-white); margin-bottom: var(--space-6); }
 .breadcrumb { color: rgba(255,255,255,0.7); font-size: var(--font-size-sm); margin-bottom: var(--space-3); }
-.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: underline; }
 .breadcrumb a:hover { color: white; }
 .service-hero-cta { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 .service-layout { display: grid; grid-template-columns: 1fr; gap: var(--space-10); padding-top: var(--space-10); padding-bottom: var(--space-10); }

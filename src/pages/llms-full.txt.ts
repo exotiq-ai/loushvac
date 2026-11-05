@@ -32,7 +32,7 @@ export const GET: APIRoute = () => {
   out.push('- Hours: 24 hours a day, 7 days a week (emergency service always available)');
   out.push('- License/Insurance: Licensed and insured in Colorado');
   out.push('- Accreditations: BBB A+ Accredited (since July 2024); Authorized Carrier Dealer; Top 3 HVAC Contractors — Lakewood Business Rate 2025');
-  out.push('- Website: https://www.loushvac303.com');
+  out.push('- Website: https://loushvac303.com');
   out.push('- Geo: Latitude 39.7066, Longitude -105.0903');
   out.push('');
 
@@ -56,7 +56,7 @@ export const GET: APIRoute = () => {
   for (const s of services) {
     out.push(`### ${s.title}`);
     out.push('');
-    out.push(`URL: https://www.loushvac303.com/services/${s.slug}/`);
+    out.push(`URL: https://loushvac303.com/services/${s.slug}/`);
     out.push('');
     out.push(s.intro);
     out.push('');
@@ -88,7 +88,7 @@ export const GET: APIRoute = () => {
   for (const c of cityPages) {
     out.push(`#### ${c.name}, CO — population ${c.population}`);
     out.push('');
-    out.push(`URL: https://www.loushvac303.com/service-area/${c.slug}/`);
+    out.push(`URL: https://loushvac303.com/service-area/${c.slug}/`);
     out.push('');
     out.push(c.intro);
     out.push('');

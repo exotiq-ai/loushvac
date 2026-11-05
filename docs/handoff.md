@@ -128,7 +128,7 @@ If you don't want to configure Resend/Supabase/HCP:
 ## 4. Google Search Console Setup
 
 1. Go to search.google.com/search-console
-2. Add property → URL prefix → `https://www.loushvac303.com`
+2. Add property → URL prefix → `https://loushvac303.com`
 3. Verify ownership using the HTML tag method:
    - Copy the verification meta tag
    - Add it to `src/layouts/BaseLayout.astro` inside the `<head>` section
@@ -142,7 +142,7 @@ If you don't want to configure Resend/Supabase/HCP:
 1. Add all service categories: HVAC contractor, Air conditioning contractor, Heating contractor
 2. Add all services listed on the website
 3. Update business hours: 24/7
-4. Add website URL: `https://www.loushvac303.com`
+4. Add website URL: `https://loushvac303.com`
 5. Upload at least 10 quality photos (Lou at work, completed installations, team)
 6. Respond to every review within 24 hours
 7. Post seasonal updates regularly

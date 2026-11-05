@@ -32,7 +32,7 @@ export const GET: APIRoute = () => {
       phone: "+13039498584",
       phone_formatted: "(303) 949-8584",
       email: "admin@loushvac.com",
-      website: "https://www.loushvac303.com",
+      website: "https://loushvac303.com",
       hours: "24/7 (emergency service always available)",
     },
     accreditations: {
@@ -60,14 +60,14 @@ export const GET: APIRoute = () => {
       title: s.title,
       short_title: s.shortTitle,
       description: s.description,
-      url: `https://www.loushvac303.com/services/${s.slug}/`,
+      url: `https://loushvac303.com/services/${s.slug}/`,
     })),
     service_area: {
       headquarters: "Lakewood, CO",
       featured_cities: cityPages.map(c => ({
         name: c.name,
         slug: c.slug,
-        url: `https://www.loushvac303.com/service-area/${c.slug}/`,
+        url: `https://loushvac303.com/service-area/${c.slug}/`,
       })),
       all_cities: serviceAreaCities.map(c => c.name),
       altitude_expertise: true,

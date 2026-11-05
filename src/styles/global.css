@@ -17,7 +17,7 @@ body {
 
 img, svg { max-width: 100%; height: auto; display: block; }
 
-a { color: var(--color-primary-light); text-decoration: underline; transition: color var(--transition); }
+a { color: var(--color-primary); text-decoration: underline; transition: color var(--transition); }
 a:hover { color: var(--color-primary); }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,13 +84,13 @@ li { margin-bottom: var(--space-2); }
 
 .btn-primary {
   background-color: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-text);
   border-color: var(--color-accent);
 }
 .btn-primary:hover {
   background-color: var(--color-accent-dark);
   border-color: var(--color-accent-dark);
-  color: var(--color-white);
+  color: var(--color-text);
 }
 
 .btn-secondary {
@@ -147,8 +147,8 @@ li { margin-bottom: var(--space-2); }
 }
 
 /* Phone link */
-.phone-link { color: var(--color-accent); font-weight: 700; text-decoration: none; }
-.phone-link:hover { color: var(--color-accent-dark); text-decoration: underline; }
+.phone-link { color: var(--color-accent-text); font-weight: 700; text-decoration: none; }
+.phone-link:hover { color: var(--color-primary); text-decoration: underline; }
 
 /* Skip nav */
 .skip-nav {

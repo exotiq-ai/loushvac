@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import netlify from '@astrojs/netlify';
 
 export default defineConfig({
-  site: 'https://www.loushvac303.com',
+  site: 'https://loushvac303.com',
   adapter: netlify(),
   integrations: [
     sitemap({

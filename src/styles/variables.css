@@ -6,11 +6,13 @@
   --color-primary-dark: #123347;
   --color-accent: #F28C28;
   --color-accent-dark: #D97B1A;
+  /* Text on light surfaces needs a darker orange; retain the brand fills. */
+  --color-accent-text: #99500A;
   --color-bg: #FAFAFA;
   --color-bg-alt: #F0F4F8;
   --color-bg-dark: #1A1A2E;
   --color-text: #1A1A2E;
-  --color-text-muted: #6B7280;
+  --color-text-muted: #586271;
   --color-text-light: #9CA3AF;
   --color-success: #10B981;
   --color-white: #FFFFFF;

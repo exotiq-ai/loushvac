@@ -28,9 +28,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.loushvac303.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Service Area", "item": "https://www.loushvac303.com/service-area/" },
-    { "@type": "ListItem", "position": 3, "name": city.name, "item": `https://www.loushvac303.com/service-area/${city.slug}/` }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://loushvac303.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Service Area", "item": "https://loushvac303.com/service-area/" },
+    { "@type": "ListItem", "position": 3, "name": city.name, "item": `https://loushvac303.com/service-area/${city.slug}/` }
   ]
 };
 
@@ -53,7 +53,7 @@ const cityServiceSchema = {
     }
   },
   "areaServed": { "@type": "City", "name": `${city.name}, CO` },
-  "url": `https://www.loushvac303.com/service-area/${city.slug}/`
+  "url": `https://loushvac303.com/service-area/${city.slug}/`
 };
 ---
 <BaseLayout
