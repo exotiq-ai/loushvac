@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ReviewCard from '../../components/ReviewCard.astro';
 import CTABanner from '../../components/CTABanner.astro';
+import CurrentOffers from '../../components/CurrentOffers.astro';
+import { business } from '../../content/business';
 import ServiceCard from '../../components/ServiceCard.astro';
 import { services } from '../../content/services.ts';
 import { reviews } from '../../content/reviews.ts';
@@ -20,7 +22,10 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const serviceReviews = reviews.filter(r => service.reviewIds.includes(r.id));
+const isReplacement = ['ac-replacement', 'furnace-replacement'].includes(service.slug);
+const googleReviewIds: Record<string, number[]> = { 'furnace-repair': [104, 102], 'furnace-replacement': [103], 'ac-replacement': [103], maintenance: [102] };
+const selectedReviewIds = [...(googleReviewIds[service.slug] || []), ...service.reviewIds];
+const serviceReviews = selectedReviewIds.map(id => reviews.find(r => r.id === id)).filter((r): r is typeof reviews[number] => Boolean(r));
 const relatedServices = service.relatedSlugs
   .map(slug => services.find(s => s.slug === slug))
   .filter((s): s is Service => Boolean(s));
@@ -109,7 +114,7 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.02-.52a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Call (303) 949-8584
         </a>
-        <a href="/contact/" class="btn btn-secondary">Schedule Free Estimate</a>
+        <a href={`/contact/?service=${service.slug}`} class="btn btn-secondary">{isReplacement ? 'Free Replacement Estimate' : 'Request Service'}</a>
       </div>
     </div>
   </section>
@@ -168,8 +173,8 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="24" height="24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
             </div>
             <div>
-              <strong>Free Estimates</strong>
-              <p>Free in-home estimates on all installations. No obligation to move forward.</p>
+              <strong>{isReplacement ? 'Free Replacement Estimates' : '$129 Diagnostic Call-Out'}</strong>
+              <p>{isReplacement ? 'Get a job-specific replacement estimate with no obligation to proceed.' : 'We explain the diagnostic fee and quote repair work before it begins. Replacement estimates are free.'}</p>
             </div>
           </div>
           <div class="commitment-item">
@@ -177,8 +182,8 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <strong>10-Year Warranty (New Equipment)</strong>
-              <p>All new installations include a 10-year extended parts warranty plus our 5-year workmanship warranty.</p>
+              <strong>New-Installation Warranty</strong>
+              <p>{business.warranty}</p>
             </div>
           </div>
           <div class="commitment-item">
@@ -193,6 +198,7 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
         </div>
       </section>
 
+      <CurrentOffers />
       <!-- REVIEWS -->
       {serviceReviews.length > 0 && (
         <section class="service-section">
@@ -239,7 +245,7 @@ const faqPageSchema = serviceFaqs.length > 0 ? {
         <ul class="sidebar-badges">
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
-            Free Estimates
+            {isReplacement ? 'Free Replacement Estimates' : '$129 Diagnostic Call-Out'}
           </li>
           <li>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>

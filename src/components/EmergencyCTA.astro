@@ -1,44 +1,42 @@
 ---
-// src/components/EmergencyCTA.astro
+// Shared mobile call action; the spacer prevents it from trapping the end of a page.
 ---
+<div class="emergency-cta-spacer" aria-hidden="true"></div>
 <div class="emergency-cta" role="complementary" aria-label="Emergency HVAC contact">
-  <a href="tel:3039498584" class="emergency-cta-inner">
+  <a href="tel:+13039498584" class="emergency-cta-inner">
     <span class="emergency-icon" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.17h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.02-.52a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </span>
-    <span class="emergency-text">
-      <strong>HVAC Emergency?</strong>
-      <span class="emergency-sub">Call Now, 24/7</span>
-    </span>
+    <span class="emergency-text"><strong>HVAC Emergency?</strong><span class="emergency-sub">Call Now, 24/7</span></span>
     <span class="emergency-phone">(303) 949-8584</span>
   </a>
 </div>
-
+<script>
+  const bar = document.querySelector<HTMLElement>('.emergency-cta');
+  if (bar) {
+    const measure = () => document.documentElement.style.setProperty('--emergency-cta-height', `${Math.ceil(bar.getBoundingClientRect().height)}px`);
+    if ('ResizeObserver' in window) new ResizeObserver(measure).observe(bar);
+    window.addEventListener('resize', measure, { passive: true });
+    window.addEventListener('orientationchange', measure, { passive: true });
+    measure();
+  }
+</script>
 <style>
-.emergency-cta {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 90;
-  background: var(--color-accent);
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
-}
-@media (max-width: 1023px) { .emergency-cta { display: block; } }
-.emergency-cta-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  color: var(--color-text);
-  text-decoration: none;
-}
-.emergency-icon { display: flex; align-items: center; flex-shrink: 0; }
+.emergency-cta, .emergency-cta-spacer { display: none; }
+.emergency-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: var(--color-accent); padding-bottom: env(safe-area-inset-bottom, 0px); box-shadow: 0 -2px 10px rgba(0,0,0,.15); }
+.emergency-cta-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; max-width: 960px; margin: 0 auto; min-height: 64px; padding: 10px max(12px, env(safe-area-inset-right, 0px)) 10px max(12px, env(safe-area-inset-left, 0px)); color: var(--color-text); text-decoration: none; }
+.emergency-icon { display: flex; flex-shrink: 0; }
 .emergency-cta-inner:hover { color: var(--color-text); }
-.emergency-text { display: flex; flex-direction: column; line-height: 1.2; }
-.emergency-text strong { font-size: var(--font-size-base); }
-.emergency-sub { font-size: var(--font-size-xs); opacity: 0.9; }
-.emergency-phone { font-weight: 700; font-size: var(--font-size-lg); margin-left: auto; }
+.emergency-cta-inner:focus-visible { outline: 3px solid var(--color-primary); outline-offset: -4px; }
+.emergency-text { display: flex; flex: 1 1 125px; min-width: 0; flex-direction: column; line-height: 1.25; }
+.emergency-text strong { font-size: 1rem; }
+.emergency-sub { font-size: .875rem; }
+.emergency-phone { font-size: 1.125rem; font-weight: 700; margin-left: auto; white-space: nowrap; }
+@media (max-width: 380px) { .emergency-icon { display: none; } .emergency-phone { font-size: 1rem; } }
+@media (max-width: 1023px), (pointer: coarse), (any-pointer: coarse) {
+  .emergency-cta, .emergency-cta-spacer { display: block; }
+  .emergency-cta-spacer { height: var(--emergency-cta-height, calc(80px + env(safe-area-inset-bottom, 0px))); background: var(--color-bg-dark); }
+  :global(html) { scroll-padding-bottom: calc(var(--emergency-cta-height, 80px) + 16px); }
+  :global(input), :global(textarea), :global(select), :global(button) { scroll-margin-bottom: calc(var(--emergency-cta-height, 80px) + 16px); }
+}
 </style>

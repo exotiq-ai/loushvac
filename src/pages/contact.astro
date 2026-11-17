@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CurrentOffers from '../components/CurrentOffers.astro';
 import { externalProfiles } from '../content/externalProfiles.ts';
 ---
 <BaseLayout
   title="Contact Lou's Heating & Cooling | Lakewood & Denver HVAC | (303) 949-8584"
-  description="Contact Lou's Heating & Cooling in Lakewood, CO. Call (303) 949-8584 for 24/7 emergency service, free estimates, and HVAC questions across the Denver metro since 2014."
+  description="Contact Lou's Heating & Cooling for residential and commercial HVAC enquiries. Free replacement estimates; $129 diagnostic call-out. Call (303) 949-8584."
   canonical="/contact/"
 >
   <section class="page-hero section-primary section-sm">
@@ -38,8 +39,9 @@ import { externalProfiles } from '../content/externalProfiles.ts';
           <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>
         </div>
         <div class="contact-detail">
-          <h3>Address</h3>
+          <h3>Based in Lakewood</h3>
           <p>1880 S Pierce St #5<br />Lakewood, CO 80232</p>
+          <p>We come to your property. This is not a walk-in retail store.</p>
         </div>
         <div class="contact-detail">
           <h3>Hours</h3>
@@ -57,22 +59,15 @@ import { externalProfiles } from '../content/externalProfiles.ts';
           </div>
         </div>
         <div class="contact-map">
-          <iframe
-            src="https://maps.google.com/maps?q=1880+S+Pierce+St+%235,+Lakewood,+CO+80232&output=embed"
-            width="100%"
-            height="250"
-            loading="lazy"
-            title="Lou's Heating & Cooling location map"
-            style="border:0; border-radius: 0.5rem;"
-            allowfullscreen
-          ></iframe>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=1880+S+Pierce+St+%235,+Lakewood,+CO+80232" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View our Lakewood base on Google Maps</a>
         </div>
       </div>
 
       <div class="contact-form-wrapper">
-        <h2>Schedule Your Free Estimate</h2>
-        <p>Fill out this form and we'll be in touch within 2 hours. For urgent issues, call us directly at <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
+        <h2>Request Service or a Replacement Estimate</h2>
+        <p>Replacement estimates are free. Diagnostic service calls are $129. For urgent issues, call us directly at <a href="tel:+13039498584" class="phone-link">(303) 949-8584</a>.</p>
         <ContactForm />
+        <CurrentOffers />
       </div>
     </div>
   </section>

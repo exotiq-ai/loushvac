@@ -1,5 +1,6 @@
 ---
 // src/components/TrustBar.astro
+import { googleReviewSummary } from '../content/googleReviewSummary';
 ---
 <div class="trust-bar" role="list" aria-label="Trust and credentials">
   <div class="container trust-bar-inner">
@@ -37,8 +38,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true" width="28" height="28"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
       <div class="trust-text">
-        <span class="trust-label">5-Star Rated</span>
-        <span class="trust-sub">50+ Verified Reviews</span>
+        <span class="trust-label">5.0 on Google</span>
+        <a class="trust-sub" href={googleReviewSummary.profileUrl} target="_blank" rel="noopener noreferrer">400+ reviews</a>
       </div>
     </div>
 
@@ -82,7 +83,7 @@
       </div>
       <div class="trust-text">
         <span class="trust-label">Financing Available</span>
-        <span class="trust-sub">Interest-Free*</span>
+        <span class="trust-sub">Subject to Qualification*</span>
       </div>
     </div>
 
@@ -92,7 +93,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="28" height="28"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
       </div>
       <div class="trust-text">
-        <span class="trust-label">Certified HVAC Contractors</span>
+        <span class="trust-label">Experienced HVAC Team</span>
         <span class="trust-sub">In-House Experts</span>
       </div>
     </div>
@@ -103,19 +104,19 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       </div>
       <div class="trust-text">
-        <span class="trust-label">10-Year Warranty</span>
-        <span class="trust-sub">On New Equipment</span>
+        <span class="trust-label">10-Year Parts Warranty</span>
+        <span class="trust-sub">2-Year Labor on Installations</span>
       </div>
     </div>
 
-    <!-- Row 2, Item 10: Top 3 HVAC Contractors -->
+    <!-- Additional equipment brand -->
     <div class="trust-badge" role="listitem">
       <div class="trust-icon-wrap trust-icon-accent">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="28" height="28"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        <img src="/images/service-icon-fan.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" />
       </div>
       <div class="trust-text">
-        <span class="trust-label">Top 3 HVAC Contractors</span>
-        <span class="trust-sub">Lakewood Business Rate 2025</span>
+        <span class="trust-label">American Standard Equipment</span>
+        <span class="trust-sub">Available from Lou's</span>
       </div>
     </div>
 

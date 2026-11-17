@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const lastUpdated = 'April 2026';
+const lastUpdated = 'November 17, 2026';
 ---
 <BaseLayout
   title="Privacy Policy | Lou's Heating & Cooling"
-  description="How Lou's Heating & Cooling collects, uses, and protects information from website visitors and customers."
+  description="How Lou's Heating & Cooling uses enquiry information and optional website and advertising measurement, and how to manage your choices."
   canonical="/privacy/"
 >
   <section class="page-hero section-primary section-sm">
@@ -13,43 +13,45 @@ const lastUpdated = 'April 2026';
       <p>Last updated: {lastUpdated}</p>
     </div>
   </section>
-
   <section class="section">
     <div class="container-narrow legal-copy">
-      <p><em>This Privacy Policy is a placeholder pending finalized copy from the business owner. The site does not collect personal data beyond what is voluntarily submitted via the contact form.</em></p>
+      <p>This policy explains how Lou's Heating &amp; Cooling handles information from this website and service enquiries. You can call us or submit an enquiry whether optional measurement is on or off.</p>
 
-      <h2>Information We Collect</h2>
-      <p>When you submit the contact form on this site, we collect the name, phone number, email address, requested service, and any details you choose to share about your HVAC issue. We may also collect basic technical data (the page you submitted from, your browser's user agent, and a hashed approximation of your IP address) to help reduce spam.</p>
+      <h2>Information You Provide</h2>
+      <p>Our contact form collects your name, phone number, email address, selected service, message and preferred contact time. We use these details to respond, discuss your needs and arrange service. Please do not include payment-card details or other sensitive information in the message.</p>
+      <p>The website may also process technical information such as the source page, browser information and a hashed IP-based identifier to operate the service and reduce spam. Our hosting provider processes request information needed to deliver and protect the website.</p>
 
-      <h2>How We Use This Information</h2>
-      <p>We use the information you submit to respond to your inquiry, schedule service, and follow up after the work is complete. We do not sell, rent, or trade your personal information to third parties.</p>
+      <h2>Website and Advertising Measurement</h2>
+      <p>We use Google Tag Manager to manage Google Ads measurement. When measurement is permitted, Google may process information about page visits, browser or device characteristics, advertising interactions and measurement identifiers. Our website events describe accepted contact enquiries and the location of telephone-link clicks; they do not include the name, phone number, email address or free-text message entered in the form.</p>
+      <p>This measurement setup disables enhanced-conversion matching of contact-form details and ad-personalization signals. Telephone-link clicks are measured separately from connected calls. Calls made through Google advertising features may also be subject to Google's call-reporting practices.</p>
+      <p>For more about Google's processing, see <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from sites that use its services</a>.</p>
 
-      <h2>Service Providers</h2>
-      <p>We use trusted third-party services to deliver our website and respond to inquiries:</p>
+      <h2>Your Measurement Choices</h2>
+      <p>Optional measurement is on by default for eligible U.S. visits unless a saved choice or Global Privacy Control signal turns it off. For other or unrecognized locations, it remains off until you choose to allow it. We use a limited location-policy response from our hosting platform; the settings response does not include your precise location.</p>
+      <p>Use <strong>Measurement settings</strong> in the footer to turn optional measurement on or off. Your explicit choice is stored in your browser until you change it or clear that storage. If browser storage is unavailable, measurement is off by default and a choice may apply only to the current page.</p>
+      <p>Turning measurement off stops our optional website events and prevents Google tags from loading on later pages. If Google's code has already loaded on the current page, it may send limited cookieless consent or measurement signals until you leave or refresh. Existing browser Global Privacy Control signals are respected and prevent the optional loader from starting.</p>
+      <p>Measurement settings do not disable the contact form, telephone links or storage needed for the site's basic operation. Browsers with JavaScript disabled can still submit the form, but do not run the JavaScript measurement controls or enquiry event.</p>
+
+      <h2>Service Providers and Business Records</h2>
       <ul>
-        <li><strong>Email delivery</strong> via Resend, which forwards your form submission to Lou directly.</li>
-        <li><strong>Lead management</strong> via Housecall Pro, our scheduling and customer-management platform.</li>
-        <li><strong>Database hosting</strong> via Supabase, where contact form submissions are recorded for follow-up.</li>
-        <li><strong>Hosting and analytics</strong> via Netlify and Umami; basic, anonymized analytics about page visits help us improve the site.</li>
+        <li><strong>Netlify</strong> hosts the website and runs its server-side functionality.</li>
+        <li><strong>Resend</strong> delivers enquiry notifications and confirmation emails.</li>
+        <li><strong>Google</strong> provides the optional advertising-measurement services described above.</li>
       </ul>
+      <p>Website enquiries reach Lou's team by email. The team uses its business records and Housecall Pro to manage enquiries, appointments and service outcomes.</p>
 
-      <h2>Cookies</h2>
-      <p>This site uses minimal, privacy-friendly analytics that do not require cookie consent banners. We do not use advertising cookies or third-party trackers.</p>
-
-      <h2>Your Rights</h2>
-      <p>You can request that we delete the personal information you've submitted by emailing <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>. We'll respond within a reasonable time.</p>
+      <h2>Retention and Requests</h2>
+      <p>We retain enquiry and service information as needed to respond, provide service, maintain business records and meet applicable obligations. To ask about your information or request access, correction or deletion, email <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>. Some records may need to be retained for service or legal reasons.</p>
 
       <h2>Contact</h2>
-      <p>Questions about this Privacy Policy? Call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a> or email <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>.</p>
+      <p>Questions about this policy? Call <a href="tel:+13039498584">(303) 949-8584</a> or email <a href="mailto:admin@loushvac.com">admin@loushvac.com</a>.</p>
     </div>
   </section>
 </BaseLayout>
-
 <style>
 .legal-copy h2 { margin-top: var(--space-8); margin-bottom: var(--space-3); color: var(--color-primary); }
 .legal-copy p, .legal-copy ul { color: var(--color-text-muted); line-height: 1.8; }
 .legal-copy ul { padding-left: var(--space-5); }
 .legal-copy li { margin-bottom: var(--space-2); }
 .legal-copy a { color: var(--color-primary); }
-.legal-copy em { color: var(--color-text-muted); font-style: italic; }
 </style>

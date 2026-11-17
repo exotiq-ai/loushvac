@@ -1,0 +1,15 @@
+---
+import { business } from '../content/business';
+---
+<aside class="current-offers" aria-labelledby="offers-heading">
+  <h2 id="offers-heading">Ask About Our Current Offers</h2>
+  <ul>{business.offers.map(offer => <li>{offer}</li>)}</ul>
+  <p>{business.offerNote}</p>
+  <a href="tel:+13039498584" class="phone-link">Call (303) 949-8584</a>
+</aside>
+<style>
+.current-offers { margin: var(--space-6) 0; padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); background: var(--color-bg-alt); }
+.current-offers h2 { font-size: var(--font-size-xl); margin-bottom: var(--space-3); }
+.current-offers ul { padding-left: var(--space-5); font-weight: 600; }
+.current-offers p { color: var(--color-text-muted); margin: var(--space-3) 0; }
+</style>

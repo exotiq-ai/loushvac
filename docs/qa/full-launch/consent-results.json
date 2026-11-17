@@ -1,0 +1,16 @@
+[
+  {
+    "browser": "chromium",
+    "build": "production-enabled",
+    "status": "PASS",
+    "realGoogleIngestion": false,
+    "realLeadsSent": 0
+  },
+  {
+    "browser": "firefox",
+    "build": "production-enabled",
+    "status": "PASS",
+    "realGoogleIngestion": false,
+    "realLeadsSent": 0
+  }
+]

@@ -28,7 +28,7 @@ export const cityPages: CityPage[] = [
       "Local HVAC service in Lakewood, CO. Based at 1880 S Pierce St. AC repair, furnace repair, swamp cooler service. Honest, flat-rate pricing. Call (303) 949-8584.",
     h1: 'HVAC Repair & Installation in Lakewood, CO',
     intro:
-      "Lou's Heating & Cooling is based right here in Lakewood. Our shop is at 1880 S Pierce St #5, just south of Mississippi, which means we're across town in minutes for most Lakewood addresses. We've been serving Lakewood homes since 2014, and many of our customers are repeat business or referrals from neighbors. Local matters when your AC fails on a 95-degree afternoon.",
+      "Lou's Heating & Cooling is based in Lakewood and brings service to your property. We are not a walk-in retail store. We've served local homes since 2014 with heating and cooling repairs, furnace sales and equipment replacement. Call to discuss your needs and scheduling.",
     neighborhoods: ['Belmar', 'Green Mountain', 'Glennon Heights', 'Eiber', 'Two Creeks', 'Applewood', 'Lakewood Country Club', 'Bear Creek'],
     housingNote:
       "A lot of Lakewood was built between 1955 and 1985, which means we see a lot of original-era furnaces hitting end of life and original ductwork that was sized for smaller, less efficient equipment. We do honest evaluations: if your 25-year-old furnace has another five years in it with a $200 repair, that's what we'll tell you.",
@@ -72,7 +72,7 @@ export const cityPages: CityPage[] = [
     housingNote:
       "Most of Wheat Ridge's residential building boom happened between 1955 and 1975. Original ductwork in those homes was often sized for less efficient equipment, and original outdoor AC units (where they exist) are typically undersized for modern comfort expectations. We look at the whole system, not just the symptom in front of us.",
     localAngle:
-      "Wheat Ridge is close enough to our Lakewood shop that we can usually be there same day for service calls. We're regulars in Applewood and the Greenbelt-adjacent neighborhoods.",
+      "Our Lakewood-based team serves Wheat Ridge, including Applewood and Greenbelt-adjacent neighborhoods. Call for current service availability.",
     specialty: 'Mid-century home expertise — original equipment evaluations',
     relatedReviewIds: [11, 13],
     mapEmbedQuery: 'Wheat+Ridge+CO',
@@ -91,7 +91,7 @@ export const cityPages: CityPage[] = [
     housingNote:
       "Older parts of Arvada (north and east of Olde Town) often have homes from the 1950s-70s with original ductwork. Newer subdivisions to the west and northwest typically have homes from 2000+ with appropriately sized ducting. The right approach depends on the era.",
     localAngle:
-      "Arvada is a quick drive from our Lakewood shop, so emergency response times are good. We've seen the full range of HVAC scenarios across the city.",
+      "Our Lakewood-based team serves Arvada. Call to discuss your heating or cooling issue and confirm service availability for your location.",
     specialty: 'Old + new Arvada — honest evaluations across housing eras',
     relatedReviewIds: [7, 12],
     mapEmbedQuery: 'Arvada+CO',

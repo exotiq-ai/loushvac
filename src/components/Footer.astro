@@ -1,6 +1,7 @@
 ---
 // src/components/Footer.astro
 import { externalProfiles } from '../content/externalProfiles.ts';
+import MeasurementSettings from './MeasurementSettings.astro';
 ---
 <footer class="site-footer">
   <div class="container footer-grid">
@@ -28,6 +29,7 @@ import { externalProfiles } from '../content/externalProfiles.ts';
         <a href="/services/swamp-cooler/">Swamp Cooler Service</a>
         <a href="/services/maintenance/">Maintenance</a>
         <a href="/services/emergency/">24/7 Emergency</a>
+        <a href="/services/commercial-hvac/">Commercial HVAC</a>
       </nav>
     </div>
 
@@ -70,9 +72,10 @@ import { externalProfiles } from '../content/externalProfiles.ts';
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
       </nav>
+      <MeasurementSettings />
       <p class="footer-trust">
         BBB A+ Accredited &bull; Authorized Carrier Dealer &bull;
-        Licensed &amp; Insured in Colorado
+        Carrier &amp; American Standard Equipment
       </p>
     </div>
   </div>

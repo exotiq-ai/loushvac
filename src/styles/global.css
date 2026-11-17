@@ -79,8 +79,13 @@ li { margin-bottom: var(--space-2); }
   cursor: pointer;
   border: 2px solid transparent;
   transition: all var(--transition);
-  white-space: nowrap;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
 }
+
+/* Keep common phone-button text together at narrow widths without shrinking it. */
+.btn[href^="tel:"] { padding-left: 12px; padding-right: 12px; }
 
 .btn-primary {
   background-color: var(--color-accent);

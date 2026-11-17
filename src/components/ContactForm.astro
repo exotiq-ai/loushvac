@@ -44,6 +44,7 @@ const { compact = false, sourcePage } = Astro.props;
         <option value="swamp-cooler">Swamp Cooler Service</option>
         <option value="maintenance">Maintenance / Tune-Up</option>
         <option value="emergency">Emergency Service</option>
+        <option value="commercial-hvac">Commercial HVAC Enquiry</option>
         <option value="other">Other / Not Sure</option>
       </select>
     </div>
@@ -62,9 +63,9 @@ const { compact = false, sourcePage } = Astro.props;
   )}
   <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
   <button type="submit" class="btn btn-primary btn-lg form-submit">
-    Get My Free Estimate
+    Send My Request
   </button>
-  <p class="form-disclaimer">No obligation. We'll respond within 2 hours during business hours.</p>
+  <p class="form-disclaimer">No obligation to proceed. For urgent service, please call us directly.</p>
 </form>
 
 <script>
@@ -72,6 +73,9 @@ const { compact = false, sourcePage } = Astro.props;
 
   document.querySelectorAll('form.contact-form').forEach((formEl) => {
     const form = formEl as HTMLFormElement;
+    const serviceSelect = form.querySelector<HTMLSelectElement>('select[name="service"]');
+    const requestedService = new URLSearchParams(window.location.search).get('service');
+    if (serviceSelect && requestedService && Array.from(serviceSelect.options).some(option => option.value === requestedService)) serviceSelect.value = requestedService;
     let submitting = false;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -85,6 +89,7 @@ const { compact = false, sourcePage } = Astro.props;
       data.source_page = (form.dataset.sourcePage || window.location.pathname);
 
       submitting = true;
+      const submissionId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       submit.disabled = true;
       const originalText = submit.textContent || '';
       submit.textContent = 'Sending…';
@@ -99,10 +104,10 @@ const { compact = false, sourcePage } = Astro.props;
         });
         const json = await res.json().catch(() => ({}));
         if (res.ok && json.ok === true) {
-          status.textContent = json.message || 'Got it — Lou will be in touch within 2 hours.';
+          status.textContent = json.message || 'Thanks — Lou’s team has received your request.';
           status.classList.add('form-status--success');
           status.hidden = false;
-          if (!data._gotcha) trackAcceptedLead(data.service || '');
+          if (!data._gotcha) trackAcceptedLead(data.service || '', submissionId);
           form.reset();
         } else {
           status.textContent = json.error || 'Something went wrong. Please call (303) 949-8584.';

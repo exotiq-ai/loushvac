@@ -1,3 +1,6 @@
+import { measurementIsAllowed } from './measurement';
+import { publicMeasurementPage, FORM_CONVERSION_SEND_TO } from './measurement-policy';
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -7,21 +10,12 @@ declare global {
 
 const services = new Set([
   '', 'ac-repair', 'ac-replacement', 'furnace-repair', 'furnace-replacement',
-  'swamp-cooler', 'maintenance', 'emergency', 'other',
+  'swamp-cooler', 'maintenance', 'emergency', 'commercial-hvac', 'other',
 ]);
 
-/** Events stay local until an approved, enabled production GTM container consumes them. */
+/** Only currently permitted events enter the Google dataLayer; no pre-permission replay. */
 export function canMeasure(): boolean {
-  if (typeof window === 'undefined') return false;
-  const url = new URL(window.location.href);
-  const sensitiveKeys = /^(?:p|token|access_token|refresh_token|password|passcode|secret|email|phone|name)$/i;
-  return document.documentElement.dataset.analyticsProduction === 'true'
-    && url.protocol === 'https:'
-    && url.hostname === 'loushvac303.com'
-    && !/^\/(?:admin|api)(?:\/|$)/i.test(url.pathname)
-    && !Array.from(url.searchParams.keys()).some(key => sensitiveKeys.test(key))
-    && !/@|%40/i.test(url.search)
-    && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl;
+  return typeof window !== 'undefined' && measurementIsAllowed();
 }
 
 function pushEvent(event: Record<string, string>): void {
@@ -35,16 +29,26 @@ function pushEvent(event: Record<string, string>): void {
   }
 }
 
-export function trackAcceptedLead(service: string): void {
+const dispatchedSubmissions = new Set<string>();
+export function trackAcceptedLead(service: string, submissionId: string): void {
+  if (!canMeasure() || dispatchedSubmissions.has(submissionId)) return;
+  dispatchedSubmissions.add(submissionId);
   pushEvent({
     event: 'generate_lead',
     form_type: 'contact',
     service: services.has(service) ? service : 'other',
   });
+  // This is the single Ads form dispatcher. Do not add a duplicate native GTM tag.
+  try {
+    window.gtag?.('event', 'conversion', { send_to: FORM_CONVERSION_SEND_TO, transaction_id: submissionId });
+  } catch {
+    // A blocked Google tag must not turn a received enquiry into a form failure.
+  }
 }
 
 export function initializePhoneTracking(): void {
-  if (!canMeasure() || window.__lousPhoneTrackingBound) return;
+  if (typeof window === 'undefined' || document.documentElement.dataset.analyticsProduction !== 'true'
+    || !publicMeasurementPage(window.location.href) || window.__lousPhoneTrackingBound) return;
   window.__lousPhoneTrackingBound = true;
   document.addEventListener('click', event => {
     if (!(event.target instanceof Element) || event.button > 0) return;

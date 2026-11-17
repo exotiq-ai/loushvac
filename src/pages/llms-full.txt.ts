@@ -9,6 +9,8 @@ import { reviews } from '../content/reviews.ts';
 import { cityPages } from '../content/cities.ts';
 import { serviceAreaCities } from '../content/serviceArea.ts';
 import { serviceFaqs } from '../content/serviceFaqs.ts';
+import { business } from '../content/business';
+import { googleReviewSummary } from '../content/googleReviewSummary';
 
 export const prerender = true;
 
@@ -31,24 +33,26 @@ export const GET: APIRoute = () => {
   out.push('- Email: admin@loushvac.com');
   out.push('- Hours: 24 hours a day, 7 days a week (emergency service always available)');
   out.push('- License/Insurance: Licensed and insured in Colorado');
-  out.push('- Accreditations: BBB A+ Accredited (since July 2024); Authorized Carrier Dealer; Top 3 HVAC Contractors — Lakewood Business Rate 2025');
+  out.push('- Accreditations: BBB A+ Accredited (since July 2024); Authorized Carrier Dealer');
+  out.push(`- Equipment brands: ${business.brands.join(', ')}`);
+  out.push('- Service business, not a walk-in retail store. Furnace sales available. No ductwork services.');
   out.push('- Website: https://loushvac303.com');
-  out.push('- Geo: Latitude 39.7066, Longitude -105.0903');
+  out.push('- Geo: Latitude 39.6833491, Longitude -105.0710394');
   out.push('');
 
   out.push('## Differentiators');
   out.push('');
   out.push('- Flat-rate pricing — quoted before any work begins');
   out.push('- No upselling — diagnose and recommend the simplest honest fix');
-  out.push('- Owner-operated — Lou is personally on every job (no rotating subcontractors)');
+  out.push('- Family-owned service from Lou and his team');
   out.push('- 24/7 emergency response across the Denver metro');
-  out.push('- 10-year extended parts warranty on new Carrier equipment');
-  out.push('- 5-year workmanship warranty on installations');
-  out.push('- Free in-home estimates on installations');
-  out.push('- Military discount available');
+  out.push(`- ${business.warranty}`);
+  out.push('- Free replacement estimates; $129 diagnostic call-out');
+  for (const offer of business.offers) out.push(`- ${offer}`);
+  out.push(`- ${business.offerNote}`);
   out.push('- Financing available (subject to qualification)');
   out.push('- Christian, family-driven business values');
-  out.push('- 5-star rated across HomeAdvisor, Yelp, Angi, and BBB');
+  out.push(`- Google rating: ${googleReviewSummary.rating.toFixed(1)} from ${googleReviewSummary.reviewCount} reviews; checked ${googleReviewSummary.checkedAt}`);
   out.push('');
 
   out.push('## Services');
@@ -79,6 +83,10 @@ export const GET: APIRoute = () => {
     }
   }
 
+  out.push(`### ${business.commercial.title}`);
+  out.push(`URL: ${business.commercial.url}`);
+  out.push(business.commercial.description);
+  out.push('');
   out.push('## Service Area');
   out.push('');
   out.push('Headquartered in Lakewood, CO. Serves the Denver metro and Front Range.');
@@ -124,10 +132,14 @@ export const GET: APIRoute = () => {
 
   out.push('## Customer Reviews');
   out.push('');
-  out.push(`5.0 stars across ${reviews.length} verified reviews on HomeAdvisor, Yelp, Angi, and the company website.`);
+  out.push(`Google displayed rating: ${googleReviewSummary.rating.toFixed(1)} from ${googleReviewSummary.reviewCount} total reviews, checked ${googleReviewSummary.checkedAt}.`);
+  out.push(`Google source: ${googleReviewSummary.profileUrl}`);
+  out.push(`The website presents ${reviews.length} selected testimonials from their identified sources; this selection is not the Google aggregate.`);
   out.push('');
   for (const r of reviews) {
     out.push(`- **${r.reviewer}** (${r.platform}, ${r.stars}★): "${r.text.replace(/\s+/g, ' ').trim()}"`);
+    if (r.date) out.push(`  Published: ${r.date}${r.isExcerpt ? '; excerpt' : ''}.`);
+    if (r.sourceUrl) out.push(`  Source: ${r.sourceUrl}`);
   }
   out.push('');
 
@@ -137,7 +149,7 @@ export const GET: APIRoute = () => {
   out.push('');
   out.push('Lou started his own company because he kept seeing homeowners get burned by upsell-driven service: a loose connection becoming a $3,000 "equipment failure," a dirty coil becoming a full system replacement quote. At Lou\'s, the job is to find the simplest honest solution. If a $150 repair will keep your furnace running reliably for several more years, that\'s what Lou recommends — not a new furnace.');
   out.push('');
-  out.push('When you hire Lou\'s, Lou shows up personally. This is an owner-operated business — no rotating subcontractors, no dispatch center sending whoever\'s available. Lou is on every job, from diagnosis to final walkthrough.');
+  out.push('Lou and his team provide heating and cooling service for homes and welcome commercial HVAC enquiries. They explain the issue, discuss options and confirm the work before scheduling.');
   out.push('');
 
   return new Response(out.join('\n'), {
