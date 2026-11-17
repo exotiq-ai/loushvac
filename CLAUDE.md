@@ -13,7 +13,7 @@ You are rebuilding the website for **Lou's Heating & Cooling**, a family-owned H
 **BBB Accredited:** Yes, A+ rating (since July 2024)
 **Authorized Carrier Dealer:** Yes
 **Warranty:** 10-year extended warranty on new equipment, 5-year workmanship warranty
-**Service Area:** Westminster, Denver, Indian Hills, Golden, Cherry Hills, Idledale, Aurora, Evergreen, Thornton, Louviers, Englewood, Commerce City, Arvada, Littleton, Morrison, Lakewood, Kittredge, Wheat Ridge, Centennial
+**Service Area:** Westminster, Denver, Indian Hills, Golden, Cherry Hills, Idledale, Evergreen, Thornton, Louviers, Englewood, Commerce City, Arvada, Littleton, Morrison, Lakewood, Kittredge, Wheat Ridge, Centennial
 **Founded:** 2014 (Lou has been in the HVAC business since 2014; the current LLC was incorporated August 26, 2022)
 **Team Members:** Louis (Lou) Hernandez Jr. (Owner), Nester (Technician/Partner, mentioned by name in reviews)
 **Key Differentiators (from review analysis):** Honesty/no-upsell, speed/responsiveness, clear communication/education, fair pricing, family-owned personal touch

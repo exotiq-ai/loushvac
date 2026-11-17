@@ -44,12 +44,6 @@ export const serviceAreaCities: ServiceAreaCity[] = [
       "Englewood is a core part of our Denver metro service area. We handle HVAC emergencies, seasonal maintenance, and full system replacements for Englewood residents.",
   },
   {
-    name: 'Aurora',
-    slug: 'aurora',
-    description:
-      "Aurora is a large and growing city, and we serve it across its full length, from the urban areas near Denver to the newer neighborhoods in the east. Call us for any HVAC need in Aurora.",
-  },
-  {
     name: 'Thornton',
     slug: 'thornton',
     description:

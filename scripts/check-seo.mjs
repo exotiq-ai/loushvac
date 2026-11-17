@@ -14,6 +14,8 @@ let pages = 0;
 for (const file of files.filter(f => /\.(html|xml|txt|json)$/.test(f.pathname))) {
   const text = await readFile(file, 'utf8');
   assert.ok(!text.includes('https://www.loushvac303.com'), `Redirecting www host in ${file.pathname}`);
+  assert.ok(!/aurora/i.test(text), `Retired service area in ${file.pathname}`);
+  assert.ok(!/aurora/i.test(file.pathname), `Retired service-area route: ${file.pathname}`);
   if (file.pathname.endsWith('.html')) {
     const canonical = text.match(/<link\b[^>]*rel="canonical"[^>]*href="([^"]+)"/);
     assert.ok(canonical, `Missing canonical: ${file.pathname}`);
@@ -47,4 +49,13 @@ for (const map of maps) {
     urls++;
   }
 }
-console.log(`PASS: ${pages} HTML pages, ${urls} sitemap URLs; canonical, Open Graph, JSON-LD, robots, and generated host consistency.`);
+const facts = JSON.parse(await readFile(new URL('facts.json', root), 'utf8'));
+assert.deepEqual(facts.service_area.all_cities, [
+  'Denver', 'Lakewood', 'Arvada', 'Westminster', 'Littleton', 'Englewood',
+  'Thornton', 'Commerce City', 'Wheat Ridge', 'Golden', 'Centennial', 'Evergreen',
+  'Morrison', 'Kittredge', 'Indian Hills', 'Idledale', 'Cherry Hills Village', 'Louviers',
+], 'Service-area facts must preserve all remaining cities');
+assert.deepEqual(facts.service_area.featured_cities.map(city => city.slug), [
+  'lakewood', 'denver', 'wheat-ridge', 'arvada', 'golden',
+], 'Featured city landing pages must remain unchanged');
+console.log(`PASS: ${pages} HTML pages, ${urls} sitemap URLs, ${facts.service_area.all_cities.length} served cities; canonical, Open Graph, JSON-LD, robots, generated host consistency, and no retired service-area references.`);
