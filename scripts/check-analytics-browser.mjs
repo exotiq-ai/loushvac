@@ -3,9 +3,10 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { chromium, webkit, firefox } from 'playwright';
 
 const base = 'https://loushvac303.com';
-const local = process.env.TEST_SERVER || 'http://127.0.0.1:4329';
+const local = process.env.TEST_SERVER || 'http://127.0.0.1:4330';
 const expectedEnvironment = process.env.EXPECT_ANALYTICS || 'production';
-const expectedGtm = process.env.EXPECT_GTM === 'true';
+const expectedGtm = process.env.EXPECT_GTM !== 'false';
+const expectEvents = expectedEnvironment === 'production' && expectedGtm;
 const artifactDir = process.env.QA_DIR || '/tmp/loushvac-analytics-qa';
 const engines = (process.env.BROWSERS || 'chromium,firefox').split(',');
 await mkdir(artifactDir, { recursive: true });
@@ -31,6 +32,9 @@ for (const engine of engines) {
       external.push(url.origin + url.pathname);
       return route.abort();
     }
+    if (url.pathname === '/api/measurement-policy') {
+      return route.fulfill({ contentType: 'application/json', body: '{"defaultOn":true}' });
+    }
     if (url.pathname === '/api/contact') {
       apiCalls++;
       await new Promise(resolve => setTimeout(resolve, apiDelay));
@@ -55,14 +59,14 @@ for (const engine of engines) {
   await page.locator('.form-submit').click();
   await page.locator('.form-status--success').waitFor();
   const successEvents = await events();
-  if (expectedEnvironment === 'production') {
+  if (expectEvents) {
     assert.deepEqual(successEvents, [{ event: 'generate_lead', form_type: 'contact', service: 'furnace-repair' }], `${engine}: exactly one PII-free accepted-lead event`);
   } else {
     assert.deepEqual(successEvents, [], `${engine}: no events in preview/development build`);
   }
   assert.equal(gtmRequests, expectedGtm ? 1 : 0, `${engine}: expected GTM loader state`);
 
-  if (expectedEnvironment === 'production') {
+  if (expectEvents) {
     for (const fixture of [
       { status: 400, response: { ok: false, error: 'Validation rejected' } },
       { status: 400, response: { ok: false, error: 'Honeypot rejected' }, honeypot: true },

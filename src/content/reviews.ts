@@ -1,6 +1,7 @@
 // src/content/reviews.ts
+import { googleReviews } from './googleReviewSummary.ts';
 
-export type ReviewTier = 'hero' | 'service' | 'trust' | 'website';
+export type ReviewTier = 'hero' | 'service' | 'trust' | 'website' | 'google';
 export type ReviewPlatform = 'HomeAdvisor' | 'Angi' | 'Website' | 'Yelp' | 'Google';
 export type ServiceCategory = 'general' | 'ac' | 'furnace' | 'swamp-cooler' | 'emergency';
 
@@ -14,9 +15,13 @@ export interface Review {
   tier: ReviewTier;
   service?: ServiceCategory;
   note?: string;
+  date?: string;
+  sourceUrl?: string;
+  isExcerpt?: boolean;
 }
 
 export const reviews: Review[] = [
+  ...googleReviews,
   {
     id: 1,
     platform: 'HomeAdvisor',

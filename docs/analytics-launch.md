@@ -1,5 +1,7 @@
 # Analytics launch wiring
 
+**Historical pre-activation note:** Current full-launch behavior and evidence are documented in `full-launch.md`. Do not treat the original default-off release status below as current activation proof.
+
 ## Release boundary
 
 This change supplies the website's PII-free event contract and an explicitly gated production GTM loader. It does **not** claim Google Ads measurement is active. `GTM_ENABLED` is unset/false in production until the activation checklist below is complete. No Ads account settings, GA4, enhanced conversions, attribution cookies, optional-email behavior or unrelated website copy are changed.

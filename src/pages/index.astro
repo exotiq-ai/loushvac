@@ -5,10 +5,13 @@ import ServiceCard from '../components/ServiceCard.astro';
 import ReviewCard from '../components/ReviewCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CurrentOffers from '../components/CurrentOffers.astro';
+import { business } from '../content/business';
+import { googleHomepageReviews, googleReviewSummary } from '../content/googleReviewSummary';
 import { services } from '../content/services.ts';
-import { reviews } from '../content/reviews.ts';
 
-const featuredReviews = reviews.filter(r => ['hero', 'service'].includes(r.tier)).slice(0, 6);
+
+const featuredReviews = googleHomepageReviews;
 const homepageServices = services.slice(0, 6);
 
 const pageSchema = {
@@ -30,7 +33,7 @@ const pageSchema = {
     <div class="hero-panel">
       <div class="hero-panel-inner">
         <div class="hero-text">
-        <p class="hero-eyebrow">Denver's Most Trusted HVAC Company</p>
+        <p class="hero-eyebrow">Family-Owned HVAC in Lakewood &amp; Denver</p>
         <h1>Honest HVAC Service.<br />Fair Prices. Every Time.</h1>
         <p class="hero-sub">Family-owned. Flat rate pricing. No upselling. Serving the Denver metro since 2014.</p>
         <div class="hero-cta-group">
@@ -39,13 +42,13 @@ const pageSchema = {
             Call (303) 949-8584
           </a>
           <a href="/contact/" class="btn btn-secondary btn-lg">
-            Schedule Free Estimate
+            Request Service
           </a>
         </div>
         <div class="hero-trust-quick">
           <span class="trust-quick-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14" class="check-icon"><polyline points="20 6 9 17 4 12"/></svg>
-            Free Estimates
+            Upfront Quotes
           </span>
           <span class="trust-quick-item">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14" class="check-icon"><polyline points="20 6 9 17 4 12"/></svg>
@@ -88,6 +91,12 @@ const pageSchema = {
 
   <!-- TRUST BAR -->
   <TrustBar />
+  <section class="section section-alt">
+    <div class="container">
+      <p class="text-center">{business.brandSummary}</p>
+      <CurrentOffers />
+    </div>
+  </section>
 
   <!-- WHY LOU'S -->
   <section class="section">
@@ -125,17 +134,17 @@ const pageSchema = {
           <blockquote>
             "Stuck to the original quoted price. Very friendly also."
           </blockquote>
-          <p>We quote you a flat rate before we start any work. What we quote is what you pay. Free estimates, military discount available, no overtime charges sprung on you after the fact.</p>
+          <p>We explain pricing before work begins. Diagnostic service calls are $129, and replacement estimates are free. Ask about current offers when you call.</p>
         </div>
         <div class="differentiator">
           <div class="diff-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="36" height="36"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <h3>Owner-operated &mdash; every time, no subcontractors</h3>
+          <h3>Family-owned. Service from Lou and his team.</h3>
           <blockquote>
             "Lou was among the most pleasant and professional tradesman and individual I have ever hired."
           </blockquote>
-          <p>When you call Lou's, Lou shows up. You're not getting a rotating cast of subcontractors from a call center. This is Lou's business, his name, and his reputation on the line every single time.</p>
+          <p>Lou and his team bring a personal approach to heating and cooling service. They explain the problem, discuss your options and take responsibility for the work.</p>
         </div>
       </div>
     </div>
@@ -146,7 +155,7 @@ const pageSchema = {
     <div class="container">
       <div class="section-intro text-center">
         <h2>HVAC Services in Denver</h2>
-        <p class="section-intro-sub">From emergency repairs to new equipment installations, we handle it all.</p>
+        <p class="section-intro-sub">Heating, cooling and equipment replacement for homes, plus commercial HVAC enquiries.</p>
       </div>
       <div class="grid-3 services-grid">
         {homepageServices.map(service => (
@@ -161,6 +170,7 @@ const pageSchema = {
       <p class="services-footer text-center">
         Not sure what you need? <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>. We'll help you figure it out.
       </p>
+      <p class="text-center"><a href="/services/commercial-hvac/" class="btn btn-outline">Commercial Heating &amp; Cooling</a></p>
     </div>
   </section>
 
@@ -169,7 +179,7 @@ const pageSchema = {
     <div class="container">
       <div class="section-intro text-center">
         <h2>What Denver Homeowners Say</h2>
-        <p class="section-intro-sub">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 stars across 50+ verified reviews on Google, HomeAdvisor, and Yelp</p>
+        <p class="section-intro-sub"><a href={googleReviewSummary.profileUrl} target="_blank" rel="noopener noreferrer">5.0 on Google &middot; 400+ reviews</a></p>
       </div>
       <div class="grid-3 reviews-grid">
         {featuredReviews.map((review, i) => (
@@ -222,7 +232,7 @@ const pageSchema = {
   <section class="section">
     <div class="container text-center">
       <h2>Serving the Denver Metro</h2>
-      <p class="section-intro-sub">From the foothills to the suburbs. If you're in the Denver metro, we're your HVAC team.</p>
+      <p class="section-intro-sub">From the foothills to local neighborhoods. Check our service areas or call to confirm your address.</p>
       <div class="service-area-cities">
         <span>Denver</span><span>Lakewood</span><span>Arvada</span><span>Westminster</span>
         <span>Littleton</span><span>Wheat Ridge</span><span>Englewood</span>
@@ -236,7 +246,7 @@ const pageSchema = {
   <!-- EMERGENCY CTA BANNER -->
   <CTABanner
     heading="HVAC Emergency? We're Here 24/7."
-    subtext="Same-day service available. Call right now. A real person answers."
+    subtext="Call for emergency service availability and an estimated arrival time."
     dark={true}
   />
 
@@ -244,8 +254,8 @@ const pageSchema = {
   <section class="section section-alt" id="contact">
     <div class="container-narrow">
       <div class="section-intro text-center">
-        <h2>Schedule Your Free Estimate</h2>
-        <p class="section-intro-sub">Fill out the form below and we'll be in touch within 2 hours during business hours. For urgent needs, call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
+        <h2>Request Service or a Replacement Estimate</h2>
+        <p class="section-intro-sub">Tell Lou's team what you need. Replacement estimates are free; diagnostic service calls are $129. For urgent needs, call <a href="tel:+13039498584" class="phone-link">(303) 949-8584</a>.</p>
       </div>
       <ContactForm />
     </div>

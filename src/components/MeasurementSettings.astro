@@ -1,0 +1,26 @@
+<details class="measurement-settings" data-measurement-ui hidden>
+  <summary>Measurement settings</summary>
+  <div class="measurement-panel">
+    <p>Optional website and advertising measurement: <strong data-measurement-status aria-live="polite">Checking settings…</strong></p>
+    <div class="measurement-actions" role="group" aria-label="Optional measurement">
+      <button type="button" data-measurement-choice="on" aria-pressed="false">On</button>
+      <button type="button" data-measurement-choice="off" aria-pressed="false">Off</button>
+      <a href="/privacy/">Privacy details</a>
+    </div>
+    <p class="measurement-note">Your choice does not affect calls or enquiries. Turning off stops our measurement events and future tag loads. Google code already loaded on this page may send limited cookieless signals until you leave or refresh.</p>
+  </div>
+</details>
+<style>
+.measurement-settings { margin-top: .5rem; color: inherit; font-size: .875rem; }
+.measurement-settings[hidden] { display: none; }
+summary { cursor: pointer; padding: .65rem 0; min-height: 44px; width: fit-content; text-decoration: underline; text-underline-offset: 3px; }
+.measurement-panel { max-width: 38rem; padding: .75rem 0; text-align: left; }
+.measurement-panel p { margin: 0 0 .5rem; line-height: 1.5; }
+.measurement-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.measurement-actions button { min-width: 3.5rem; min-height: 44px; padding: .5rem .85rem; border: 1px solid currentColor; border-radius: .35rem; color: inherit; background: transparent; font: inherit; cursor: pointer; }
+.measurement-actions button[aria-pressed="true"] { background: var(--color-primary); color: white; }
+.measurement-actions button:disabled { opacity: .65; cursor: default; }
+.measurement-actions a { color: inherit; text-decoration: underline; padding: .5rem; }
+.measurement-actions button:focus-visible, summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.measurement-note { font-size: .875rem; margin-top: .75rem !important; }
+</style>

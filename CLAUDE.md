@@ -1,5 +1,18 @@
 # CLAUDE.md -- Lou's Heating & Cooling Website Rebuild
 
+## Current owner-confirmed direction (supersedes the historical build notes below)
+
+- Carrier and American Standard equipment are offered; only Carrier authorized-dealer status is stated.
+- No ductwork services or walk-in retail store. Furnace sales/installation remain offered; commercial HVAC enquiries are welcome without inventing equipment capabilities.
+- Replacement prices are internal modeling inputs, never public prices/ranges. Free replacement estimates; $129 diagnostic call-out, with no unconfirmed fee-credit promise.
+- Current new-installation warranty: 10-year parts and 2-year labor, subject to equipment registration and written agreement. Do not retroactively alter prior customer warranties.
+- Offers: ask about 15% new-customer and 10% military/senior/first-responder offers; do not invent caps, stacking, age thresholds or exclusions.
+- Use Lou and his team, not a guarantee that Lou attends every job. No unsupported Top 3/Most Trusted claims or unconfirmed callback/arrival deadlines.
+- Google review aggregate and curated testimonial count are separate. Preserve original reviews and exact source-linked excerpts.
+- Measurement uses minimal inline footer controls, eligible-US default-on, saved opt-outs/GPC and prior-consent-region handling. No raw form contact data/enhanced matching or ad personalization in the launch setup. Private/admin and preview pages are excluded.
+- Housecall Pro has no API access on this account. Enquiry email receipt is confirmed by Gregory; reporting uses the existing tracker plus exports/manual updates, not a new API/plan upgrade.
+- Google Ads account-side action configuration is separate from a website deployment. Do not claim conversion ingestion or forwarding-number assignment from a loader or fixture test alone.
+
 ## Project Overview
 
 You are rebuilding the website for **Lou's Heating & Cooling**, a family-owned HVAC company in Denver, Colorado. The current site (https://www.loushvac303.com/) is a thin, single-page Squarespace site with generic copy, broken CTAs, and zero local SEO structure. Your job is to scrape all usable assets from the existing site and third-party profiles, audit what needs fixing, and build a completely new website that generates leads, inspires trust, and converts visitors into booked service calls.

@@ -1,0 +1,100 @@
+{
+  "status": "PASS",
+  "method": "Real public Google SDK; all measurement requests intercepted, NOT provider ingestion",
+  "scripts": [
+    "https://www.googletagmanager.com/gtm.js"
+  ],
+  "googleRuntime": {
+    "containerIds": [
+      "debugGroupId",
+      "tcf",
+      "pscdl",
+      "GTM-W7R427MZ",
+      "dataLayer",
+      "mb",
+      "r",
+      "sequence",
+      "SANDBOXED_JS_SEMAPHORE",
+      "ads_pageview",
+      "dedupe_gclid"
+    ],
+    "consent": {
+      "ad_storage": {
+        "default": true
+      },
+      "analytics_storage": {
+        "default": true
+      },
+      "ad_user_data": {
+        "default": false
+      },
+      "ad_personalization": {
+        "default": false
+      }
+    },
+    "leadEvents": [
+      {
+        "event": "generate_lead",
+        "form_type": "contact",
+        "service": "furnace-repair",
+        "gtm.uniqueEventId": 10
+      }
+    ],
+    "cookieNames": []
+  },
+  "withdrawalConsent": {
+    "ad_storage": false,
+    "ad_user_data": false
+  },
+  "savedOptOutPreventedReload": true,
+  "interceptedExternalRequests": 3,
+  "formConversionLabelRequests": 0,
+  "networkSummary": [
+    {
+      "origin": "https://maps.google.com",
+      "path": "/maps",
+      "method": "GET",
+      "queryKeys": [
+        "q",
+        "output"
+      ]
+    },
+    {
+      "origin": "https://pagead2.googlesyndication.com",
+      "path": "/ccm/collect",
+      "method": "POST",
+      "queryKeys": [
+        "rcb",
+        "frm",
+        "apvc",
+        "tid",
+        "en",
+        "dl",
+        "scrsrc",
+        "rnd",
+        "navt",
+        "npa",
+        "_tu",
+        "gtm",
+        "gcs",
+        "gcd",
+        "dma_cps",
+        "dma",
+        "tag_exp",
+        "tft",
+        "tfd",
+        "tids",
+        "fmt"
+      ]
+    },
+    {
+      "origin": "https://maps.google.com",
+      "path": "/maps",
+      "method": "GET",
+      "queryKeys": [
+        "q",
+        "output"
+      ]
+    }
+  ]
+}

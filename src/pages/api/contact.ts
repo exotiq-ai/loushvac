@@ -121,7 +121,7 @@ export const POST: APIRoute = async ({ request }) => {
   return new Response(JSON.stringify({
     ok: true,
     leadId: dbRes.id,
-    message: 'Got it — Lou will be in touch within 2 hours.',
+    message: 'Thanks — Lou’s team has received your request.',
   }), {
     status: 200,
     headers: { 'Content-Type': 'application/json' },

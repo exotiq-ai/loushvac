@@ -27,7 +27,10 @@ const emptyStars = 5 - review.stars;
   <footer class="review-meta">
     <span class="review-name">{review.reviewer}</span>
     <span class="review-platform">{review.platform}</span>
+    {review.date && <time datetime={review.date}>{new Date(`${review.date}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}</time>}
+    {review.sourceUrl && <a href={review.sourceUrl} target="_blank" rel="noopener noreferrer">Read on Google</a>}
   </footer>
+  {review.isExcerpt && <p class="review-excerpt-label">Excerpt from the original review.</p>}
 </article>
 <style>
 .review-card {
@@ -58,7 +61,8 @@ const emptyStars = 5 - review.stars;
 }
 .review-text-es { color: var(--color-text-muted); margin-bottom: var(--space-2); }
 .review-translation-label { font-weight: 600; font-style: normal; font-size: var(--font-size-sm); color: var(--color-text-muted); }
-.review-meta { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--color-border); }
+.review-meta { display: flex; flex-wrap: wrap; gap: .5rem .75rem; justify-content: space-between; align-items: center; margin-top: auto; padding-top: var(--space-3); border-top: 1px solid var(--color-border); font-size: .875rem; }
+.review-excerpt-label { font-size: .875rem; color: var(--color-text-muted); margin: 0; }
 .review-name { font-weight: 600; font-size: var(--font-size-sm); }
 .review-platform { font-size: var(--font-size-xs); color: var(--color-text-muted); background: var(--color-bg-alt); padding: var(--space-1) var(--space-2); border-radius: var(--border-radius-full); }
 </style>

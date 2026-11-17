@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ReviewCard from '../components/ReviewCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { reviews } from '../content/reviews.ts';
+import { googleReviews, googleReviewSummary } from '../content/googleReviewSummary';
 import { externalProfiles } from '../content/externalProfiles.ts';
 
 const heroReviews = reviews.filter(r => r.tier === 'hero');
@@ -41,6 +42,8 @@ const reviewSchema = {
       "author": { "@type": "Person", "name": r.reviewer },
       "reviewRating": { "@type": "Rating", "ratingValue": r.stars, "bestRating": 5 },
       "reviewBody": r.text,
+      ...(r.sourceUrl ? { url: r.sourceUrl } : {}),
+      ...(r.date ? { datePublished: r.date } : {}),
       "itemReviewed": { "@type": "HVACBusiness", "name": "Lou's Heating & Cooling" }
     }
   }))
@@ -48,14 +51,15 @@ const reviewSchema = {
 ---
 <BaseLayout
   title="Customer Reviews | Lou's Heating & Cooling Denver | 5-Star HVAC"
-  description="Read 20+ verified customer reviews for Lou's Heating & Cooling in Denver. 5 stars on HomeAdvisor, Yelp, and Angi. Call (303) 949-8584."
+  description="Read customer reviews for Lou's Heating & Cooling, including recent Google reviews with dates and source links. Call (303) 949-8584."
   canonical="/reviews/"
   schema={reviewSchema}
 >
   <section class="page-hero section-primary section-sm">
     <div class="container text-center">
       <h1>Customer Reviews</h1>
-      <p class="hero-rating">&#9733;&#9733;&#9733;&#9733;&#9733; 5.0 Stars &middot; 50+ Verified Reviews &middot; HomeAdvisor, Yelp, Angi</p>
+      <p class="hero-rating">5.0 on Google &middot; 400+ reviews</p>
+      <p>Google rating and review count checked November 17, 2026. <a href={googleReviewSummary.profileUrl} target="_blank" rel="noopener noreferrer">View the current Google listing</a>.</p>
       <div class="review-platform-badges">
         {reviewPlatformLinks.map(p => (
           <a href={p.url} target="_blank" rel="noopener noreferrer" class="platform-badge">
@@ -68,7 +72,11 @@ const reviewSchema = {
 
   <section class="section">
     <div class="container">
-      <h2>Top Reviews</h2>
+      <h2>Recent Google Reviews</h2>
+      <div class="grid-3">
+        {googleReviews.map(r => <ReviewCard review={r} featured={true} />)}
+      </div>
+      <h2 style="margin-top: var(--space-10)">More Customer Reviews</h2>
       <p class="section-desc">What Denver homeowners say about Lou's Heating &amp; Cooling.</p>
       <div class="grid-3">
         {heroReviews.map(r => <ReviewCard review={r} featured={true} />)}

@@ -10,7 +10,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
   'ac-repair': [
     {
       question: 'How fast can you respond when my AC stops cooling?',
-      answer: 'Same-day in most cases. We answer the phone 24/7 across the Denver metro and can usually reach your home within 2-4 hours during emergencies. During peak summer heat events response can run slightly longer.',
+      answer: 'Call us for current service availability. For emergencies, we discuss your location and situation and provide an estimated arrival time before scheduling.',
     },
     {
       question: "Will I need a new AC unit if it's blowing warm air?",
@@ -18,11 +18,11 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'How much does AC repair typically cost in Denver?',
-      answer: 'Common AC repairs run $150-$600 depending on the part. Capacitors and contactors are on the low end; refrigerant leaks and compressor work are higher. You get a flat-rate price before we start — no hourly surprises.',
+      answer: 'The diagnostic call-out is $129. Repair pricing depends on the issue and the work required; we explain the findings and quote the repair before work begins.',
     },
     {
       question: 'Do you charge a service call fee?',
-      answer: 'Yes — a small diagnostic fee covers the trip and first-hour evaluation. We always tell you the fee on the phone before heading out, and if you proceed with the recommended repair we waive most of it.',
+      answer: 'Yes. The diagnostic call-out is $129. Ask the team about the fee and any applicable offer when scheduling; replacement estimates are free.',
     },
   ],
   'ac-replacement': [
@@ -32,7 +32,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'How long does AC installation take?',
-      answer: 'A standard same-system replacement is one day, typically 4-8 hours. Complex installs (new ductwork, multi-zone) may need two days. You get a realistic timeframe in the written estimate.',
+      answer: 'We provide an estimated installation schedule with your written quote based on the equipment, access and agreed work. Lou’s does not provide ductwork services.',
     },
     {
       question: 'What size AC do I need for my home?',
@@ -40,7 +40,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'Are there rebates for high-efficiency AC units in Colorado?',
-      answer: 'Yes. Xcel Energy offers rebates for qualifying high-efficiency AC, typically $200-$600 and varying year-to-year. The federal IRA also offers tax credits on qualifying heat pumps. Verify current amounts at xcelenergy.com before purchase.',
+      answer: 'Programs and eligibility change. Check current utility and government guidance for your equipment and installation date before relying on a rebate or tax incentive.',
     },
   ],
   'furnace-repair': [
@@ -50,11 +50,11 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'Are you available 24/7 for furnace emergencies?',
-      answer: 'Yes — a real person answers, day or night. We can typically reach Denver-metro homes within 2-4 hours for emergency furnace calls. No answering services, no "we\'ll call you Monday."',
+      answer: 'Call our emergency line any time. The team will discuss the situation, confirm availability and provide an estimated arrival time.',
     },
     {
       question: 'How much does furnace repair typically cost?',
-      answer: 'Common Denver furnace repairs run $150-$700 depending on the issue. Igniters and flame sensors are on the low end; blower motors and gas valves are higher. Flat rate, quoted before any work starts.',
+      answer: 'The diagnostic call-out is $129. We explain the problem and provide a repair quote before work starts. Replacement estimates are free.',
     },
     {
       question: 'Will you check carbon monoxide as part of the diagnosis?',
@@ -68,7 +68,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: "What's the cost range for a new furnace install in Denver?",
-      answer: 'A new gas furnace installed in Denver typically runs $3,000-$7,000 — efficiency level, size, and install complexity drive the range. Permits, ductwork modifications, and flue upgrades can add cost. Free in-home estimates.',
+      answer: 'We provide a free, job-specific replacement estimate for Carrier and American Standard furnace options. Your equipment and agreed installation scope determine the written quote.',
     },
     {
       question: 'Do you handle permits and inspections?',
@@ -100,7 +100,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'How much does swamp cooler startup cost?',
-      answer: 'Spring startup typically runs $150-$300 in Denver: new pads, water pump check, motor inspection, reservoir clean, full test cycle. Most startups take 45-60 minutes. Fall shutdowns are similar in scope and price.',
+      answer: 'Call for a quote based on your cooler and the seasonal work needed. The team will explain the scope and pricing before scheduling.',
     },
     {
       question: 'Why is my swamp cooler not cooling well?',
@@ -108,7 +108,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'Can you replace my swamp cooler?',
-      answer: 'Yes — if your unit is beyond economical repair or you want larger capacity, we handle full swamp-cooler replacements including ductwork modifications and electrical when needed.',
+      answer: 'We can discuss a swamp-cooler replacement and confirm the equipment and installation scope. Lou’s does not offer ductwork services.',
     },
   ],
   emergency: [
@@ -118,7 +118,7 @@ export const serviceFaqs: Record<string, ServiceFAQ[]> = {
     },
     {
       question: 'How fast can you get to me at night?',
-      answer: 'We aim for 2-4 hours across the Denver metro depending on location and severity. We pick up the phone, give you a realistic ETA, and don\'t promise what we can\'t deliver.',
+      answer: 'Call us to discuss the emergency. Arrival estimates depend on your location, the situation and current availability; we confirm the next step with you.',
     },
     {
       question: 'Will I pay extra for emergency service?',

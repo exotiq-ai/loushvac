@@ -83,7 +83,7 @@ export const faqItems: FAQItem[] = [
     id: 'ductwork-leaking',
     tier: 'basics',
     question: "How do I know if my ductwork is leaking?",
-    answer: `Signs of duct leaks: rooms that never quite reach the right temperature despite the system running, high energy bills, dusty rooms (leaks suck in attic or crawl space air), or visible damage to ductwork if you can access it. A proper duct leakage test (blower door test) can quantify it. In older Denver homes, especially those built before the 1990s, duct leakage of 20-30% isn't uncommon. We can inspect accessible ductwork during a maintenance visit and recommend duct sealing if needed.`,
+    answer: `Uneven temperatures, increased energy use or visible duct damage can be reasons to ask a qualified professional about air distribution. Lou's does not offer ductwork inspection, installation, repair or cleaning. We can discuss your heating and cooling equipment needs and confirm the scope before scheduling.`,
   },
   {
     id: 'furnace-smell-fall',
@@ -153,7 +153,7 @@ export const faqItems: FAQItem[] = [
     id: 'brand-recommendations',
     tier: 'decisions',
     question: 'What brands do you recommend and why?',
-    answer: `Lou's Heating & Cooling is an Authorized Carrier Dealer, and I recommend Carrier for a simple reason: reliability and warranty. Carrier is one of the largest and most established HVAC brands in the world (the company that essentially invented modern air conditioning), and they back their equipment with strong warranties — up to 10 years on parts for registered equipment. That said, most major brands (Trane/American Standard, Lennox, Bryant, Rheem) make solid equipment at their higher efficiency tiers. Where brands diverge is in the mid-range and budget tiers, and in dealer support. I'll tell you what I actually believe is right for your situation.`,
+    answer: `We offer Carrier and American Standard equipment and are an Authorized Carrier Dealer. Lou's team explains the equipment options, sizing and warranty terms for your property so you can make an informed choice. Ask for a free replacement estimate.`,
   },
   {
     id: 'single-vs-two-stage',
@@ -177,25 +177,25 @@ export const faqItems: FAQItem[] = [
     id: 'furnace-cost-denver',
     tier: 'decisions',
     question: 'How much does a new furnace cost in Denver?',
-    answer: `Equipment and installation for a gas furnace in Denver typically ranges from $3,000 to $7,000, depending on efficiency, size, and installation complexity. An 80% AFUE single-stage unit is on the lower end; a 96% AFUE two-stage or variable-speed system with complex installation is on the higher end. Permits, ductwork modifications, and flue upgrades can add cost. Always get a written, itemized quote before committing. Lou's Heating & Cooling provides free in-home estimates — call (303) 949-8584 to schedule.`,
+    answer: `Furnace replacement pricing depends on the equipment and the work your property needs. Lou's provides free, job-specific replacement estimates for Carrier and American Standard equipment. Call (303) 949-8584 to discuss your options and receive a written quote.`,
   },
   {
     id: 'ac-cost-denver',
     tier: 'decisions',
     question: 'How much does a new AC unit cost in Denver?',
-    answer: `A new central AC installation in Denver typically runs $4,000 to $9,000 for equipment and installation. Factors: system size (tons), SEER rating, brand, whether existing ductwork needs modification, and accessibility of the installation site. High-efficiency 18+ SEER systems and complete coil/condenser replacements are at the higher end. Xcel Energy rebates for qualifying high-efficiency equipment can offset $200-$600 of that cost. Get a free in-home estimate to get an accurate number for your home: call (303) 949-8584.`,
+    answer: `AC replacement pricing depends on the system and installation requirements. We offer Carrier and American Standard equipment and provide a free, job-specific replacement estimate. Call (303) 949-8584 for a written quote rather than relying on a generic price range.`,
   },
   {
     id: 'rebates-tax-credits',
     tier: 'decisions',
     question: 'What rebates or tax credits are available for new HVAC equipment?',
-    answer: `Several programs apply in Colorado: Xcel Energy offers rebates for qualifying high-efficiency AC units, furnaces, and heat pumps — amounts vary and change annually, so verify current amounts at xcelenergy.com before making a decision. The federal Inflation Reduction Act (IRA) extended and expanded energy efficiency tax credits — you may be eligible for a 30% tax credit (up to $2,000) on qualifying heat pump installations. Colorado also has state-level incentives for heat pumps. These programs change frequently. I recommend checking xcelenergy.com and energystar.gov for current numbers before your purchase.`,
+    answer: `Rebates and tax incentives depend on current programs, your utility, the equipment and the installation date. Check current utility and government guidance before making a purchase; do not assume a previous year's incentive still applies. Our team can provide equipment details needed to check eligibility.`,
   },
   {
     id: 'installation-time',
     tier: 'decisions',
     question: 'How long does an AC/furnace installation take?',
-    answer: `A standard furnace or AC replacement in a home with existing ductwork is usually completed in one day, typically 4-8 hours. More complex installations (new ductwork, difficult access, multi-zone systems) may require two days. A complete system replacement (both furnace and AC at the same time) is usually done in one day for a standard home. We'll give you a realistic timeframe when we provide your estimate.`,
+    answer: `Installation timing depends on the equipment, access and agreed scope. We provide an estimated schedule with your written replacement quote. Lou's does not provide new ductwork or ductwork modifications.`,
   },
   {
     id: 'financing',
@@ -207,7 +207,7 @@ export const faqItems: FAQItem[] = [
     id: 'warranty-coverage',
     tier: 'decisions',
     question: "What does your warranty cover?",
-    answer: `Lou's Heating & Cooling provides a 5-year workmanship warranty on all installed work. This covers labor and any issues that arise from our installation. On new equipment, we register your Carrier product warranty, up to 10 years on parts for registered equipment. The workmanship warranty and manufacturer warranty work together: if something fails due to a defective part, the manufacturer covers the part; if it fails due to installation, we cover the labor. No fine print runarounds.`,
+    answer: `Current new installations include a 10-year parts and 2-year labor warranty for Carrier and American Standard equipment, subject to equipment registration and your written agreement. Repair coverage is explained with the service. Previously completed work remains governed by the warranty issued for that work.`,
   },
   {
     id: 'warranty-vs-manufacturer',

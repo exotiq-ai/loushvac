@@ -5,12 +5,14 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import EmergencyCTA from '../components/EmergencyCTA.astro';
 import GoogleTagManager from '../components/GoogleTagManager.astro';
+import { business } from '../content/business';
+import { googleReviewSummary } from '../content/googleReviewSummary';
 
 // Build-context gating keeps deploy previews/local builds out of production measurement.
 // Private lead-history pages must never load advertising tags.
 const analyticsProduction = import.meta.env.PROD && process.env.CONTEXT === 'production'
   && !/^\/(?:admin|api)(?:\/|$)/i.test(Astro.url.pathname);
-// Intentionally off until container configuration, disclosure and conversion labels are approved.
+// Deployment kill switch; the runtime applies regional defaults, saved choice and GPC.
 const gtmEnabled = analyticsProduction && process.env.GTM_ENABLED === 'true';
 
 export interface Props {
@@ -39,7 +41,7 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HVACBusiness",
   "name": "Lou's Heating & Cooling",
-  "description": "Family-owned HVAC company based in Lakewood, CO serving the Denver metro and Front Range since 2014. Air conditioning repair, furnace repair, swamp cooler service, and 24/7 emergency HVAC.",
+  "description": "Family-owned heating and cooling service in Lakewood and the Denver metro, including commercial enquiries. Carrier and American Standard equipment available.",
   "url": siteUrl,
   "telephone": "+13039498584",
   "email": "admin@loushvac.com",
@@ -53,8 +55,8 @@ const localBusinessSchema = {
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 39.7066,
-    "longitude": -105.0903
+    "latitude": 39.6833491,
+    "longitude": -105.0710394
   },
   "hasMap": "https://www.google.com/maps/search/?api=1&query=1880+S+Pierce+St+%235%2C+Lakewood%2C+CO+80232",
   "openingHoursSpecification": {
@@ -84,6 +86,8 @@ const localBusinessSchema = {
     "Furnace repair",
     "Evaporative cooling",
     "Carrier HVAC equipment",
+    "American Standard HVAC equipment",
+    "Commercial HVAC service",
     "Denver altitude HVAC sizing",
     "Manual J load calculation",
     "R-410A and R-454B refrigerants",
@@ -115,13 +119,9 @@ const localBusinessSchema = {
   "priceRange": "$$",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Credit Card",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "22",
-    "bestRating": "5"
-  },
+  "brand": business.brands.map(name => ({ "@type": "Brand", name })),
   "sameAs": [
+    googleReviewSummary.profileUrl,
     "https://www.yelp.com/biz/lou-s-heating-and-cooling-denver",
     "https://www.bbb.org/us/co/denver/profile/heating-and-air-conditioning/lous-heating-and-cooling-1296-1000170743",
     "https://www.homeadvisor.com/rated.LousHeatingandCooling.141784599.html",
@@ -137,7 +137,8 @@ const localBusinessSchema = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Furnace Repair" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Furnace Installation" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Swamp Cooler Service" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24/7 Emergency HVAC Service" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24/7 Emergency HVAC Service" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": business.commercial.title, "url": business.commercial.url } }
     ]
   }
 };
@@ -157,8 +158,8 @@ const schemas = [localBusinessSchema, websiteSchema, ...(Array.isArray(schema) ?
 <html lang="en" data-analytics-production={analyticsProduction ? 'true' : 'false'}>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <GoogleTagManager enabled={gtmEnabled} position="head" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <GoogleTagManager enabled={gtmEnabled} />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalUrl} />
@@ -192,7 +193,7 @@ const schemas = [localBusinessSchema, websiteSchema, ...(Array.isArray(schema) ?
   )}
 </head>
 <body>
-  <GoogleTagManager enabled={gtmEnabled} position="body" />
+
   <a href="#main-content" class="skip-nav">Skip to main content</a>
   <Header />
   <main id="main-content">
@@ -202,6 +203,8 @@ const schemas = [localBusinessSchema, websiteSchema, ...(Array.isArray(schema) ?
   <EmergencyCTA />
   <script>
     import { initializePhoneTracking } from '../lib/analytics';
+    import { initializeMeasurement } from '../lib/measurement';
+    initializeMeasurement();
     initializePhoneTracking();
   </script>
 </body>

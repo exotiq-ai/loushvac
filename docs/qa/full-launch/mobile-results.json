@@ -1,0 +1,110 @@
+[
+  {
+    "browser": "chromium",
+    "width": 320,
+    "height": 640,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 430,
+    "height": 932,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 1024,
+    "height": 768,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 1366,
+    "height": 1024,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 320,
+    "height": 640,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 430,
+    "height": 932,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 1024,
+    "height": 768,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  },
+  {
+    "browser": "firefox",
+    "width": 1366,
+    "height": 1024,
+    "touch": true,
+    "routes": 3,
+    "scrollPositions": 3,
+    "status": "PASS"
+  }
+]

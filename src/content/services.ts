@@ -73,13 +73,13 @@ export const services: Service[] = [
     title: 'Air Conditioning Replacement & Installation',
     shortTitle: 'AC Installation',
     icon: '/images/service-icon-snowflake.png',
-    description: 'New AC installation from an Authorized Carrier Dealer with a 10-year warranty.',
+    description: 'Carrier and American Standard AC equipment, with free replacement estimates and clear warranty terms.',
     h1: 'Air Conditioning Replacement & Installation in the Denver Metro',
     metaTitle:
-      "AC Installation Denver Metro | Authorized Carrier Dealer | Lou's Heating & Cooling",
+      "Carrier & American Standard AC Installation | Lou's Heating & Cooling",
     metaDescription:
-      "New AC installation across the Denver metro from an Authorized Carrier Dealer. 10-year warranty, free in-home estimate. Call (303) 949-8584.",
-    intro: `Replacing an AC unit is one of the bigger investments a Denver-metro homeowner makes. You deserve straight talk about what you actually need, not what generates the biggest commission. Lou's Heating & Cooling is an Authorized Carrier Dealer, which means we install one of the most established and reliable HVAC brands on the market and back it with a 10-year extended warranty. We size every system correctly for Denver's altitude and climate, something cookie-cutter quotes often get wrong.`,
+      "Carrier and American Standard AC replacement in the Denver metro. Free replacement estimate, 10-year parts and 2-year labor warranty. Call (303) 949-8584.",
+    intro: `Replacing an AC unit is a significant decision. Lou's team explains your options and provides a free, job-specific replacement estimate. We offer Carrier and American Standard equipment and are an Authorized Carrier Dealer. New installations include a 10-year parts and 2-year labor warranty, subject to equipment registration and your written terms. We account for your home, Denver's altitude and the equipment manufacturer's requirements when recommending a system.`,
     symptoms: [
       'Your AC system is 15+ years old',
       'Repair costs are approaching or exceeding 50% of replacement cost',
@@ -93,12 +93,12 @@ export const services: Service[] = [
       {
         step: 'Free in-home estimate',
         detail:
-          "We visit your home, measure the space, evaluate your ductwork, and do a proper load calculation, not just a guess based on square footage. Denver's altitude changes sizing requirements.",
+          "We assess your home and current equipment and discuss a replacement suited to its heating and cooling needs. We do not offer ductwork services.",
       },
       {
         step: 'Equipment recommendation',
         detail:
-          'We recommend the right size and efficiency level for your home and budget. As an Authorized Carrier Dealer, we can access a full range of equipment with competitive warranties.',
+          'We discuss Carrier and American Standard equipment options suited to your home and budget, and explain the warranty terms before installation.',
       },
       {
         step: 'Installation day',
@@ -113,7 +113,7 @@ export const services: Service[] = [
       {
         step: 'Warranty registration',
         detail:
-          "We register your 10-year extended warranty so you're protected from day one.",
+          'We explain equipment registration, the 10-year parts warranty and the 2-year labor warranty in your written installation terms.',
       },
     ],
     reviewIds: [20],
@@ -180,10 +180,10 @@ export const services: Service[] = [
       "New furnace installation sized correctly for Denver's altitude and climate.",
     h1: 'Furnace Replacement & Installation in the Denver Metro',
     metaTitle:
-      "Furnace Installation Denver Metro | Authorized Carrier Dealer | Lou's Heating & Cooling",
+      "Carrier & American Standard Furnace Installation | Lou's Heating & Cooling",
     metaDescription:
-      "New furnace installation across the Denver metro. Properly sized for Colorado altitude. Authorized Carrier Dealer. Free estimate: (303) 949-8584.",
-    intro: `Installing a furnace in Denver isn't the same as installing one in Dallas or Atlanta. Denver sits at 5,280 feet, and altitude derating means gas furnaces deliver roughly 80% of their rated BTU output compared to sea level. If a company sizes your furnace without accounting for altitude, you'll end up with an undersized system that runs constantly and can't keep up on the coldest days. Lou's Heating & Cooling does it right. We calculate the actual heating load for your home, account for Denver's altitude, and install equipment that will keep you comfortable through a Colorado winter.`,
+      "Carrier and American Standard furnace sales and installation in the Denver metro. Free replacement estimates. Call (303) 949-8584.",
+    intro: `Lou's Heating & Cooling sells and installs Carrier and American Standard furnaces. We provide a free, job-specific replacement estimate and explain your options without pressure. Our recommendation accounts for your home's heating load, Denver's altitude and the manufacturer's installation requirements. We are a service business, not a walk-in retail store, and we do not provide ductwork services.`,
     symptoms: [
       'Furnace is 15-20+ years old (average furnace lifespan is 15-20 years)',
       'Repair costs exceed 50% of replacement cost',
@@ -201,7 +201,7 @@ export const services: Service[] = [
       {
         step: 'Recommendation',
         detail:
-          "We recommend the right furnace for your home, not the most expensive one. As an Authorized Carrier Dealer, we offer a full range of efficiency levels and configurations.",
+          'We compare Carrier and American Standard furnace options for your home and budget. Lou’s is an Authorized Carrier Dealer.',
       },
       {
         step: 'Installation',
@@ -216,7 +216,7 @@ export const services: Service[] = [
       {
         step: 'Warranty registration',
         detail:
-          'We register your 10-year extended equipment warranty and explain your 5-year workmanship warranty.',
+          'We explain equipment registration, the 10-year parts warranty and the 2-year labor warranty included in your written installation terms.',
       },
     ],
     reviewIds: [8, 19],
@@ -352,7 +352,7 @@ export const services: Service[] = [
       {
         step: 'Rapid response',
         detail:
-          'We aim to reach you within 2-4 hours for emergency calls in the Denver metro area, depending on location and time of night.',
+          'Call for emergency service availability. We discuss your location and situation and provide an estimated arrival time.',
       },
       {
         step: 'Honest diagnosis',

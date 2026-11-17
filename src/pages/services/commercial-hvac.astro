@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { business } from '../../content/business';
+const schema = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: business.commercial.title,
+  description: business.commercial.description,
+  url: business.commercial.url,
+  provider: { '@type': 'HVACBusiness', name: "Lou's Heating & Cooling", url: 'https://loushvac303.com' },
+};
+---
+<BaseLayout title="Commercial HVAC in Lakewood & Denver | Lou's Heating & Cooling" description={business.commercial.description} canonical="/services/commercial-hvac/" schema={schema}>
+  <section class="page-hero section-primary section-sm">
+    <div class="container text-center">
+      <h1>Commercial Heating &amp; Cooling</h1>
+      <p>Heating and cooling service for your business in Lakewood and the Denver metro.</p>
+      <a class="btn btn-primary btn-lg" href="tel:+13039498584">Call (303) 949-8584</a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container-narrow">
+      <h2>Tell Us About Your Property and System</h2>
+      <p>{business.commercial.description}</p>
+      <p>When you contact us, let us know the property location, the heating or cooling issue, and any equipment details you have. We’ll discuss the next step and explain the scope and pricing before work begins.</p>
+      <p>Lou’s is a service business, not a walk-in retail store. We sell and install furnaces and offer Carrier and American Standard equipment. We do not offer ductwork services.</p>
+      <a class="btn btn-primary" href="/contact/?service=commercial-hvac">Request Commercial Service</a>
+    </div>
+  </section>
+</BaseLayout>

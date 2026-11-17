@@ -1,4 +1,5 @@
 // src/content/externalProfiles.ts
+import { googleReviewSummary } from './googleReviewSummary';
 
 export interface ExternalProfile {
   name: string;
@@ -10,6 +11,13 @@ export interface ExternalProfile {
 }
 
 export const externalProfiles: ExternalProfile[] = [
+  {
+    name: 'Google Business',
+    label: 'Google Reviews',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>',
+    url: googleReviewSummary.profileUrl,
+    verified: true,
+  },
   {
     name: 'Yelp',
     label: 'Yelp Reviews',
@@ -52,7 +60,7 @@ export const externalProfiles: ExternalProfile[] = [
     url: 'https://www.instagram.com/loushvac/',
     verified: true,
   },
-  // TODO: Add Google Business Profile link once Gregory provides it
+  // Google listing verified against the business website, address and phone.
   // {
   //   name: 'Google Business',
   //   label: 'Google Business',

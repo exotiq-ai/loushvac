@@ -83,7 +83,7 @@ export async function sendCustomerConfirmation(data: { name: string; email: stri
   <hr style="border: none; border-top: 2px solid #1B4965; margin: 0 0 24px;" />
   <p style="font-size: 16px;">Hi ${escape(firstName)},</p>
   <p>Thank you for reaching out to Lou's Heating &amp; Cooling. I genuinely appreciate your trust.</p>
-  ${data.service ? `<p>We received your inquiry about <strong>${escape(data.service.replace(/-/g, ' '))}</strong> and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.</p>` : `<p>We received your message and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.</p>`}
+  ${data.service ? `<p>We received your inquiry about <strong>${escape(data.service.replace(/-/g, ' '))}</strong> and a member of our team will get back to you as soon as possible.</p>` : `<p>We received your message and a member of our team will get back to you as soon as possible.</p>`}
   <div style="background: #FFF7ED; border-left: 4px solid #F28C28; padding: 16px; margin: 24px 0; border-radius: 4px;">
     <p style="margin: 0; font-weight: 600; color: #1A1A2E;">HVAC emergency? Don't wait.</p>
     <p style="margin: 8px 0 0; font-size: 20px; font-weight: 800; color: #1B4965;">(303) 949-8584</p>
@@ -103,8 +103,8 @@ export async function sendCustomerConfirmation(data: { name: string; email: stri
     `Thank you for reaching out to Lou's Heating & Cooling. I genuinely appreciate your trust.`,
     ``,
     data.service
-      ? `We received your inquiry about ${data.service.replace(/-/g, ' ')} and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.`
-      : `We received your message and a member of our team will get back to you as soon as possible — typically within 2 hours during business hours.`,
+      ? `We received your inquiry about ${data.service.replace(/-/g, ' ')} and a member of our team will get back to you as soon as possible.`
+      : `We received your message and a member of our team will get back to you as soon as possible.`,
     ``,
     `HVAC emergency? Don't wait — call (303) 949-8584. Available 24/7.`,
     ``,
