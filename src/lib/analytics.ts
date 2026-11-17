@@ -1,5 +1,5 @@
 import { measurementIsAllowed } from './measurement';
-import { publicMeasurementPage } from './measurement-policy';
+import { publicMeasurementPage, FORM_CONVERSION_SEND_TO } from './measurement-policy';
 
 declare global {
   interface Window {
@@ -29,12 +29,21 @@ function pushEvent(event: Record<string, string>): void {
   }
 }
 
-export function trackAcceptedLead(service: string): void {
+const dispatchedSubmissions = new Set<string>();
+export function trackAcceptedLead(service: string, submissionId: string): void {
+  if (!canMeasure() || dispatchedSubmissions.has(submissionId)) return;
+  dispatchedSubmissions.add(submissionId);
   pushEvent({
     event: 'generate_lead',
     form_type: 'contact',
     service: services.has(service) ? service : 'other',
   });
+  // This is the single Ads form dispatcher. Do not add a duplicate native GTM tag.
+  try {
+    window.gtag?.('event', 'conversion', { send_to: FORM_CONVERSION_SEND_TO, transaction_id: submissionId });
+  } catch {
+    // A blocked Google tag must not turn a received enquiry into a form failure.
+  }
 }
 
 export function initializePhoneTracking(): void {

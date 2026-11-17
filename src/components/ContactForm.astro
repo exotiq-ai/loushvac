@@ -89,6 +89,7 @@ const { compact = false, sourcePage } = Astro.props;
       data.source_page = (form.dataset.sourcePage || window.location.pathname);
 
       submitting = true;
+      const submissionId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       submit.disabled = true;
       const originalText = submit.textContent || '';
       submit.textContent = 'Sending…';
@@ -106,7 +107,7 @@ const { compact = false, sourcePage } = Astro.props;
           status.textContent = json.message || 'Thanks — Lou’s team has received your request.';
           status.classList.add('form-status--success');
           status.hidden = false;
-          if (!data._gotcha) trackAcceptedLead(data.service || '');
+          if (!data._gotcha) trackAcceptedLead(data.service || '', submissionId);
           form.reset();
         } else {
           status.textContent = json.error || 'Something went wrong. Please call (303) 949-8584.';

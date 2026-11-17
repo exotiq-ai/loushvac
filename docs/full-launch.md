@@ -30,7 +30,7 @@ Fixtures are not Google ingestion or mailbox proof. Native Safari/iOS testing wa
 
 ## Account-side acceptance still separate
 
-Known form destination: `AW-16533482745/TanbCMOlpbodEPnZ48s9`. The current public container has no native form-action mapping on `generate_lead`; no matching-label request was observed. Do not silently add a second direct conversion dispatch. The website-call label is not supplied, so no real forwarding-number assignment is claimed. An authorized Google operator must publish the form mapping and supply/configure website calls.
+Known form destination: `AW-16533482745/TanbCMOlpbodEPnZ48s9`. The website now dispatches that supplied conversion call after successful server acceptance through the existing Google tag, with a per-submission transaction identifier. The real-SDK intercepted test observed exactly one matching-label request while user-data and personalization consent remained denied. This is transport verification, not an attributed Ads report. Do not add a parallel native GTM form tag: the website is the single dispatcher. The website-call label is not supplied, so real forwarding-number assignment remains unverified. An authorized Google operator must supply/configure website calls and verify the Ads action goals/count settings.
 
 Housecall Pro has no API access; use the existing tracker and exports/manual updates. No HCP upgrade, Ads campaign/budget changes, enhanced-conversion contact upload or replacement-price advertising is included.
 

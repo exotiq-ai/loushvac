@@ -1,4 +1,4 @@
-import { effectiveMeasurement, parseChoice, publicMeasurementPage, type MeasurementChoice } from './measurement-policy';
+import { effectiveMeasurement, parseChoice, publicMeasurementPage, FORM_CONVERSION_SEND_TO, type MeasurementChoice } from './measurement-policy';
 
 export const CHOICE_KEY = 'lous.measurement.v1';
 interface MeasurementState {
@@ -37,8 +37,10 @@ function discardQueuedEvents(): void {
   // An asynchronously loading SDK must not deliver website events after withdrawal.
   if (!Array.isArray(window.dataLayer)) return;
   for (let index = window.dataLayer.length - 1; index >= 0; index--) {
-    const item = window.dataLayer[index] as { event?: string } | undefined;
-    if (item && ['generate_lead', 'phone_tap'].includes(item.event || '')) window.dataLayer.splice(index, 1);
+    const item = window.dataLayer[index] as { event?: string; [key: number]: unknown } | undefined;
+    const ownConversion = item?.[0] === 'event' && item?.[1] === 'conversion'
+      && (item?.[2] as { send_to?: string } | undefined)?.send_to === FORM_CONVERSION_SEND_TO;
+    if (item && (['generate_lead', 'phone_tap'].includes(item.event || '') || ownConversion)) window.dataLayer.splice(index, 1);
   }
 }
 function startGoogleTag(): void {

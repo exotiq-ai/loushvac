@@ -49,6 +49,10 @@ assert.equal(state.consent.ad_storage.update??state.consent.ad_storage.default,t
 assert.equal(state.leadEvents.length,1);
 assert.deepEqual(Object.fromEntries(Object.entries(state.leadEvents[0]).filter(([key])=>key!=='gtm.uniqueEventId')),{event:'generate_lead',form_type:'contact',service:'furnace-repair'});
 assert.ok(typeof state.leadEvents[0]['gtm.uniqueEventId']==='number','Only the expected Google-generated event identifier is added');
+const conversionCalls = await page.evaluate(() => (window.dataLayer || []).filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').map(item => item[2]));
+assert.equal(conversionCalls.length, 1, 'One logical form conversion dispatch');
+assert.equal(conversionCalls[0].send_to, 'AW-16533482745/TanbCMOlpbodEPnZ48s9');
+assert.equal(beacons.filter(item => item.url.includes('TanbCMOlpbodEPnZ48s9') || item.body.includes('TanbCMOlpbodEPnZ48s9')).length, 1, 'Exactly one supplied-action transport from the current Google SDK/container');
 const raw=JSON.stringify(beacons).toLowerCase();
 for(const value of ['qa.sentinel@example.invalid','3035550147','+13035550147','LOCAL SDK SENTINEL']){
  assert.ok(!raw.includes(value.toLowerCase()),'No fixture contact values in captured transport');

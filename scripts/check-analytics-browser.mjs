@@ -61,6 +61,10 @@ for (const engine of engines) {
   const successEvents = await events();
   if (expectEvents) {
     assert.deepEqual(successEvents, [{ event: 'generate_lead', form_type: 'contact', service: 'furnace-repair' }], `${engine}: exactly one PII-free accepted-lead event`);
+    const conversionCalls = await page.evaluate(() => (window.dataLayer || []).filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').map(item => item[2]));
+    assert.equal(conversionCalls.length, 1, `${engine}: one Google form-conversion dispatch`);
+    assert.equal(conversionCalls[0].send_to, 'AW-16533482745/TanbCMOlpbodEPnZ48s9');
+    assert.ok(typeof conversionCalls[0].transaction_id === 'string' && conversionCalls[0].transaction_id.length > 10);
   } else {
     assert.deepEqual(successEvents, [], `${engine}: no events in preview/development build`);
   }
@@ -80,6 +84,7 @@ for (const engine of engines) {
       await page.locator('.form-submit').click();
       await page.locator('.form-status--error').waitFor();
       assert.deepEqual(await events(), [], `${engine}: rejected submission must not convert`);
+      assert.equal(await page.evaluate(() => (window.dataLayer || []).filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').length), 0);
     }
     apiStatus = 200; apiResponse = { ok: true, message: 'Test accepted' }; apiDelay = 150;
     await clearEvents(); await fillForm();
@@ -92,6 +97,7 @@ for (const engine of engines) {
     await page.locator('.form-status--success').waitFor();
     assert.equal(apiCalls - before, 1, `${engine}: duplicate in-flight submit guard`);
     assert.equal((await events()).length, 1, `${engine}: one event for one accepted request`);
+    assert.equal(await page.evaluate(() => (window.dataLayer || []).filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').length), 1, `${engine}: one conversion for duplicate in-flight submits`);
     apiDelay = 0;
 
     await clearEvents(); await fillForm();

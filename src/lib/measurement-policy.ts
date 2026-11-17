@@ -1,4 +1,5 @@
 export type MeasurementChoice = boolean | null;
+export const FORM_CONVERSION_SEND_TO = 'AW-16533482745/TanbCMOlpbodEPnZ48s9';
 
 export function effectiveMeasurement(input: {
   defaultOn: boolean; choice: MeasurementChoice; gpc: boolean; storageAvailable: boolean;

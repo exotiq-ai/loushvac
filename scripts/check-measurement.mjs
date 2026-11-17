@@ -127,9 +127,11 @@ for (const name of (process.env.BROWSERS || 'chromium,firefox').split(',')) {
     const late = await setup({ delayedTag: true });
     await late.page.waitForFunction(() => !!document.querySelector('#lous-google-tag'));
     await late.page.evaluate(() => window.dataLayer.push({ event: 'generate_lead', form_type: 'contact', service: 'other' }));
+    await late.page.evaluate(() => window.gtag('event', 'conversion', { send_to: 'AW-16533482745/TanbCMOlpbodEPnZ48s9', transaction_id: 'local-pending-fixture' }));
     await late.page.locator('.measurement-settings summary').click();
     await late.page.locator('[data-measurement-choice="off"]').click();
     assert.equal(await late.page.evaluate(() => window.dataLayer.filter(item => item?.event === 'generate_lead').length), 0);
+    assert.equal(await late.page.evaluate(() => window.dataLayer.filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').length), 0);
     const lateDefault = await late.page.evaluate(() => window.dataLayer.find(item => item?.[0] === 'consent' && item?.[1] === 'default')[2]);
     assert.equal(lateDefault.ad_storage, 'denied');
     assert.equal(lateDefault.ad_user_data, 'denied');
