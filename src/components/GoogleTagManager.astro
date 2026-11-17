@@ -1,0 +1,28 @@
+---
+interface Props { enabled: boolean; position: 'head' | 'body'; }
+const { enabled, position } = Astro.props;
+---
+{enabled && position === 'head' && (
+  <script is:inline>
+    (function(w,d,s,l,i){
+      var u=new URL(w.location.href);
+      if(d.documentElement.dataset.analyticsProduction!=='true' || u.protocol!=='https:' || u.hostname!=='loushvac303.com' || /^\/(admin|api)(\/|$)/i.test(u.pathname) || Array.from(u.searchParams.keys()).some(function(k){return /^(p|token|access_token|refresh_token|password|passcode|secret|email|phone|name)$/i.test(k);}) || /@|%40/i.test(u.search) || navigator.globalPrivacyControl) return;
+      w[l]=w[l]||[];
+      function gtag(){w[l].push(arguments);}
+      // Deny advertising user-data/personalization until a separately approved consent implementation.
+      gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+      gtag('set','allow_enhanced_conversions',false);
+      gtag('set','allow_ad_personalization_signals',false);
+      gtag('set','ads_data_redaction',true);
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7R427MZ');
+  </script>
+)}
+{enabled && position === 'body' && (
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7R427MZ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager" referrerpolicy="origin"></iframe>
+  </noscript>
+)}

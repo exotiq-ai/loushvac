@@ -68,10 +68,14 @@ const { compact = false, sourcePage } = Astro.props;
 </form>
 
 <script>
+  import { trackAcceptedLead } from '../lib/analytics';
+
   document.querySelectorAll('form.contact-form').forEach((formEl) => {
     const form = formEl as HTMLFormElement;
+    let submitting = false;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (submitting) return;
       const status = form.querySelector('[data-status]') as HTMLElement | null;
       const submit = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
       if (!status || !submit) return;
@@ -80,6 +84,7 @@ const { compact = false, sourcePage } = Astro.props;
       new FormData(form).forEach((v, k) => { data[k] = String(v); });
       data.source_page = (form.dataset.sourcePage || window.location.pathname);
 
+      submitting = true;
       submit.disabled = true;
       const originalText = submit.textContent || '';
       submit.textContent = 'Sending…';
@@ -93,10 +98,11 @@ const { compact = false, sourcePage } = Astro.props;
           body: JSON.stringify(data),
         });
         const json = await res.json().catch(() => ({}));
-        if (res.ok) {
+        if (res.ok && json.ok === true) {
           status.textContent = json.message || 'Got it — Lou will be in touch within 2 hours.';
           status.classList.add('form-status--success');
           status.hidden = false;
+          if (!data._gotcha) trackAcceptedLead(data.service || '');
           form.reset();
         } else {
           status.textContent = json.error || 'Something went wrong. Please call (303) 949-8584.';
@@ -108,6 +114,7 @@ const { compact = false, sourcePage } = Astro.props;
         status.classList.add('form-status--error');
         status.hidden = false;
       } finally {
+        submitting = false;
         submit.disabled = false;
         submit.textContent = originalText;
       }

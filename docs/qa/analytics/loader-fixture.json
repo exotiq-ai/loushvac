@@ -1,0 +1,18 @@
+[
+  {
+    "engine": "chromium",
+    "environment": "production",
+    "gtm_loader_fixture": true,
+    "status": "PASS",
+    "real_provider_ingestion": false,
+    "real_leads_sent": 0
+  },
+  {
+    "engine": "firefox",
+    "environment": "production",
+    "gtm_loader_fixture": true,
+    "status": "PASS",
+    "real_provider_ingestion": false,
+    "real_leads_sent": 0
+  }
+]
