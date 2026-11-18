@@ -18,10 +18,11 @@ assert.ok(__qa.sends[0].text.includes(json.enquiryReference));assert.ok(__qa.sen
 for(const [extra,headers] of [[{attribution:attr},{}],[{attribution:attr,measurement_allowed:false},{}],[{attribution:attr,measurement_allowed:true},{'Sec-GPC':'1'}],[{attribution:{utm_source:'<script>',captured_at:attr.captured_at},measurement_allowed:true},{}],[{attribution:['bad'],measurement_allowed:'bad'},{}]]){
  response=await post({...base,...extra},headers);assert.equal(response.status,200);assert.equal(__qa.rows[0].attribution,undefined);
 }
-for(const invalid of [{email:''},{_gotcha:'bot'},{name:''}]){response=await post({...base,...invalid});assert.equal(response.status,400);assert.equal(__qa.sends.length,0);assert.equal(__qa.rows.length,0);}
+for(const email of [undefined, '', '   ', null]){response=await post({...base,email});assert.equal(response.status,200,'email is optional');assert.equal(__qa.sends.length,1,'no confirmation without email');assert.equal(__qa.sends[0].replyTo,undefined);assert.equal(__qa.rows[0].email,null);assert.ok(__qa.sends[0].text.includes('Not provided'));}
+for(const invalid of [{email:'not-an-email'},{_gotcha:'bot'},{name:''},{name:'   '},{phone:''}]){response=await post({...base,...invalid});assert.equal(response.status,400);assert.equal(__qa.sends.length,0);assert.equal(__qa.rows.length,0);}
 __qa.failEmail=true;response=await post(base);assert.equal(response.status,500);assert.equal(__qa.sends.length,1,'no confirmation when both capture paths fail');
 __qa.failDB=false;response=await post(base);assert.equal(response.status,200);assert.equal(__qa.sends.length,2,'database fallback capture');
 __qa.failEmail=false;__qa.throwDB=true;response=await post(base);assert.equal(response.status,200,'database exception does not lose email success');__qa.throwDB=false;
 response=await post(base,{},true);assert.equal(response.status,303);assert.equal(response.headers.get('location'),'/contact/thank-you/');
 __qa.failEmail=true;__qa.failDB=true;response=await post(base,{},true);assert.equal(response.status,303);assert.equal(response.headers.get('location'),'/contact/?form=error');assert.equal(__qa.sends.length,1);
-console.log('PASS API: actual bundled handler and email rendering, mocked providers only; attribution/reference, consent/GPC, malformed metadata, required email/honeypot, DB errors, failed delivery, confirmation gate, HTML fallback');
+console.log('PASS API: actual bundled handler and email rendering, mocked providers only; attribution/reference, consent/GPC, malformed metadata, optional email/honeypot, DB errors, failed delivery, confirmation gate, HTML fallback');

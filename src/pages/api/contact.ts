@@ -81,7 +81,7 @@ export const POST: APIRoute = async ({ request }) => {
   const emailRes = await sendLeadEmail({ name, phone, email, service, message, preferred_time, source_page, attribution, enquiry_reference, received_at });
 
   const dbRes = await insertLead({
-    name, phone, email, service, message, preferred_time, source_page,
+    name, phone, email: email ?? null, service, message, preferred_time, source_page,
     attribution, enquiry_reference, received_at,
     user_agent: userAgent,
     ip_hash,
@@ -109,7 +109,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
-  await sendCustomerConfirmation({ name, email, service }).catch(() => {});
+  if (email) await sendCustomerConfirmation({ name, email, service }).catch(() => {});
 
   if (!isJson) {
     return new Response(redirectHtml('/contact/thank-you/'), {

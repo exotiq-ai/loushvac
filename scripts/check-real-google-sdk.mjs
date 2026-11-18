@@ -43,7 +43,7 @@ const state=await page.evaluate(()=>{
  const entries=window.google_tag_data?.ics?.entries||{};
  return{containerIds:Object.keys(window.google_tag_manager||{}),consent:Object.fromEntries(['ad_storage','analytics_storage','ad_user_data','ad_personalization'].map(key=>[key,{default:entries[key]?.default,update:entries[key]?.update}])),leadEvents:(window.dataLayer||[]).filter(item=>item?.event==='generate_lead'),cookieNames:document.cookie.split(';').map(value=>value.split('=')[0].trim()).filter(Boolean)};
 });
-assert.equal(state.consent.ad_user_data.update??state.consent.ad_user_data.default,false,'Google runtime ad_user_data must remain denied');
+assert.equal(state.consent.ad_user_data.update??state.consent.ad_user_data.default,true,'Google runtime ad_user_data permitted only for allowed measurement');
 assert.equal(state.consent.ad_personalization.update??state.consent.ad_personalization.default,false,'Google runtime ad_personalization must remain denied');
 assert.equal(state.consent.ad_storage.update??state.consent.ad_storage.default,true,'Google runtime must reflect eligible-US measurement default');
 assert.equal(state.leadEvents.length,1);
@@ -52,7 +52,12 @@ assert.ok(typeof state.leadEvents[0]['gtm.uniqueEventId']==='number','Only the e
 const conversionCalls = await page.evaluate(() => (window.dataLayer || []).filter(item => item?.[0] === 'event' && item?.[1] === 'conversion').map(item => item[2]));
 assert.equal(conversionCalls.length, 1, 'One logical form conversion dispatch');
 assert.equal(conversionCalls[0].send_to, 'AW-16533482745/TanbCMOlpbodEPnZ48s9');
-assert.equal(beacons.filter(item => item.url.includes('TanbCMOlpbodEPnZ48s9') || item.body.includes('TanbCMOlpbodEPnZ48s9')).length, 1, 'Exactly one supplied-action transport from the current Google SDK/container');
+await writeFile(out+'/transport-debug.json',JSON.stringify(beacons.map(item=>{const u=new URL(item.url);return{host:u.hostname,path:u.pathname,method:item.method,label:u.searchParams.get('label'),oid:u.searchParams.get('oid'),tid:u.searchParams.get('tid'),event:u.searchParams.get('en'),body:item.body}}),null,2));
+const primaryFormTransports=beacons.filter(item=>{const u=new URL(item.url);return /^\/pagead\/conversion\/16533482745\/?$/.test(u.pathname)&&u.searchParams.get('label')==='TanbCMOlpbodEPnZ48s9'});
+assert.equal(primaryFormTransports.length,1,'One primary Ads conversion transport; granted consent may also send a distinct 1p-conversion companion');
+const companion=beacons.filter(item=>new URL(item.url).pathname==='/pagead/1p-conversion/16533482745/');
+assert.ok(companion.length<=1,'No duplicate first-party companion');
+for(const item of [...primaryFormTransports,...companion])assert.equal(new URL(item.url).searchParams.get('oid'),conversionCalls[0].transaction_id);
 const raw=JSON.stringify(beacons).toLowerCase();
 for(const value of ['qa.sentinel@example.invalid','3035550147','+13035550147','LOCAL SDK SENTINEL']){
  assert.ok(!raw.includes(value.toLowerCase()),'No fixture contact values in captured transport');

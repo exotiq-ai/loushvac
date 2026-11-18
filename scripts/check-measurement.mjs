@@ -67,7 +67,7 @@ for (const name of (process.env.BROWSERS || 'chromium,firefox').split(',')) {
     const defaults = await us.page.evaluate(() => window.dataLayer.filter(item => item?.[0] === 'consent' && item?.[1] === 'default').map(item => item[2]));
     assert.equal(defaults.length, 1);
     assert.equal(defaults[0].ad_storage, 'granted');
-    assert.equal(defaults[0].ad_user_data, 'denied');
+    assert.equal(defaults[0].ad_user_data, 'granted');
     assert.equal(defaults[0].ad_personalization, 'denied');
     await us.page.locator('#name').fill('LOCAL FIXTURE');
     await us.page.locator('#phone').fill('3035550147');

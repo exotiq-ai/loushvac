@@ -10,7 +10,7 @@ const resend = apiKey ? new Resend(apiKey) : null;
 export interface LeadEmailPayload {
   name: string;
   phone: string;
-  email: string;
+  email?: string;
   service?: string;
   message?: string;
   preferred_time?: string;
@@ -37,7 +37,7 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
   ${data.enquiry_reference ? `<p><strong>Enquiry reference:</strong> ${escape(data.enquiry_reference)}<br><strong>Received (UTC):</strong> ${escape(data.received_at || '')}</p>` : ''}
   <p style="font-size: 20px; margin: 0 0 24px;"><strong>${escape(data.name)}</strong></p>
   <p style="margin: 0 0 8px;"><strong>Phone:</strong> ${escape(data.phone)}</p>
-  <p style="margin: 0 0 8px;"><strong>Email:</strong> ${escape(data.email)}</p>
+  <p style="margin: 0 0 8px;"><strong>Email:</strong> ${data.email ? escape(data.email) : 'Not provided — please use the phone number above.'}</p>
   ${data.service ? `<p style="margin: 0 0 8px;"><strong>Service:</strong> ${escape(data.service)}</p>` : ''}
   ${data.preferred_time ? `<p style="margin: 0 0 8px;"><strong>Preferred time:</strong> ${escape(data.preferred_time)}</p>` : ''}
   ${data.message ? `<div style="margin: 16px 0; padding: 16px; background: #F5F5F5; border-radius: 8px;"><strong>Message:</strong><br>${escape(data.message).replace(/\n/g, '<br>')}</div>` : ''}
@@ -54,7 +54,7 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
     ``,
     `Name: ${data.name}`,
     `Phone: ${data.phone}`,
-    `Email: ${data.email}`,
+    `Email: ${data.email || 'Not provided — please use the phone number above.'}`,
     data.service ? `Service: ${data.service}` : '',
     data.preferred_time ? `Preferred time: ${data.preferred_time}` : '',
     data.message ? `\nMessage:\n${data.message}` : '',
@@ -72,7 +72,7 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
     const result = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
-      replyTo: data.email,
+      ...(data.email ? { replyTo: data.email } : {}),
       subject,
       html,
       text,
@@ -84,7 +84,8 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
   }
 }
 
-export async function sendCustomerConfirmation(data: { name: string; email: string; service?: string }): Promise<{ id?: string; error?: string }> {
+export async function sendCustomerConfirmation(data: { name: string; email?: string; service?: string }): Promise<{ id?: string; error?: string; skipped?: boolean }> {
+  if (!data.email) return { skipped: true };
   if (!resend) return { error: 'Resend not configured' };
 
   const firstName = data.name.trim().split(/\s+/)[0];

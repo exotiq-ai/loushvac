@@ -14,14 +14,13 @@ for(const engine of (process.env.BROWSERS||'chromium,firefox').split(',')){
   if(url.pathname==='/api/contact')return route.fulfill({contentType:'application/json',body:'{"ok":true}'});
   const response=await route.fetch({url:local+url.pathname+url.search});
   let body=await response.body();
-  if(response.headers()['content-type']?.includes('text/html'))body=Buffer.from(body.toString().replace('</head>','<meta name="lous-ga4-id" content="G-LOCALTEST"><meta name="lous-website-call-action" content="AW-16533482745/LOCAL_CALL_TEST"></head>'));
+  if(response.headers()['content-type']?.includes('text/html'))body=Buffer.from(body.toString().replace(/<meta name="lous-(ga4-id|website-call-action)"[^>]*>/g,'').replace('</head>','<meta name="lous-ga4-id" content="G-LOCALTEST"><meta name="lous-website-call-action" content="AW-16533482745/LOCAL_CALL_TEST"></head>'));
   return route.fulfill({response,body});
  });
  const page=await context.newPage();await page.goto('https://loushvac303.com/contact/',{waitUntil:'networkidle'});
  const configs=await page.evaluate(()=>(window.dataLayer||[]).filter(x=>x?.[0]==='config').map(x=>({id:x[1],params:x[2]})));
  if(off){assert.deepEqual(configs,[]);await context.close();continue;}
- assert.equal(configs.filter(x=>x.id==='G-LOCALTEST').length,1);
- assert.equal(configs.find(x=>x.id==='G-LOCALTEST').params.allow_google_signals,false);
+ assert.equal(configs.filter(x=>x.id.startsWith('G-')).length,0,'Combined Google tag owns GA4 config/pageviews; website must not configure it again');
  assert.equal(configs.filter(x=>x.id==='AW-16533482745/LOCAL_CALL_TEST').length,1);
  await page.locator('#name').fill('LOCAL ONLY');await page.locator('#phone').fill('3035550147');await page.locator('#email').fill('fixture@example.invalid');await page.locator('.form-submit').click();await page.locator('.form-status--success').waitFor();
  const ga4Events=await page.evaluate(()=>window.dataLayer.filter(x=>x?.[0]==='event'&&x?.[2]?.send_to==='G-LOCALTEST').map(x=>({event:x[1],params:x[2]})));

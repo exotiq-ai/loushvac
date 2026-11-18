@@ -9,7 +9,8 @@
 - Offers: ask about 15% new-customer and 10% military/senior/first-responder offers; do not invent caps, stacking, age thresholds or exclusions.
 - Use Lou and his team, not a guarantee that Lou attends every job. No unsupported Top 3/Most Trusted claims or unconfirmed callback/arrival deadlines.
 - Google review aggregate and curated testimonial count are separate. Preserve original reviews and exact source-linked excerpts.
-- Measurement uses minimal inline footer controls, eligible-US default-on, saved opt-outs/GPC and prior-consent-region handling. No raw form contact data/enhanced matching or ad personalization in the launch setup. Private/admin and preview pages are excluded.
+- Measurement uses minimal inline footer controls, eligible-US default-on, saved opt-outs/GPC and prior-consent-region handling. Owner approved ad_user_data granted only while measurement is allowed; personalization and enhanced contact matching remain off. Combined Google tag owns GA4 configuration/pageviews; website sends custom events only. Private/admin and preview pages are excluded.
+- Contact email is optional by owner approval; name and phone stay required. Skip customer confirmation when email is blank, omit reply-to, store null rather than a fake address. HCP reconciliation starts with reference, date, source, booked, HCP job # and invoice amount.
 - Housecall Pro has no API access on this account. Enquiry email receipt is confirmed by Gregory; reporting uses the existing tracker plus exports/manual updates, not a new API/plan upgrade.
 - Google Ads account-side action configuration is separate from a website deployment. Do not claim conversion ingestion or forwarding-number assignment from a loader or fixture test alone.
 
