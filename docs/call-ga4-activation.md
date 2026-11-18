@@ -3,7 +3,7 @@
 ## Exact configuration
 - Container: GTM-W7R427MZ (existing combined Google tag).
 - Form action: AW-16533482745/TanbCMOlpbodEPnZ48s9. Website remains sole dispatcher.
-- Calls from website: AW-16533482745/A0LUCMalpbodEPnZ48s9. Owner reports primary/count One. Website callback updates number text and tel links together. Real forwarding allocation/routing requires separate evidence.
+- Calls from website: AW-16533482745/A0LUCMalpbodEPnZ48s9. Owner reports primary/count One. The combined container did not initialize WCC from the phone gtag config; the website uses Google's dedicated consent-gated `https://www.gstatic.com/wcm/loader.js` and its current call-tracking SDK. No second GA4/base tag is loaded. The callback updates number text and tel links together. Google WCC Force replaces digits with nines; that is a DOM diagnostic, not proof of real number allocation or call routing. Real forwarding allocation/routing requires separate evidence.
 - GA4: G-SZRHKMDBTE. Combined tag owns GA4 config and page_view. Website only routes generate_lead and phone_tap with send_to; NO second config or loader. Owner reports Form interactions off, Google signals off, 14-month retention, linked Ads account with personalization off. These account settings were supplied by owner, not independently inspected.
 - GOOGLE_ADS_WEBSITE_CALL_LABEL and GA4_MEASUREMENT_ID set/read back in Netlify production builds scope; no preview activation.
 
