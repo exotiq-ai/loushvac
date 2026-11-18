@@ -13,7 +13,10 @@ const currentPath = Astro.url.pathname;
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="logo-link" aria-label="Lou's Heating & Cooling">
-      <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling logo — HVAC contractor in Lakewood, CO" width="240" height="80" />
+      <picture>
+        <source type="image/webp" srcset="/images/lous-hvac-logo.webp" width="600" height="229" />
+        <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling logo — HVAC contractor in Lakewood, CO" width="1500" height="1000" />
+      </picture>
     </a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
@@ -37,7 +40,7 @@ const currentPath = Astro.url.pathname;
       </a>
     </div>
 
-    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -66,9 +69,10 @@ const currentPath = Astro.url.pathname;
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  height: 80px;
+  height: 64px; /* Compact mobile header */
 }
-.logo-link img { height: 64px; width: auto; }
+.logo-link img { height: 52px; width: auto; }
+@media (min-width: 768px) { .header-inner { height: 80px; } .logo-link img { height: 64px; } }
 .desktop-nav {
   display: none;
   align-items: center;
@@ -155,17 +159,52 @@ const currentPath = Astro.url.pathname;
   text-decoration: none;
   font-size: var(--font-size-lg);
 }
-.mobile-nav-cta { margin-top: var(--space-3); text-align: center; }
+.mobile-nav-cta { margin-top: var(--space-3); text-align: center; flex-shrink: 0; }
 </style>
 
 <script>
-const btn = document.getElementById('mobile-menu-btn');
+const btn = document.querySelector<HTMLButtonElement>('#mobile-menu-btn');
 const nav = document.getElementById('mobile-nav');
 if (btn && nav) {
   btn.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(isOpen));
     nav.setAttribute('aria-hidden', String(!isOpen));
+    if (isOpen) {
+      nav.querySelector<HTMLAnchorElement>('.mobile-nav-link')?.focus();
+      btn.setAttribute('aria-label', 'Close menu');
+    } else {
+      btn.setAttribute('aria-label', 'Open menu');
+      btn.focus();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      nav.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-label', 'Open menu');
+      btn.focus();
+    }
+  });
+
+  nav.querySelectorAll('.mobile-nav-link, .mobile-nav-cta, .mobile-nav-phone').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      nav.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-label', 'Open menu');
+      btn.focus();
+    });
   });
 }
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 1200) {
+    document.getElementById('mobile-nav')?.classList.remove('open');
+    document.getElementById('mobile-menu-btn')?.setAttribute('aria-expanded', 'false');
+    document.getElementById('mobile-nav')?.setAttribute('aria-hidden', 'true');
+    document.getElementById('mobile-menu-btn')?.setAttribute('aria-label', 'Open menu');
+  }
+});
 </script>

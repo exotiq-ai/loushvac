@@ -112,7 +112,7 @@ import { googleReviewSummary } from '../content/googleReviewSummary';
     <!-- Additional equipment brand -->
     <div class="trust-badge" role="listitem">
       <div class="trust-icon-wrap trust-icon-accent">
-        <img src="/images/service-icon-fan.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" />
+        <picture><source type="image/webp" srcset="/images/service-icon-fan.webp" /><img src="/images/service-icon-fan.png" alt="" aria-hidden="true" width="28" height="28" loading="lazy" /></picture>
       </div>
       <div class="trust-text">
         <span class="trust-label">American Standard Equipment</span>
@@ -196,5 +196,17 @@ import { googleReviewSummary } from '../content/googleReviewSummary';
 }
 @media (min-width: 1024px) {
   .trust-label { font-size: 0.72rem; }
+}
+/* Compact, legible proof on phones instead of a screen per badge. */
+@media (max-width: 767px) {
+  .trust-bar-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
+  .trust-badge { padding: 14px 0; align-items: flex-start; text-align: left; border: 0; border-bottom: 1px solid rgba(255,255,255,.2); border-radius: 0; box-shadow: none; background: none; }
+  .trust-badge:hover { background: none; }
+  .trust-icon-wrap { display: none; }
+  .trust-text { align-items: flex-start; }
+  .trust-label { font-size: .875rem; line-height: 1.4; letter-spacing: 0; text-transform: none; }
+  .trust-sub { font-size: .875rem; line-height: 1.4; opacity: 1; color: #d6e4ed; }
+  a.trust-sub { display: inline-flex; min-height: 44px; align-items: center; }
+  .trust-bar-footnote { font-size: .875rem; line-height: 1.5; opacity: 1; padding: 0 16px; }
 }
 </style>
