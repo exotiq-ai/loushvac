@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "test:seo": "node scripts/check-seo.mjs",
     "test:hero": "node scripts/check-hero-image.mjs",
+    "test:mobile-conversion": "node scripts/check-mobile-conversion.mjs",
     "test:analytics": "node scripts/check-analytics-browser.mjs",
     "test:measurement": "node scripts/check-measurement.mjs",
     "test:measurement-policy": "node --experimental-strip-types --test scripts/measurement-policy*.test.mjs",

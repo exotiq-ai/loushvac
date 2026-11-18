@@ -4,8 +4,8 @@ export interface Props { compact?: boolean; sourcePage?: string; }
 const { compact = false, sourcePage } = Astro.props;
 ---
 <form
-  class:list={['contact-form', { 'contact-form--compact': compact }]}
-  data-source-page={sourcePage || ''}
+  class:list={["contact-form", { "contact-form--compact": compact }]}
+  data-source-page={sourcePage || ""}
   method="POST"
   action="/api/contact"
   data-netlify="true"
@@ -18,20 +18,20 @@ const { compact = false, sourcePage } = Astro.props;
     <p class="form-noscript">Form will submit without JavaScript. For fastest response, call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
   </noscript>
 
-  <div class="form-status" data-status hidden></div>
+  <div class="form-status" data-status role="status" aria-live="polite" tabindex="-1" hidden></div>
 
   <div class="form-grid">
     <div class="form-group">
       <label for="name">Your Name <span aria-hidden="true">*</span></label>
-      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Smith" />
+      <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Smith" inputmode="text" />
     </div>
     <div class="form-group">
       <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
-      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(720) 555-0100" />
+      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(720) 555-0100" inputmode="tel" />
     </div>
     <div class="form-group">
       <label for="email">Email Address <span aria-hidden="true">*</span></label>
-      <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" />
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" inputmode="email" spellcheck="false" />
     </div>
     <div class="form-group">
       <label for="service">Service Needed</label>
@@ -80,14 +80,23 @@ const { compact = false, sourcePage } = Astro.props;
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (submitting) return;
+      // Native validation check before POST
+      if (!form.checkValidity()) {
+        const status = form.querySelector('[data-status]') as HTMLElement | null;
+        if (status) {
+          status.textContent = 'Please check the required fields and enter a valid email address.';
+          status.className = 'form-status form-status--error';
+          status.hidden = false;
+        }
+        form.reportValidity();
+        return;
+      }
       const status = form.querySelector('[data-status]') as HTMLElement | null;
       const submit = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
       if (!status || !submit) return;
-
       const data: Record<string, string> = {};
       new FormData(form).forEach((v, k) => { data[k] = String(v); });
       data.source_page = (form.dataset.sourcePage || window.location.pathname);
-
       submitting = true;
       const submissionId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
       submit.disabled = true;
@@ -95,7 +104,6 @@ const { compact = false, sourcePage } = Astro.props;
       submit.textContent = 'Sending…';
       status.hidden = true;
       status.className = 'form-status';
-
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
@@ -107,17 +115,20 @@ const { compact = false, sourcePage } = Astro.props;
           status.textContent = json.message || 'Thanks — Lou’s team has received your request.';
           status.classList.add('form-status--success');
           status.hidden = false;
+          status.focus();
           if (!data._gotcha) trackAcceptedLead(data.service || '', submissionId);
           form.reset();
         } else {
           status.textContent = json.error || 'Something went wrong. Please call (303) 949-8584.';
           status.classList.add('form-status--error');
           status.hidden = false;
+          status.focus();
         }
       } catch {
         status.textContent = 'Network issue. Please call (303) 949-8584.';
         status.classList.add('form-status--error');
         status.hidden = false;
+        status.focus();
       } finally {
         submitting = false;
         submit.disabled = false;

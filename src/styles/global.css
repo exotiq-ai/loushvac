@@ -78,7 +78,7 @@ li { margin-bottom: var(--space-2); }
   text-decoration: none;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: all var(--transition);
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
   max-width: 100%;
   white-space: normal;
   text-align: center;
@@ -178,4 +178,23 @@ li { margin-bottom: var(--space-2); }
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Shared mobile ergonomics; no layout-hiding overflow or new runtime library. */
+html { scroll-padding-top: 88px; }
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid var(--color-primary-light); outline-offset: 3px; }
+a, button, summary { touch-action: manipulation; }
+.btn, button, summary { min-height: 44px; }
+[id] { scroll-margin-top: 88px; }
+@media (max-width: 767px) {
+  .section { padding: 40px 0; }
+  .section-sm { padding: 28px 0; }
+  .page-hero h1 { font-size: clamp(1.75rem, 7vw, 2.25rem); }
+  .btn-lg { min-height: 48px; padding: 12px 20px; font-size: 1rem; }
+  .btn svg { flex-shrink: 0; }
+  .grid-2 > *, .grid-3 > *, .grid-4 > * { min-width: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

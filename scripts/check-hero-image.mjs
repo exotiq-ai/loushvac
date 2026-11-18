@@ -53,6 +53,9 @@ for (const name of (process.env.BROWSERS || 'chromium,firefox').split(',')) {
       }
       if (width === 390) {
         await image.evaluate(img => { img.closest('picture').querySelectorAll('source').forEach(source => source.remove()); img.removeAttribute('srcset'); });
+        // Firefox may finish decoding the previous candidate before the picture
+        // source-selection task runs. Wait for the actual JPEG selection first.
+        await page.waitForFunction(() => { const img = document.querySelector('.hero-media img'); return img.currentSrc.endsWith('lou-team-nov2026-1600.jpg') && img.complete && img.naturalWidth > 0; });
         await image.evaluate(img => img.decode());
         const fallback = await image.evaluate(img => ({ src: img.currentSrc, width: img.naturalWidth }));
         assert.ok(fallback.src.endsWith('lou-team-nov2026-1600.jpg') && fallback.width > 0, 'JPEG fallback decodes');

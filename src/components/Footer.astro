@@ -6,7 +6,10 @@ import MeasurementSettings from './MeasurementSettings.astro';
 <footer class="site-footer">
   <div class="container footer-grid">
     <div class="footer-brand">
-      <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling" width="200" height="67" />
+      <picture>
+        <source type="image/webp" srcset="/images/lous-hvac-logo.webp" width="600" height="229" />
+        <img src="/images/lous-hvac-logo.png" alt="Lou's Heating & Cooling" width="1500" height="1000" loading="lazy" />
+      </picture>
       <p>Family-owned HVAC based in Lakewood,<br>serving the Denver metro since 2014.</p>
       <p class="footer-spanish">Se habla Español</p>
     </div>
@@ -90,7 +93,7 @@ import MeasurementSettings from './MeasurementSettings.astro';
 }
 @media (min-width: 640px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .footer-grid { grid-template-columns: repeat(5, 1fr); } }
-.footer-brand img { margin-bottom: var(--space-4); }
+.footer-brand img { width: 200px; height: auto; margin-bottom: var(--space-4); }
 .footer-brand p { color: #9CA3AF; font-size: var(--font-size-sm); line-height: 1.6; margin-bottom: var(--space-2); }
 .footer-spanish { color: var(--color-primary-light) !important; font-style: italic; }
 .footer-contact h3, .footer-nav h3, .footer-links h3 { color: var(--color-white); font-size: var(--font-size-base); margin-bottom: var(--space-4); }

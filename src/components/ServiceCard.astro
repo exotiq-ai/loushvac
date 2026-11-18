@@ -7,10 +7,14 @@ export interface Props {
   href: string;
 }
 const { title, description, icon, href } = Astro.props;
+const optimizedIcon = /^\/images\/service-icon-(snowflake|fire|fan|water)\.png$/.test(icon) ? icon.replace('.png', '.webp') : null;
 ---
 <article class="service-card">
   <div class="service-card-icon">
-    <img src={icon} alt="" aria-hidden="true" width="56" height="56" />
+    <picture>
+      {optimizedIcon && <source type="image/webp" srcset={optimizedIcon} />}
+      <img src={icon} alt="" aria-hidden="true" width="56" height="56" loading="lazy" />
+    </picture>
   </div>
   <h3>{title}</h3>
   <p>{description}</p>
@@ -33,6 +37,6 @@ const { title, description, icon, href } = Astro.props;
 .service-card-icon img { width: 48px; height: 48px; object-fit: contain; }
 .service-card h3 { font-size: var(--font-size-xl); color: var(--color-primary); margin: 0; }
 .service-card p { color: var(--color-text-muted); flex-grow: 1; margin: 0; }
-.service-card-link { color: var(--color-accent-text); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-1); }
+.service-card-link { color: var(--color-accent-text); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-1); min-height: 44px; }
 .service-card-link:hover { color: var(--color-primary); text-decoration: underline; }
 </style>
