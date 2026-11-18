@@ -1,7 +1,13 @@
 ---
 interface Props { enabled: boolean; }
 const { enabled } = Astro.props;
+const callLabel = import.meta.env.GOOGLE_ADS_WEBSITE_CALL_LABEL || '';
+const callSendTo = /^[A-Za-z0-9_-]+$/.test(callLabel) && callLabel !== 'TanbCMOlpbodEPnZ48s9'
+  ? `AW-16533482745/${callLabel}` : '';
+const ga4Id = /^G-[A-Z0-9]+$/.test(import.meta.env.GA4_MEASUREMENT_ID || '') ? import.meta.env.GA4_MEASUREMENT_ID : '';
 ---
 {enabled && <meta name="lous-measurement-enabled" content="true" />}
+{enabled && callSendTo && <meta name="lous-website-call-action" content={callSendTo} />}
+{enabled && ga4Id && <meta name="lous-ga4-id" content={ga4Id} />}
 <!-- The shared measurement controller initializes consent before loading this container.
      No unconditional noscript iframe: it cannot honor browser choices on these static pages. -->

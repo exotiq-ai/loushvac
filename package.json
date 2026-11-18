@@ -19,6 +19,11 @@
     "test:launch-content": "node scripts/check-launch-pages.mjs",
     "test:reviews": "node --experimental-strip-types scripts/check-review-content.mjs",
     "test:google-sdk": "node scripts/check-real-google-sdk.mjs",
+    "test:attribution-policy": "node --experimental-strip-types --test scripts/attribution-policy.test.mjs",
+    "test:attribution-api": "node scripts/check-attribution-api.mjs",
+    "test:attribution": "node scripts/check-attribution-browser.mjs",
+    "test:website-calls": "node scripts/check-website-calls.mjs",
+    "test:optional-destinations": "node scripts/check-optional-destinations.mjs",
     "astro": "astro"
   },
   "dependencies": {

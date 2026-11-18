@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { ATTRIBUTION_KEYS, type Attribution } from './attribution-policy.ts';
 
 const apiKey = import.meta.env.RESEND_API_KEY;
 const fromEmail = import.meta.env.RESEND_FROM_EMAIL || 'leads@loushvac.com';
@@ -14,6 +15,9 @@ export interface LeadEmailPayload {
   message?: string;
   preferred_time?: string;
   source_page?: string;
+  enquiry_reference?: string;
+  received_at?: string;
+  attribution?: Attribution;
 }
 
 function escape(s: string): string {
@@ -24,11 +28,13 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
   if (!resend) return { error: 'Resend not configured' };
 
   const subject = `New Lead: ${data.name} — ${data.service || 'HVAC inquiry'}`;
-  const phoneDigits = data.phone.replace(/\D/g, '');
+  const attributionLines = data.attribution
+    ? [...ATTRIBUTION_KEYS.filter(key => data.attribution?.[key]).map(key => `${key}: ${data.attribution![key]}`), `captured_at: ${data.attribution.captured_at}`] : [];
 
   const html = `<!doctype html>
 <html><body style="font-family: -apple-system, system-ui, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #222;">
   <h2 style="color: #1B4965; margin: 0 0 16px;">New lead from loushvac303.com</h2>
+  ${data.enquiry_reference ? `<p><strong>Enquiry reference:</strong> ${escape(data.enquiry_reference)}<br><strong>Received (UTC):</strong> ${escape(data.received_at || '')}</p>` : ''}
   <p style="font-size: 20px; margin: 0 0 24px;"><strong>${escape(data.name)}</strong></p>
   <p style="margin: 0 0 8px;"><strong>Phone:</strong> ${escape(data.phone)}</p>
   <p style="margin: 0 0 8px;"><strong>Email:</strong> ${escape(data.email)}</p>
@@ -36,6 +42,9 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
   ${data.preferred_time ? `<p style="margin: 0 0 8px;"><strong>Preferred time:</strong> ${escape(data.preferred_time)}</p>` : ''}
   ${data.message ? `<div style="margin: 16px 0; padding: 16px; background: #F5F5F5; border-radius: 8px;"><strong>Message:</strong><br>${escape(data.message).replace(/\n/g, '<br>')}</div>` : ''}
   <p style="color: #888; font-size: 12px; margin-top: 24px;">Source: ${escape(data.source_page || 'unknown')}</p>
+  <h3>Campaign attribution — unverified browser metadata</h3>
+  <p>${attributionLines.length ? attributionLines.map(escape).join('<br>') : 'No permitted campaign attribution supplied. This does not establish an organic/direct source.'}</p>
+  <p>Source labels are not proof of a qualified lead, booking or sale. Match this enquiry reference to the existing tracker/HCP job manually; no HCP API connection is active.</p>
   <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0 12px;" />
   <p style="color: #aaa; font-size: 11px;">Lou's Heating &amp; Cooling lead system</p>
 </body></html>`;
@@ -51,6 +60,12 @@ export async function sendLeadEmail(data: LeadEmailPayload): Promise<{ id?: stri
     data.message ? `\nMessage:\n${data.message}` : '',
     ``,
     `Source: ${data.source_page || 'unknown'}`,
+    `Enquiry reference: ${data.enquiry_reference || 'not supplied'}`,
+    `Received (UTC): ${data.received_at || 'not supplied'}`,
+    'Campaign attribution — unverified browser metadata:',
+    ...attributionLines,
+    attributionLines.length ? '' : 'No permitted campaign attribution supplied; do not assume organic/direct.',
+    'Source labels are not proof of a qualified lead, booking or sale. Match this enquiry reference to the tracker/HCP job manually; no HCP API connection is active.',
   ].filter(Boolean).join('\n');
 
   try {

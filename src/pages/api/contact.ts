@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import { ContactFormSchema } from '../../lib/validation.ts';
 import { sendLeadEmail, sendCustomerConfirmation } from '../../lib/resend.ts';
 import { insertLead } from '../../lib/supabase.ts';
-import { findOrCreateCustomerAndLead } from '../../lib/housecallpro.ts';
+
 
 export const prerender = false;
 
@@ -71,31 +71,29 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const { name, phone, email, service, message, preferred_time, source_page } = parsed.data;
+  const attribution = parsed.data.measurement_allowed === true && request.headers.get('Sec-GPC') !== '1'
+    ? parsed.data.attribution : undefined;
+  const enquiry_reference = crypto.randomUUID();
+  const received_at = new Date(now).toISOString();
   const userAgent = request.headers.get('user-agent') || '';
   const ip_hash = await hashIp(ip);
 
-  const [emailRes, hcpRes] = await Promise.all([
-    sendLeadEmail({ name, phone, email, service, message, preferred_time, source_page }),
-    findOrCreateCustomerAndLead({ name, phone, email, service, message, source: source_page }),
-  ]);
+  const emailRes = await sendLeadEmail({ name, phone, email, service, message, preferred_time, source_page, attribution, enquiry_reference, received_at });
 
   const dbRes = await insertLead({
     name, phone, email, service, message, preferred_time, source_page,
+    attribution, enquiry_reference, received_at,
     user_agent: userAgent,
     ip_hash,
-    email_sent: !emailRes.error,
-    hcp_customer_id: hcpRes.customerId,
-    hcp_lead_id: hcpRes.leadId,
-    notes: [emailRes.error, hcpRes.error].filter(Boolean).join(' | ') || undefined,
+    email_sent: Boolean(emailRes.id) && !emailRes.error,
+    notes: emailRes.error || undefined,
   });
 
   recent.set(ip, now);
 
-  await sendCustomerConfirmation({ name, email, service }).catch(() => {});
+  const leadCaptured = Boolean(dbRes.id) || (Boolean(emailRes.id) && !emailRes.error);
 
-  const leadCaptured = !dbRes.error || !hcpRes.error;
-
-  if (emailRes.error && !leadCaptured) {
+  if (!leadCaptured) {
     if (!isJson) {
       return new Response(redirectHtml('/contact/?form=error'), {
         status: 303,
@@ -111,6 +109,8 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 
+  await sendCustomerConfirmation({ name, email, service }).catch(() => {});
+
   if (!isJson) {
     return new Response(redirectHtml('/contact/thank-you/'), {
       status: 303,
@@ -121,6 +121,7 @@ export const POST: APIRoute = async ({ request }) => {
   return new Response(JSON.stringify({
     ok: true,
     leadId: dbRes.id,
+    enquiryReference: enquiry_reference,
     message: 'Thanks — Lou’s team has received your request.',
   }), {
     status: 200,
