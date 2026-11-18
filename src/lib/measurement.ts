@@ -1,5 +1,5 @@
 import { effectiveMeasurement, parseChoice, publicMeasurementPage, FORM_CONVERSION_SEND_TO, type MeasurementChoice } from './measurement-policy';
-import { configureGA4, ga4Destination } from './ga4';
+import { ga4Destination } from './ga4';
 import { configureWebsiteCalls, restoreWebsiteNumbers } from './website-calls';
 
 export const CHOICE_KEY = 'lous.measurement.v1';
@@ -27,7 +27,7 @@ export function measurementIsAllowed(): boolean {
     && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl;
 }
 function googleConsent(allowed: boolean): Record<string, string> {
-  return { ad_storage: allowed ? 'granted' : 'denied', analytics_storage: allowed ? 'granted' : 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
+  return { ad_storage: allowed ? 'granted' : 'denied', analytics_storage: allowed ? 'granted' : 'denied', ad_user_data: allowed ? 'granted' : 'denied', ad_personalization: 'denied' };
 }
 function clearMeasurementCookies(): void {
   for (const entry of document.cookie.split(';')) {
@@ -98,7 +98,7 @@ function applyState(): void {
   publishState();
   if (state.allowed) {
     startGoogleTag();
-    configureGA4();
+
     const action = document.querySelector<HTMLMetaElement>('meta[name="lous-website-call-action"]')?.content || '';
     configureWebsiteCalls(action, measurementIsAllowed);
   }

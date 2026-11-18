@@ -15,7 +15,7 @@ const { compact = false, sourcePage } = Astro.props;
 >
   <noscript>
     <input type="hidden" name="source_page" value={sourcePage || 'unknown'} />
-    <p class="form-noscript">Form will submit without JavaScript. For fastest response, call <a href="tel:3039498584" class="phone-link">(303) 949-8584</a>.</p>
+    <p class="form-noscript">Form will submit without JavaScript. For fastest response, call <a href="tel:+13039498584" class="phone-link">(303) 949-8584</a>.</p>
   </noscript>
 
   <div class="form-status" data-status role="status" aria-live="polite" tabindex="-1" hidden></div>
@@ -30,8 +30,8 @@ const { compact = false, sourcePage } = Astro.props;
       <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(720) 555-0100" inputmode="tel" />
     </div>
     <div class="form-group">
-      <label for="email">Email Address <span aria-hidden="true">*</span></label>
-      <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@example.com" inputmode="email" spellcheck="false" />
+      <label for="email">Email Address (optional)</label>
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@example.com" inputmode="email" spellcheck="false" />
     </div>
     <div class="form-group">
       <label for="service">Service Needed</label>
@@ -85,7 +85,7 @@ const { compact = false, sourcePage } = Astro.props;
       if (!form.checkValidity()) {
         const status = form.querySelector('[data-status]') as HTMLElement | null;
         if (status) {
-          status.textContent = 'Please check the required fields and enter a valid email address.';
+          status.textContent = 'Please enter your name and phone number. If you include an email address, check that it is valid.';
           status.className = 'form-status form-status--error';
           status.hidden = false;
         }

@@ -11,7 +11,7 @@ export const supabase = url && serviceKey
 export interface LeadRow {
   name: string;
   phone: string;
-  email: string;
+  email: string | null;
   service?: string;
   message?: string;
   preferred_time?: string;
