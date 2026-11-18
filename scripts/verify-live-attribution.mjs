@@ -34,14 +34,19 @@ if(submit){
  await page.locator('#preferred_time').fill('TEST ONLY — no appointment');
  await writeFile(receipt,JSON.stringify({...report,attemptedAt:new Date().toISOString()},null,2));
  const apiPromise=page.waitForResponse(r=>r.url().endsWith('/api/contact')&&r.request().method()==='POST',{timeout:60000});
+ // Register before clicking: networkidle may already be satisfied from page load.
+ const conversionPromise=page.waitForResponse(r=>new URL(r.url()).searchParams.get('label')===label,{timeout:30000}).catch(()=>null);
  await page.locator('.form-submit').click();const api=await apiPromise;report.api={status:api.status(),body:await api.json()};report.submitted=true;
  await writeFile(receipt,JSON.stringify(report,null,2));assert.equal(report.api.status,200);assert.equal(report.api.body.ok,true);assert.match(report.api.body.enquiryReference,/^[a-f\d-]{36}$/i);
  await page.locator('.form-status--success').waitFor();
  await page.waitForFunction(()=>window.dataLayer.some(e=>e?.[0]==='event'&&e?.[1]==='conversion'));
- await page.waitForLoadState('networkidle');
+ const conversionResponse=await conversionPromise;
  report.events=await page.evaluate(()=>({leads:window.dataLayer.filter(e=>e?.event==='generate_lead'),conversions:window.dataLayer.filter(e=>e?.[0]==='event'&&e?.[1]==='conversion').map(e=>e[2])}));
+ report.googleTransport=conversions;
+ await writeFile(receipt,JSON.stringify(report,null,2));
  assert.equal(posts,1);assert.equal(report.events.leads.length,1);assert.equal(report.events.conversions.length,1);assert.equal(report.events.conversions[0].transaction_id,report.api.body.enquiryReference);
- assert.equal(conversions.length,1);assert.ok(conversions[0].status>=200&&conversions[0].status<300);report.googleTransport=conversions;
+ assert.ok(conversionResponse,'Timed out waiting for actual Google conversion response; do not resubmit the enquiry');
+ assert.equal(conversions.length,1);assert.ok(conversions[0].status>=200&&conversions[0].status<300);
  await page.locator('.form-status--success').evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));await page.screenshot({path:output+'/production-test.png'});
  await writeFile(receipt,JSON.stringify(report,null,2));
 }

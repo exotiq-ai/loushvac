@@ -71,3 +71,11 @@ Weekly: match reference first, otherwise contact details + date; flag ambiguous/
 - Final evidence must distinguish local mocks, real SDK with intercepted beacons, actual production HTTP/Google transport, provider delivery, and Ads/GA4 report attribution.
 
 A JavaScript-disabled browser cannot push a dataLayer event. The HTML POST/303 workflow is retained without an unsafe thank-you-page conversion. No unconditional noscript tracking iframe is installed because it would bypass the website's choices on static pages.
+
+## Production result — November 18, 2026
+
+PR #9 was merged and Netlify published the exact application commit `6d434c5a64196e28d42581f741d4838a7bb3c061`. Real Chromium and Firefox journeys passed cross-page attribution, saved opt-out, HTTP GPC and admin exclusions. One authorized test enquiry returned HTTP 200 / `ok:true` with an opaque server reference. Given the unconfigured DB and the success gate, this proves email-provider acceptance, not independent inbox inspection.
+
+The form dispatched one logical conversion with that reference. The first verifier asserted before observing the network response; it now registers a response waiter before clicking rather than relying on a previously satisfied `networkidle` state. No second enquiry was submitted. A measurement-only retry of the accepted test, using the same transaction reference for deduplication, received HTTP 204 from Google's conversion endpoint. Ads-report attribution/deduplication remains account-side verification, not proven by HTTP 204.
+
+Call and GA4 identifiers are still absent, so those destinations remain inactive. No full website-call launch clearance is claimed. No Ads campaigns, budgets or HCP account settings changed. Current email-provider secrets are masked in hosting API reads; delivery logs were not independently accessed. Gregory previously confirmed inbox receipt of the earlier test.
