@@ -40,7 +40,10 @@ for (const engine of engines) {
       await new Promise(resolve => setTimeout(resolve, apiDelay));
       return route.fulfill({ status: apiStatus, contentType: 'application/json', body: JSON.stringify(apiResponse) });
     }
-    const response = await route.fetch({ url: local + url.pathname + url.search });
+    // Firefox supplies the original Host header; update it with the proxy target.
+    // Otherwise a remote Netlify preview can accidentally serve production HTML.
+    const response = await route.fetch({ url: local + url.pathname + url.search,
+      headers: { ...route.request().headers(), host: new URL(local).host } });
     return route.fulfill({ response });
   });
   const page = await context.newPage();
