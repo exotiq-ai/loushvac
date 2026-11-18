@@ -1,5 +1,6 @@
 import { measurementIsAllowed } from './measurement';
 import { publicMeasurementPage, FORM_CONVERSION_SEND_TO } from './measurement-policy';
+import { sendGA4Event } from './ga4';
 
 declare global {
   interface Window {
@@ -24,6 +25,7 @@ function pushEvent(event: Record<string, string>): void {
   try {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(event);
+    sendGA4Event(event);
   } catch {
     // Measurement is best-effort; the lead has already been handled by the server.
   }

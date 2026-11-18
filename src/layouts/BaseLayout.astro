@@ -204,6 +204,8 @@ const schemas = [localBusinessSchema, websiteSchema, ...(Array.isArray(schema) ?
   <script>
     import { initializePhoneTracking } from '../lib/analytics';
     import { initializeMeasurement } from '../lib/measurement';
+    import { initializeAttribution } from '../lib/attribution';
+    initializeAttribution();
     initializeMeasurement();
     initializePhoneTracking();
   </script>

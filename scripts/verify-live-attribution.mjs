@@ -1,0 +1,54 @@
+import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
+import { mkdir,writeFile } from 'node:fs/promises';
+import { chromium,firefox } from 'playwright';
+const base='https://loushvac303.com',label='TanbCMOlpbodEPnZ48s9';
+const output=process.env.QA_DIR||'/tmp/lous-attribution-live';
+const submit=process.argv.includes('--submit');
+await mkdir(output,{recursive:true});
+const receipt=output+'/submission-attempt.json';
+if(submit&&existsSync(receipt))throw new Error('A test was already attempted. Inspect saved receipt; do not send another.');
+const browser=await ({chromium,firefox}[process.env.BROWSER||'chromium']).launch();
+const context=await browser.newContext({viewport:{width:390,height:844}});
+const page=await context.newPage();let posts=0;const conversions=[],errors=[];
+const report={source:'Actual production',startedAt:new Date().toISOString(),submitted:false,adsReportAttributionVerified:false,websiteCallAssignmentVerified:false,ga4IngestionVerified:false};
+page.on('pageerror',e=>errors.push(e.message));
+page.on('response',r=>{const u=new URL(r.url());if(u.searchParams.get('label')===label)conversions.push({status:r.status(),origin:u.origin,path:u.pathname});});
+await context.route('**/api/contact',route=>{if(route.request().method()==='POST'){posts++;if(!submit||posts>1)return route.abort();}return route.continue();});
+for(const path of ['/?utm_source=avi_qa&utm_medium=verification&utm_campaign=attribution_acceptance','/services/furnace-repair/','/contact/']){
+ const res=await page.goto(base+path,{waitUntil:'networkidle'});assert.equal(res.status(),200);
+ await page.waitForFunction(()=>window.__lousMeasurementState?.ready);
+ assert.equal(await page.evaluate(()=>window.__lousMeasurementState.allowed),true,'US verification runner needs actual policy permission');
+ assert.equal(await page.evaluate(()=>!!window.google_tag_manager?.['GTM-W7R427MZ']),true);
+ assert.equal(await page.locator('script[src*="googletagmanager.com/gtm.js"]').count(),1);
+}
+const attribution=await page.evaluate(()=>JSON.parse(localStorage.getItem('lous.attribution.v1')));
+assert.equal(attribution.utm_source,'avi_qa');assert.equal(attribution.utm_campaign,'attribution_acceptance');
+assert.equal(conversions.length,0,'no form conversion on page load');
+report.crossPageAttribution=attribution;
+report.optionalIds=await page.evaluate(()=>({ga4:document.querySelector('meta[name="lous-ga4-id"]')?.content||null,calls:document.querySelector('meta[name="lous-website-call-action"]')?.content||null}));
+assert.deepEqual(report.optionalIds,{ga4:null,calls:null},'Missing real identifiers remain dormant');
+if(submit){
+ await page.locator('#name').fill('TEST - Gregory attribution');await page.locator('#phone').fill('3035550147');await page.locator('#email').fill('admin@loushvac.com');await page.locator('#service').selectOption('other');
+ await page.locator('#message').fill('AUTHORIZED ATTRIBUTION ACCEPTANCE TEST — NOT A CUSTOMER OR SERVICE REQUEST. Do not schedule, call or dispatch. This verifies campaign fields and enquiry reference in the business email. Phone is a reserved test number.');
+ await page.locator('#preferred_time').fill('TEST ONLY — no appointment');
+ await writeFile(receipt,JSON.stringify({...report,attemptedAt:new Date().toISOString()},null,2));
+ const apiPromise=page.waitForResponse(r=>r.url().endsWith('/api/contact')&&r.request().method()==='POST',{timeout:60000});
+ await page.locator('.form-submit').click();const api=await apiPromise;report.api={status:api.status(),body:await api.json()};report.submitted=true;
+ await writeFile(receipt,JSON.stringify(report,null,2));assert.equal(report.api.status,200);assert.equal(report.api.body.ok,true);assert.match(report.api.body.enquiryReference,/^[a-f\d-]{36}$/i);
+ await page.locator('.form-status--success').waitFor();
+ await page.waitForFunction(()=>window.dataLayer.some(e=>e?.[0]==='event'&&e?.[1]==='conversion'));
+ await page.waitForLoadState('networkidle');
+ report.events=await page.evaluate(()=>({leads:window.dataLayer.filter(e=>e?.event==='generate_lead'),conversions:window.dataLayer.filter(e=>e?.[0]==='event'&&e?.[1]==='conversion').map(e=>e[2])}));
+ assert.equal(posts,1);assert.equal(report.events.leads.length,1);assert.equal(report.events.conversions.length,1);assert.equal(report.events.conversions[0].transaction_id,report.api.body.enquiryReference);
+ assert.equal(conversions.length,1);assert.ok(conversions[0].status>=200&&conversions[0].status<300);report.googleTransport=conversions;
+ await page.locator('.form-status--success').evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));await page.screenshot({path:output+'/production-test.png'});
+ await writeFile(receipt,JSON.stringify(report,null,2));
+}
+await page.locator('.measurement-settings summary').click();await page.locator('[data-measurement-choice="off"]').click();assert.equal(await page.evaluate(()=>localStorage.getItem('lous.attribution.v1')),null);
+await page.reload({waitUntil:'networkidle'});await page.waitForFunction(()=>window.__lousMeasurementState?.ready);assert.equal(await page.evaluate(()=>!!window.google_tag_manager),false);
+report.savedOptOut='PASS';
+const gpc=await browser.newContext({extraHTTPHeaders:{'Sec-GPC':'1'}});const gp=await gpc.newPage();await gp.goto(base+'/?utm_source=avi_qa',{waitUntil:'networkidle'});await gp.waitForFunction(()=>window.__lousMeasurementState?.ready);
+assert.equal(await gp.evaluate(()=>window.__lousMeasurementState.allowed),false);assert.equal(await gp.evaluate(()=>localStorage.getItem('lous.attribution.v1')),null);assert.equal(await gp.evaluate(()=>!!window.google_tag_manager),false);report.httpGpc='PASS';
+await gp.goto(base+'/admin/leads/',{waitUntil:'networkidle'});assert.equal(await gp.locator('html').getAttribute('data-analytics-production'),'false');assert.equal(await gp.evaluate(()=>!!window.google_tag_manager),false);report.adminExcluded='PASS';
+assert.deepEqual(errors,[]);report.status='PASS';await writeFile(output+'/results-'+(process.env.BROWSER||'chromium')+'.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));await browser.close();

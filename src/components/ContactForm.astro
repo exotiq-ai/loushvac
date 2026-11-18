@@ -70,6 +70,7 @@ const { compact = false, sourcePage } = Astro.props;
 
 <script>
   import { trackAcceptedLead } from '../lib/analytics';
+  import { attributionForSubmission } from '../lib/attribution';
 
   document.querySelectorAll('form.contact-form').forEach((formEl) => {
     const form = formEl as HTMLFormElement;
@@ -105,10 +106,11 @@ const { compact = false, sourcePage } = Astro.props;
       status.hidden = true;
       status.className = 'form-status';
       try {
+        const attribution = attributionForSubmission();
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
+          body: JSON.stringify({ ...data, ...(attribution ? { attribution, measurement_allowed: true } : {}) }),
         });
         const json = await res.json().catch(() => ({}));
         if (res.ok && json.ok === true) {
@@ -116,7 +118,7 @@ const { compact = false, sourcePage } = Astro.props;
           status.classList.add('form-status--success');
           status.hidden = false;
           status.focus();
-          if (!data._gotcha) trackAcceptedLead(data.service || '', submissionId);
+          if (!data._gotcha) trackAcceptedLead(data.service || '', typeof json.enquiryReference === 'string' ? json.enquiryReference : submissionId);
           form.reset();
         } else {
           status.textContent = json.error || 'Something went wrong. Please call (303) 949-8584.';

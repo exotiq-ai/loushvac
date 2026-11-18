@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { normalizeAttribution } from './attribution-policy.ts';
 
 export const ContactFormSchema = z.object({
   name: z.string().min(2).max(100).trim(),
@@ -8,6 +9,8 @@ export const ContactFormSchema = z.object({
   message: z.string().max(2000).optional(),
   preferred_time: z.string().max(200).optional(),
   source_page: z.string().max(200).optional(),
+  attribution: z.unknown().transform(value => normalizeAttribution(value)).optional(),
+  measurement_allowed: z.boolean().optional().catch(false),
   _gotcha: z.string().max(0).optional(),
 });
 

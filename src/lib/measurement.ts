@@ -1,4 +1,6 @@
 import { effectiveMeasurement, parseChoice, publicMeasurementPage, FORM_CONVERSION_SEND_TO, type MeasurementChoice } from './measurement-policy';
+import { configureGA4, ga4Destination } from './ga4';
+import { configureWebsiteCalls, restoreWebsiteNumbers } from './website-calls';
 
 export const CHOICE_KEY = 'lous.measurement.v1';
 interface MeasurementState {
@@ -18,6 +20,9 @@ let preferenceStorage: Storage | null = null;
 let initialGoogleConsent: Record<string, string> | null = null;
 
 export function measurementIsAllowed(): boolean {
+  // A saved Off may have changed in another tab before its storage event arrives.
+  try { if (parseChoice(window.localStorage.getItem(CHOICE_KEY)) === false) return false; }
+  catch { /* An explicit same-page choice may be allowed when storage is blocked. */ }
   return state.ready && state.allowed && publicMeasurementPage(window.location.href)
     && !(navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl;
 }
@@ -40,7 +45,9 @@ function discardQueuedEvents(): void {
     const item = window.dataLayer[index] as { event?: string; [key: number]: unknown } | undefined;
     const ownConversion = item?.[0] === 'event' && item?.[1] === 'conversion'
       && (item?.[2] as { send_to?: string } | undefined)?.send_to === FORM_CONVERSION_SEND_TO;
-    if (item && (['generate_lead', 'phone_tap'].includes(item.event || '') || ownConversion)) window.dataLayer.splice(index, 1);
+    const ownGA4 = item?.[0] === 'event' && ['generate_lead', 'phone_tap'].includes(String(item?.[1]))
+      && Boolean(ga4Destination()) && (item?.[2] as { send_to?: string } | undefined)?.send_to === ga4Destination();
+    if (item && (['generate_lead', 'phone_tap'].includes(item.event || '') || ownConversion || ownGA4)) window.dataLayer.splice(index, 1);
   }
 }
 function startGoogleTag(): void {
@@ -83,12 +90,18 @@ function applyState(): void {
     if (initialGoogleConsent) Object.assign(initialGoogleConsent, googleConsent(false));
     discardQueuedEvents();
     clearMeasurementCookies();
+    restoreWebsiteNumbers();
     if (wasAllowed && tagStarted) window.gtag?.('consent', 'update', googleConsent(false));
   } else if (tagStarted && !wasAllowed) {
     window.gtag?.('consent', 'update', googleConsent(true));
   }
   publishState();
-  if (state.allowed) startGoogleTag();
+  if (state.allowed) {
+    startGoogleTag();
+    configureGA4();
+    const action = document.querySelector<HTMLMetaElement>('meta[name="lous-website-call-action"]')?.content || '';
+    configureWebsiteCalls(action, measurementIsAllowed);
+  }
 }
 function chooseMeasurement(allowed: boolean): void {
   state.choice = allowed;
