@@ -6,7 +6,7 @@ const fixture=`<header><a href="tel:+13039498584" aria-label="Call Lou (303) 949
 for(const engine of ['chromium','firefox']){
  const browser=await ({chromium,firefox}[engine]).launch();const page=await browser.newPage();
  await page.setContent(fixture);await page.addScriptTag({content:bundled.outputFiles[0].text});
- await page.evaluate(()=>{window.calls=[];window.allowed=true;window.gtag=(...args)=>window.calls.push(args);window.allow=()=>window.allowed});
+ await page.evaluate(()=>{window.calls=[];window.allowed=true;window._googWcmImpl=(...args)=>window.calls.push(['config','AW-'+args[2].ak+'/'+args[2].cl,{phone_conversion_number:args[3],phone_conversion_callback:args[1]}]);window.allow=()=>window.allowed});
  const initial=await page.locator('body').innerHTML();
  await page.evaluate(()=>{for(const id of ['', 'invalid', 'AW-16533482745/TanbCMOlpbodEPnZ48s9'])CallAdapter.configureWebsiteCalls(id,window.allow)});
  assert.equal(await page.evaluate(()=>calls.length),0);
@@ -35,5 +35,12 @@ for(const engine of ['chromium','firefox']){
  assert.equal(await page.locator('header a').getAttribute('href'),'tel:+17205550100');
  await page.locator('p').evaluate(el=>el.textContent='Unrelated UI update');await page.evaluate(()=>CallAdapter.restoreWebsiteNumbers());
  assert.equal(await page.locator('p').innerText(),'Unrelated UI update');
- console.log('PASS '+engine+': call adapter DOM callback simulation, no real calls or assigned forwarding numbers');await browser.close();
+ const late=await browser.newPage();await late.setContent('<p>(303) 949-8584</p>');let release;
+ await late.route('https://www.gstatic.com/wcm/loader.js',route=>new Promise(resolve=>{release=async()=>{await route.fulfill({contentType:'application/javascript',body:'window.actualCallRequests=0;window._googWcmImpl=()=>window.actualCallRequests++;'});resolve()}}));
+ await late.addScriptTag({content:bundled.outputFiles[0].text});await late.evaluate(()=>{window.allowed=true;CallAdapter.configureWebsiteCalls('AW-16533482745/LOCAL_TEST',()=>window.allowed)});
+ await late.waitForFunction(()=>!!document.querySelector('#lous-google-call-library'));await late.evaluate(()=>{window.allowed=false;CallAdapter.restoreWebsiteNumbers()});
+ while(!release)await new Promise(r=>setTimeout(r,10));await release();await late.waitForFunction(()=>typeof window._googWcmImpl==='function');
+ await late.waitForTimeout(100);assert.equal(await late.evaluate(()=>window.actualCallRequests),0,'no request from a late library after optout');
+ await late.evaluate(()=>{window.allowed=true;CallAdapter.configureWebsiteCalls('AW-16533482745/LOCAL_TEST',()=>window.allowed)});await late.waitForFunction(()=>window.actualCallRequests===1);
+ console.log('PASS '+engine+': call adapter, late SDK optout/reallow, no real calls or assigned forwarding numbers');await browser.close();
 }

@@ -5,6 +5,37 @@ type Replacement = { node: Node; attribute?: string; original: string; applied: 
 let replacements: Replacement[] = [];
 let configured = false;
 let generation = 0;
+declare global {
+  interface Window {
+    _googWcmAk?: string;
+    _googWcmImpl?: (...args: unknown[]) => void;
+  }
+}
+let library: Promise<boolean> | undefined;
+function loadCallLibrary(): Promise<boolean> {
+  if (typeof window._googWcmImpl === 'function') return Promise.resolve(true);
+  if (library) return library;
+  window._googWcmAk = '16533482745';
+  library = new Promise(resolve => {
+    const script = document.createElement('script');
+    script.id = 'lous-google-call-library';
+    script.async = true;
+    script.src = 'https://www.gstatic.com/wcm/loader.js';
+    const start = Date.now();
+    let finished = false;
+    const finish = (ready: boolean) => { if (!finished) { finished = true; resolve(ready); } };
+    const check = () => {
+      if (finished) return;
+      if (typeof window._googWcmImpl === 'function') return finish(true);
+      if (Date.now() - start >= 5000) return finish(false);
+      window.setTimeout(check, 50);
+    };
+    script.onerror = () => finish(false);
+    document.head.append(script);
+    check();
+  });
+  return library;
+}
 function digits(value: string): string | undefined {
   if (!/^[+\d ().-]+$/.test(value)) return;
   const result = value.replace(/\D/g, '');
@@ -57,20 +88,24 @@ export function restoreWebsiteNumbers(): void {
 export function configureWebsiteCalls(sendTo: string, allowed: () => boolean): void {
   if (!/^AW-16533482745\/[A-Za-z0-9_-]+$/.test(sendTo)
     || sendTo === 'AW-16533482745/TanbCMOlpbodEPnZ48s9'
-    || configured || !allowed() || typeof window.gtag !== 'function') return;
+    || configured || !allowed()) return;
   configured = true;
   const currentGeneration = ++generation;
-  try {
-    window.gtag('config', sendTo, {
-      phone_conversion_number: '(303) 949-8584',
-      phone_conversion_options: { timeout: 5000, cache: false },
-      phone_conversion_callback: (formatted: unknown, mobile: unknown) => {
+  // The combined container doesn't initialize WCC from gtag('config'). Use Google's
+  // dedicated call library, not a second GA4/Google tag. No queued request after Off.
+  void loadCallLibrary().then(ready => {
+    if (!ready || !configured || generation !== currentGeneration || !allowed()) return;
+    const callback = (formatted: unknown, mobile: unknown) => {
         if (!allowed() || !configured || generation !== currentGeneration) return;
         if (typeof formatted !== 'string' || typeof mobile !== 'string' || formatted.length > 30) return;
         const normalized = digits(mobile);
         if (!normalized || digits(formatted) !== normalized) return;
         replaceNumbers(formatted, normalized);
-      },
-    });
-  } catch { configured = false; }
+    };
+    // Signature verified against Google's current wcm/loader.js -> call-tracking SDK.
+    try {
+      window._googWcmImpl?.(2, callback, { ak: '16533482745', cl: sendTo.split('/')[1] },
+        '(303) 949-8584', null, new Date(), { timeout: 5000, cache: false });
+    } catch { configured = false; }
+  }).catch(() => { configured = false; });
 }
